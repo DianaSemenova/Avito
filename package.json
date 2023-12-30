@@ -17,8 +17,8 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "format": "prettier --write ./",
-        "lint": "eslint src/**/*.{js,jsx}",
-        "pre-commit": "npm run lint && npm run format"
+        "lint:js": "eslint src/**/*.{js,jsx}",
+        "lint": "npm run lint:js && npm run format"
     },
     "eslintConfig": {
         "extends": [
