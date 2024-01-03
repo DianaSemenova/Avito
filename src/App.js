@@ -1,10 +1,12 @@
 import './style.css';
+import { BrowserRouter } from 'react-router-dom';
+import { AppRoutes } from './routes/routes';
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">Learn</header>
-        </div>
+        <BrowserRouter>
+            <AppRoutes />
+        </BrowserRouter>
     );
 }
 
