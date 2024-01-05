@@ -1,0 +1,144 @@
+.form {
+    width: 630px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.form input {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    padding: 13px 19px;
+}
+
+.form input::-webkit-input-placeholder {
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.form input:-ms-input-placeholder {
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.form input::-ms-input-placeholder {
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.form input::placeholder {
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.form label {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #c4c4c4;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.formDiv {
+    display: inline-block;
+    margin: 0 7px 20px;
+}
+
+.input {
+    width: 300px;
+}
+.inputPhone {
+    width: 614px;
+}
+.btn {
+    font-size: 16px;
+    line-height: 1;
+    color: #ffffff;
+    width: 154px;
+    height: 50px;
+    margin: 10px 7px 0;
+    background-color: #009ee4;
+    border-radius: 6px;
+    border: 1px solid #009ee4;
+}
+.btn:hover {
+    background-color: #0080c1;
+}
+
+@media screen and (max-width: 620px) {
+    .form {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+    .form input {
+        border-radius: 30px;
+        padding: 9px 17px;
+    }
+    .form input::-webkit-input-placeholder {
+        font-size: 14px;
+        line-height: 21px;
+    }
+    .form input:-ms-input-placeholder {
+        font-size: 14px;
+        line-height: 21px;
+    }
+    .form input::-ms-input-placeholder {
+        font-size: 14px;
+        line-height: 21px;
+    }
+    .form input::placeholder {
+        font-size: 14px;
+        line-height: 21px;
+    }
+    .form label {
+        font-size: 14px;
+        line-height: 21px;
+        color: #c4c4c4;
+        margin-bottom: 6px;
+    }
+    .formDiv {
+        /* display: inline-block; */
+        margin: 0 0px 18px;
+    }
+    .input,
+    .inputPhone {
+        width: 100%;
+    }
+    .btn {
+        font-size: 16px;
+        line-height: 1;
+        color: #ffffff;
+        width: 154px;
+        height: 50px;
+        margin: 10px 7px 0;
+        background-color: #009ee4;
+        border-radius: 6px;
+        border: 1px solid #009ee4;
+    }
+}
