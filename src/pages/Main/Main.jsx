@@ -1,256 +1,78 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
-// import Header from '../../components/common/Header/Header';
+import s from './Main.module.css';
 import PageWrapper from '../../components/common/PageWrapper/PageWrapper';
-// import BottomMenuMob from '../../components/common/BottomMenu/BottomMenu';
+import Product from '../../components/common/CardsContent/Product';
 
 export default function MainPage() {
-    return (
-        // <div className="wrapper">
-        // <div className="container">
-        // <Header />
+    const product = [
+        {
+            name: 'Ракетка для большого тенниса Triumph Pro ST',
+            price: '2 200',
+            place: 'Санкт-Петербург',
+            date: '10:45',
+        },
+        {
+            name: 'Ракетка для большого тенниса Triumph Pro ST',
+            price: '2 200',
+            place: 'Санкт-Петербург',
+            date: '10:45',
+        },
+        {
+            name: 'Ракетка для большого тенниса Triumph Pro ST',
+            price: '2 200',
+            place: 'Санкт-Петербург',
+            date: '10:45',
+        },
+        {
+            name: 'Ракетка для большого тенниса Triumph Pro ST',
+            price: '2 200',
+            place: 'Санкт-Петербург',
+            date: '10:45',
+        },
+        {
+            name: 'Ракетка для большого тенниса Triumph Pro ST',
+            price: '2 200',
+            place: 'Санкт-Петербург',
+            date: '10:45',
+        },
+        {
+            name: 'Ракетка для большого тенниса Triumph Pro ST',
+            price: '2 200',
+            place: 'Санкт-Петербург',
+            date: '10:45',
+        },
+        {
+            name: 'Ракетка для большого тенниса Triumph Pro ST',
+            price: '2 200',
+            place: 'Санкт-Петербург',
+            date: '10:45',
+        },
+        {
+            name: 'Ракетка для большого тенниса Triumph Pro ST',
+            price: '2 200',
+            place: 'Санкт-Петербург',
+            date: '10:45',
+        },
+        {
+            name: 'Ракетка для большого тенниса Triumph Pro ST',
+            price: '2 200',
+            place: 'Санкт-Петербург',
+            date: '10:45',
+        },
+        {
+            name: 'Ракетка для большого тенниса Triumph Pro ST',
+            price: '2 200',
+            place: 'Санкт-Петербург',
+            date: '10:45',
+        },
+    ];
 
+    return (
         <main className="main">
             <PageWrapper />
-            <div className="main__container">
-                <h2 className="main__h2">Объявления</h2>
-                <div className="main__content">
-                    <div className="content__cards cards">
-                        <div className="cards__item">
-                            <div className="cards__card card">
-                                <div className="card__image">
-                                    <img src="#" alt="picture" />
-                                </div>
-                                <div className="card__content">
-                                    <h3 className="card__title">
-                                        Ракетка для большого тенниса Triumph Pro
-                                        ST
-                                    </h3>
-
-                                    <p className="card__price">
-                                        2&nbsp;200&nbsp;₽
-                                    </p>
-                                    <p className="card__place">
-                                        Санкт Петербург
-                                    </p>
-                                    <p className="card__date">
-                                        Сегодня в&nbsp;10:45
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="cards__item">
-                            <div className="cards__card card">
-                                <div className="card__image">
-                                    <img src="#" alt="picture" />
-                                </div>
-                                <div className="card__content">
-                                    <h3 className="card__title">
-                                        Ракетка для большого тенниса Triumph Pro
-                                        ST
-                                    </h3>
-
-                                    <p className="card__price">
-                                        2&nbsp;200&nbsp;₽
-                                    </p>
-                                    <p className="card__place">
-                                        Санкт Петербург
-                                    </p>
-                                    <p className="card__date">
-                                        Сегодня в&nbsp;10:45
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="cards__item">
-                            <div className="cards__card card">
-                                <div className="card__image">
-                                    <img src="#" alt="picture" />
-                                </div>
-                                <div className="card__content">
-                                    <h3 className="card__title">
-                                        Ракетка для большого тенниса Triumph Pro
-                                        ST
-                                    </h3>
-
-                                    <p className="card__price">
-                                        2&nbsp;200&nbsp;₽
-                                    </p>
-                                    <p className="card__place">
-                                        Санкт Петербург
-                                    </p>
-                                    <p className="card__date">
-                                        Сегодня в&nbsp;10:45
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="cards__item">
-                            <div className="cards__card card">
-                                <div className="card__image">
-                                    <img src="#" alt="picture" />
-                                </div>
-                                <div className="card__content">
-                                    <h3 className="card__title">
-                                        Ракетка для большого тенниса Triumph Pro
-                                        ST
-                                    </h3>
-
-                                    <p className="card__price">
-                                        2&nbsp;200&nbsp;₽
-                                    </p>
-                                    <p className="card__place">
-                                        Санкт Петербург
-                                    </p>
-                                    <p className="card__date">
-                                        Сегодня в&nbsp;10:45
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="cards__item">
-                            <div className="cards__card card">
-                                <div className="card__image">
-                                    <img src="#" alt="picture" />
-                                </div>
-                                <div className="card__content">
-                                    <h3 className="card__title">
-                                        Ракетка для большого тенниса Triumph Pro
-                                        ST
-                                    </h3>
-
-                                    <p className="card__price">
-                                        2&nbsp;200&nbsp;₽
-                                    </p>
-                                    <p className="card__place">
-                                        Санкт Петербург
-                                    </p>
-                                    <p className="card__date">
-                                        Сегодня в&nbsp;10:45
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="cards__item">
-                            <div className="cards__card card">
-                                <div className="card__image">
-                                    <img src="#" alt="picture" />
-                                </div>
-                                <div className="card__content">
-                                    <h3 className="card__title">
-                                        Ракетка для большого тенниса Triumph Pro
-                                        ST
-                                    </h3>
-
-                                    <p className="card__price">
-                                        2&nbsp;200&nbsp;₽
-                                    </p>
-                                    <p className="card__place">
-                                        Санкт Петербург
-                                    </p>
-                                    <p className="card__date">
-                                        Сегодня в&nbsp;10:45
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="cards__item">
-                            <div className="cards__card card">
-                                <div className="card__image">
-                                    <img src="#" alt="picture" />
-                                </div>
-                                <div className="card__content">
-                                    <h3 className="card__title">
-                                        Ракетка для большого тенниса Triumph Pro
-                                        ST
-                                    </h3>
-
-                                    <p className="card__price">
-                                        2&nbsp;200&nbsp;₽
-                                    </p>
-                                    <p className="card__place">
-                                        Санкт Петербург
-                                    </p>
-                                    <p className="card__date">
-                                        Сегодня в&nbsp;10:45
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="cards__item">
-                            <div className="cards__card card">
-                                <div className="card__image">
-                                    <img src="#" alt="picture" />
-                                </div>
-                                <div className="card__content">
-                                    <h3 className="card__title">
-                                        Ракетка для большого тенниса Triumph Pro
-                                        ST
-                                    </h3>
-
-                                    <p className="card__price">
-                                        2&nbsp;200&nbsp;₽
-                                    </p>
-                                    <p className="card__place">
-                                        Санкт Петербург
-                                    </p>
-                                    <p className="card__date">
-                                        Сегодня в&nbsp;10:45
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="cards__item">
-                            <div className="cards__card card">
-                                <div className="card__image">
-                                    <img src="#" alt="picture" />
-                                </div>
-                                <div className="card__content">
-                                    <h3 className="card__title">
-                                        Ракетка для большого тенниса Triumph Pro
-                                        ST
-                                    </h3>
-
-                                    <p className="card__price">
-                                        2&nbsp;200&nbsp;₽
-                                    </p>
-                                    <p className="card__place">
-                                        Санкт Петербург
-                                    </p>
-                                    <p className="card__date">
-                                        Сегодня в&nbsp;10:45
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="cards__item">
-                            <div className="cards__card card">
-                                <div className="card__image">
-                                    <img src="#" alt="picture" />
-                                </div>
-                                <div className="card__content">
-                                    <h3 className="card__title">
-                                        Ракетка для большого тенниса Triumph Pro
-                                        ST
-                                    </h3>
-
-                                    <p className="card__price">
-                                        2&nbsp;200&nbsp;₽
-                                    </p>
-                                    <p className="card__place">
-                                        Санкт Петербург
-                                    </p>
-                                    <p className="card__date">
-                                        Сегодня в&nbsp;10:45
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div className={s.mainContainer}>
+                <h2 className={s.h2}>Объявления</h2>
+                <Product data={product} />
             </div>
         </main>
-        // <BottomMenuMob />
-        // </div>
-        // </div>
     );
 }

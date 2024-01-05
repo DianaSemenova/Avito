@@ -4,6 +4,7 @@
 }
 .centerBlock {
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 .mainProfile {
@@ -68,9 +69,6 @@
 }
 
 @media (max-width: 890px) {
-    .mainContainer {
-        padding: 85px 0px 84px;
-    }
     .profileSellContent {
         max-width: 834px;
         width: 100%;
@@ -99,9 +97,8 @@
     }
 }
 @media screen and (max-width: 580px) {
-    .centerBlock {
-        margin: 0 auto;
-        padding: 0 20px;
+    .mainContainer {
+        padding: 85px 0px 84px;
     }
 
     .profileSellContent {
