@@ -7,7 +7,7 @@ export default function Product({ data }) {
             <div className={s.cards}>
                 {data &&
                     data.map((item) => (
-                        <div className={s.cardsItem}>
+                        <div className={s.cardsItem} key={Math.random()}>
                             <div className={s.cardsCard}>
                                 <div className={s.cardImage}>
                                     <img src="#" alt="picture" />
