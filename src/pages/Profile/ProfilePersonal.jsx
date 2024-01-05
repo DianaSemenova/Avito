@@ -8,7 +8,7 @@ export default function ProfilePersonal() {
     return (
         <main>
             <div className={s.mainContainer}>
-                <div className="main__center-block">
+                <div className={s.centerBlock}>
                     <PageWrapper />
 
                     <h2 className={s.heading}>Здравствуйте, Антон!</h2>

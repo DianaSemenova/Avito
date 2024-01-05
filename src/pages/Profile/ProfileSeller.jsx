@@ -8,9 +8,9 @@ export default function ProfileSeller() {
     return (
         <main>
             <div className={s.mainContainer}>
-                <div className="main__center-block">
+                <div className={s.centerBlock}>
                     <PageWrapper />
-                    <h2 className={s.heading}>Профиль продавца</h2>
+                    <h2 className={s.headingSeller}>Профиль продавца</h2>
                     <div className={s.mainProfile}>
                         <div className={s.profileSellContent}>
                             <div className={s.profileSeller}>

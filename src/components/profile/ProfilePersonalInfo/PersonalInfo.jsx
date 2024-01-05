@@ -1,11 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import s from './PersonalInfo.module.css';
+
 export default function PersonalInfo() {
     return (
-        <form className="settings__form" action="#">
-            <div className="settings__div">
+        <form className={s.form} action="#">
+            <div className={s.formDiv}>
                 <label htmlFor="fname">Имя</label>
                 <input
-                    className="settings__f-name"
+                    className={s.input}
                     id="settings-fname"
                     name="fname"
                     type="text"
@@ -13,10 +15,10 @@ export default function PersonalInfo() {
                     placeholder=""
                 />
             </div>
-            <div className="settings__div">
+            <div className={s.formDiv}>
                 <label htmlFor="lname">Фамилия</label>
                 <input
-                    className="settings__l-name"
+                    className={s.input}
                     id="settings-lname"
                     name="lname"
                     type="text"
@@ -24,10 +26,10 @@ export default function PersonalInfo() {
                     placeholder=""
                 />
             </div>
-            <div className="settings__div">
+            <div className={s.formDiv}>
                 <label htmlFor="city">Город</label>
                 <input
-                    className="settings__city"
+                    className={s.input}
                     id="settings-city"
                     name="city"
                     type="text"
@@ -35,10 +37,10 @@ export default function PersonalInfo() {
                     placeholder=""
                 />
             </div>
-            <div className="settings__div">
+            <div className={s.formDiv}>
                 <label htmlFor="phone">Телефон</label>
                 <input
-                    className="settings__phone"
+                    className={s.inputPhone}
                     id="settings-phone"
                     name="phone"
                     type="tel"
@@ -46,11 +48,7 @@ export default function PersonalInfo() {
                     placeholder={+79161234567}
                 />
             </div>
-            <button
-                type="button"
-                className="settings__btn btn-hov02"
-                id="settings-btn"
-            >
+            <button type="button" className={s.btn} id="settings-btn">
                 Сохранить
             </button>
         </form>

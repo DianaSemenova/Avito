@@ -7,7 +7,7 @@ export default function Avatar({ page }) {
                 <img src="#" alt="" />
             </div>
 
-            {page === 'personal' && <p>Заменить</p>}
+            {page === 'personal' && <p className={s.replacePhoto}>Заменить</p>}
         </div>
     );
 }

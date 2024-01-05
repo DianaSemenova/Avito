@@ -1,19 +1,25 @@
 .mainContainer {
     max-width: 1178px;
     margin: 0 auto;
-    padding: 0px 10px 79px;
+}
+.centerBlock {
+    margin: 0 auto;
 }
 
 .mainProfile {
     width: 100%;
     padding: 0 0 70px;
 }
+
 .profileSellContent {
     width: 100%;
 }
+
 .profileContent {
     max-width: 834px;
 }
+
+.headingSeller,
 .heading {
     font-style: normal;
     font-weight: 500;
@@ -22,6 +28,7 @@
     color: #000000;
     margin-bottom: 30px;
 }
+
 .profileTitle,
 .mainTitle {
     font-size: 32px;
@@ -29,9 +36,11 @@
     font-weight: 500;
     color: #000000;
 }
+
 .profileTitle {
     margin-bottom: 20px;
 }
+
 .mainTitle {
     margin-bottom: 30px;
 }
@@ -51,6 +60,7 @@
     -ms-flex-pack: start;
     justify-content: start;
 }
+
 .profilePersonal {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
@@ -65,14 +75,17 @@
         max-width: 834px;
         width: 100%;
     }
+
     .profileContent {
         max-width: 834px;
         width: 100%;
     }
+
     .profilePersonal {
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     }
+
     .profileSeller {
         -ms-flex-wrap: wrap-reverse;
         flex-wrap: wrap-reverse;
@@ -84,23 +97,55 @@
         width: 100%;
         padding: 0 0 40px;
     }
-    .heading {
-        font-size: 24px;
-        line-height: 29px;
-        color: #000000;
-        margin-bottom: 20px;
-    }
 }
 @media screen and (max-width: 580px) {
+    .centerBlock {
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
     .profileSellContent {
         max-width: 100%;
         width: 100%;
     }
+
     .profileSeller {
         /* -ms-flex-wrap: wrap;
         flex-wrap: wrap; */
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
+    }
+    .headingSeller,
+    .heading {
+        font-size: 24px;
+        line-height: 29px;
+        color: #000000;
+        margin-bottom: 20px;
+    }
+    .headingSeller {
+        padding: 0 0 0 26px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .headingSeller::before {
+        content: '';
+        display: block;
+        width: 12px;
+        height: 12px;
+        background-color: transparent;
+        border-top: 2px solid #000000;
+        border-left: 2px solid #000000;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        position: absolute;
+        top: 9px;
+        left: 0;
+    }
+
+    .headingSeller:hover::before {
+        border-top: 2px solid #0080c1;
+        border-left: 2px solid #0080c1;
     }
 }
