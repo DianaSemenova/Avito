@@ -1,18 +1,21 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import s from './Profile.module.css';
 import PageWrapper from '../../components/common/PageWrapper/PageWrapper';
+import ProfileContent from '../../components/profile/ProfileContent/ProfileContent';
 
 export default function ProfileSeller() {
     return (
-        <main className="main">
-            <div className="main__container">
+        <main>
+            <div className={s.mainContainer}>
                 <div className="main__center-block">
                     <PageWrapper />
-                    <h2 className="main__h2">Профиль продавца</h2>
-                    <div className="main__profile-sell profile-sell">
-                        <div className="profile-sell__content">
-                            <div className="profile-sell__seller seller">
-                                <div className="seller__left">
+                    <h2 className={s.heading}>Профиль продавца</h2>
+                    <div className={s.mainProfile}>
+                        <div className={s.profileSellContent}>
+                            <div className={s.profileSeller}>
+                                <ProfileContent page="seller" />
+                                {/* <div className="seller__left">
                                     <div className="seller__img">
                                         <img src="#" alt="" />
                                     </div>
@@ -41,12 +44,14 @@ export default function ProfileSeller() {
                                             8&nbsp;905&nbsp;ХХХ&nbsp;ХХ&nbsp;ХХ
                                         </span>
                                     </button>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
 
-                    <h3 className="main__title title">Товары продавца</h3>
+                    <h3 className={`${s.mainTitle} ${s.title}`}>
+                        Товары продавца
+                    </h3>
                 </div>
                 <div className="main__content">
                     <div className="content__cards cards">
