@@ -6,6 +6,7 @@ import {
     useRegistrationUserMutation,
 } from '../../../services/auth';
 import { setAuth } from '../../../store/slices/auth';
+import Button from '../../UI/Button/Button';
 
 export default function AuthForm({ navigate, isLogin }) {
     const dispatch = useDispatch();
@@ -17,7 +18,6 @@ export default function AuthForm({ navigate, isLogin }) {
     const [city, setCity] = useState('');
     const [loginUser, { error }] = useLoginUserMutation();
     const [registrationUser] = useRegistrationUserMutation();
-  
 
     const handleLogin = async () => {
         try {
@@ -128,24 +128,20 @@ export default function AuthForm({ navigate, isLogin }) {
                 )}
             </div>
 
-            <button
-                type="button"
-                className={s.btnEnter}
-                id="btnEnter"
+            <Button
+                classes="btnEnter"
                 onClick={isLogin ? handleLogin : handleRegister}
             >
                 {isLogin ? 'Войти' : 'Зарегистрироваться'}
-            </button>
-            <button
-                type="button"
-                className={s.btnSignup}
-                id="btnSignUp"
+            </Button>
+            <Button
+                classes="btnSignup"
                 onClick={() =>
                     isLogin ? navigate('/registration') : navigate('/auth')
                 }
             >
                 {!isLogin ? 'Войти' : 'Зарегистрироваться'}
-            </button>
+            </Button>
         </form>
     );
 }

@@ -1,0 +1,55 @@
+.btnEnter,
+.btnSignup {
+    width: 278px;
+    height: 46px;
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+}
+
+.btnEnter {
+    background-color: #009ee4;
+    margin-top: 40px;
+    border: none;
+    color: #ffffff;
+}
+.btnEnter:hover {
+    background-color: #0080c1;
+}
+.btnEnter:active {
+    background-color: #0080c1;
+}
+.btnSignup {
+    background-color: transparent;
+    border: 1px solid #d0cece;
+    margin-top: 10px;
+    color: #000000;
+}
+.btnSignup:hover {
+    background-color: #d1e7f0;
+}
+.btnSignup:active {
+    background-color: #0080c1;
+    color: #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+    .btnEnter {
+        height: 46px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+        border: none;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .btnSignup {
+        height: 46px;
+        border: 1px solid #d9d9d9;
+        font-size: 16px;
+        line-height: 24px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
