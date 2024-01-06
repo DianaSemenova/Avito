@@ -4,7 +4,6 @@
 import s from './Modal.module.css';
 
 export default function Modal({ active, setActive, children }) {
-
     return (
         <div
             className={active ? s.modalActive : s.modal}
