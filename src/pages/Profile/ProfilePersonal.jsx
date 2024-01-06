@@ -39,6 +39,9 @@ export default function ProfilePersonal() {
                     name: data.name,
                     surname: data.surname,
                     city: data.city,
+                    phone: data.phone,
+                    avatar: data.avatar,
+                    role: data.role
                 }),
             );
         }
@@ -59,7 +62,7 @@ export default function ProfilePersonal() {
                             <div className={s.profilePersonal}>
                                 <ProfileContent
                                     page="personal"
-                                    data={data && data}
+                                    data={user && user}
                                 />
                             </div>
                         </div>

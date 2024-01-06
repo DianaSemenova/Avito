@@ -19,6 +19,9 @@ const initialState = {
     name: null,
     surname: null,
     city: null,
+    phone: null,
+    avatar: null,
+    role: null,
 };
 
 export const authSlice = createSlice({
@@ -27,8 +30,18 @@ export const authSlice = createSlice({
 
     reducers: {
         setAuth: (state, action) => {
-            const { access, refresh, userID, email, name, surname, city } =
-                action.payload ?? initialState;
+            const {
+                access,
+                refresh,
+                userID,
+                email,
+                name,
+                surname,
+                city,
+                phone,
+                avatar,
+                role,
+            } = action.payload ?? initialState;
             state.access = access;
             state.refresh = refresh;
             state.ID = userID;
@@ -36,6 +49,9 @@ export const authSlice = createSlice({
             state.name = name;
             state.surname = surname;
             state.city = city;
+            state.phone = phone;
+            state.avatar = avatar;
+            state.role = role;
             localStorage.setItem(AUTH_INFO, JSON.stringify(state));
         },
     },
