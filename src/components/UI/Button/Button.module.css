@@ -14,9 +14,7 @@
     border: none;
     color: #ffffff;
 }
-.btnEnter:hover {
-    background-color: #0080c1;
-}
+
 .btnEnter:active {
     background-color: #0080c1;
 }
@@ -64,8 +62,50 @@
 .searchMainBtn {
     padding: 13px 36px;
 }
+
+.btnPersonal {
+    font-size: 16px;
+    line-height: 1;
+    color: #ffffff;
+    width: 154px;
+    height: 50px;
+    margin: 10px 7px 0;
+    background-color: #009ee4;
+    border-radius: 6px;
+    border: 1px solid #009ee4;
+}
+.btnSeller {
+    margin-top: 20px;
+    background-color: #009ee4;
+    border-radius: 6px;
+    border: 1px solid #009ee4;
+    width: 214px;
+    height: 62px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+}
+.btnExit {
+    color: #8f9399;
+    text-decoration: underline;
+    font-size: 25px;
+    border: 0;
+    background: none;
+}
+.btnExit:hover {
+    color: #6b6e74;
+}
+.btnExit:active {
+    color: #6b6e74;
+}
+
 .searchBtn:hover,
-.searchMainBtn:hover {
+.searchMainBtn:hover,
+.btnPersonal:hover,
+.btnSeller:hover,
+.btnEnter:hover {
     background-color: #0080c1;
 }
 
@@ -87,10 +127,33 @@
         font-size: 16px;
         line-height: 24px;
     }
+    .btnPersonal {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .btnPersonal {
+        font-size: 16px;
+        line-height: 1;
+        color: #ffffff;
+        height: 50px;
+        margin: 10px 7px 0;
+        background-color: #009ee4;
+        border-radius: 6px;
+        border: 1px solid #009ee4;
+    }
 }
 
 @media screen and (max-width: 580px) {
     .searchBtn {
         display: none;
+    }
+    .btnSeller {
+        width: 100%;
+        height: 57px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
     }
 }

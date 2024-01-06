@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect } from 'react';
 import s from './PersonalInfo.module.css';
+import Button from '../../UI/Button/Button';
 
 export default function PersonalInfo({ data }) {
     useEffect(() => {
@@ -53,9 +54,7 @@ export default function PersonalInfo({ data }) {
                     placeholder={+79161234567}
                 />
             </div>
-            <button type="button" className={s.btn} id="settings-btn">
-                Сохранить
-            </button>
+            <Button classes="btnPersonal">Сохранить</Button>
         </form>
     );
 }

@@ -70,7 +70,7 @@
 .inputPhone {
     width: 614px;
 }
-.btn {
+/* .btn {
     font-size: 16px;
     line-height: 1;
     color: #ffffff;
@@ -83,7 +83,7 @@
 }
 .btn:hover {
     background-color: #0080c1;
-}
+} */
 
 @media screen and (max-width: 620px) {
     .form {
@@ -130,7 +130,7 @@
     .inputPhone {
         width: 100%;
     }
-    .btn {
+    /* .btn {
         font-size: 16px;
         line-height: 1;
         color: #ffffff;
@@ -140,5 +140,5 @@
         background-color: #009ee4;
         border-radius: 6px;
         border: 1px solid #009ee4;
-    }
+    } */
 }

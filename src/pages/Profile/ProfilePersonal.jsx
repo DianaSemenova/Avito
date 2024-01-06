@@ -8,6 +8,7 @@ import ProfileContent from '../../components/profile/ProfileContent/ProfileConte
 import Product from '../../components/common/CardsContent/Product';
 import { useGetUserQuery } from '../../services/user';
 import { setAuth } from '../../store/slices/auth';
+import Button from '../../components/UI/Button/Button';
 
 export default function ProfilePersonal() {
     const dispatch = useDispatch();
@@ -74,13 +75,9 @@ export default function ProfilePersonal() {
                         </div>
                     </div>
 
-                    <button
-                        type="button"
-                        className={s.btnExit}
-                        onClick={() => handleLogout()}
-                    >
+                    <Button classes="btnExit" onClick={() => handleLogout()}>
                         Выход из аккаунта
-                    </button>
+                    </Button>
 
                     <h3 className={s.mainTitle}>Мои товары</h3>
                 </div>
