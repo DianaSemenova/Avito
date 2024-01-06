@@ -30,26 +30,6 @@
     display: -ms-flexbox;
     display: flex;
 }
-.searchBtn {
-    margin-left: 10px;
-    padding: 13px 56px;
-    background-color: #009ee4;
-    border: 1px solid #009ee4;
-    border-radius: 6px;
-    font-size: 16px;
-    line-height: 24px;
-    color: #ffffff;
-}
-
-.searchMainBtn {
-    padding: 13px 36px;
-}
-.searchBtn:hover {
-    background-color: #0080c1;
-}
-searchMainBtn:hover {
-    background-color: #0080c1;
-}
 
 .searchText {
     width: 100%;
@@ -123,9 +103,6 @@ searchMainBtn:hover {
         display: flex;
     }
     .searchLogo {
-        display: none;
-    }
-    .searchBtn {
         display: none;
     }
     .searchText {

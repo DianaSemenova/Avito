@@ -34,6 +34,41 @@
     color: #ffffff;
 }
 
+.btnMain {
+    padding: 8px 24px;
+    border: 1px solid #ffffff;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.btnMain:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid #ffffff;
+}
+
+.searchBtn,
+.searchMainBtn {
+    margin-left: 10px;
+    padding: 13px 56px;
+    background-color: #009ee4;
+    border: 1px solid #009ee4;
+    border-radius: 6px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #ffffff;
+}
+
+.searchMainBtn {
+    padding: 13px 36px;
+}
+.searchBtn:hover,
+.searchMainBtn:hover {
+    background-color: #0080c1;
+}
+
 @media screen and (max-width: 768px) {
     .btnEnter {
         height: 46px;
@@ -51,5 +86,11 @@
         line-height: 24px;
         font-size: 16px;
         line-height: 24px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .searchBtn {
+        display: none;
     }
 }

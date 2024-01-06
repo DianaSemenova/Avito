@@ -18,21 +18,6 @@
     gap: 10px;
 }
 
-.btnMain {
-    padding: 8px 24px;
-    border: 1px solid #ffffff;
-    border-radius: 6px;
-    background-color: transparent;
-    color: #ffffff;
-    font-size: 16px;
-    line-height: 1;
-}
-
-.btnMain:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid #ffffff;
-}
-
 @media screen and (max-width: 580px) {
     .header {
         display: none;

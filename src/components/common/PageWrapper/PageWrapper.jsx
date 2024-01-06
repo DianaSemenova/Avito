@@ -1,6 +1,7 @@
 /* eslint-disable no-return-assign */
 import { useLocation, useNavigate } from 'react-router-dom';
 import s from './PageWrapper.module.css';
+import Button from '../../UI/Button/Button';
 
 export default function PageWrapper() {
     const location = useLocation();
@@ -31,18 +32,15 @@ export default function PageWrapper() {
                             placeholder="Поиск"
                             name="search-mob"
                         />
-                        <button type="button" className={s.searchBtn}>
-                            Найти
-                        </button>
+                        <Button classes="searchBtn">Найти</Button>
                     </>
                 ) : (
-                    <button
-                        type="button"
-                        className={`${s.searchBtn} ${s.searchMainBtn}`}
+                    <Button
+                        classes="searchMainBtn"
                         onClick={() => navigate('/')}
                     >
                         Вернуться на главную
-                    </button>
+                    </Button>
                 )}
             </form>
         </div>
