@@ -27,7 +27,7 @@ export default function ProfilePersonal() {
     ];
 
     const { data } = useGetUserQuery();
-    const user = useSelector((state) => state.auth);
+    const user = useSelector((state) => state?.auth);
 
     useEffect(() => {
         if (data) {
@@ -43,21 +43,24 @@ export default function ProfilePersonal() {
             );
         }
     }, [data]);
-    
+
     return (
         <main>
             <div className={s.mainContainer}>
                 <div className={s.centerBlock}>
                     <PageWrapper />
 
-                    <h2 className={s.heading}>Здравствуйте, Антон!</h2>
+                    <h2 className={s.heading}>Здравствуйте, {user?.name}!</h2>
                     <div className={s.mainProfile}>
                         <div className={s.profileContent}>
                             <h3 className={s.profileTitle}>
                                 Настройки профиля
                             </h3>
                             <div className={s.profilePersonal}>
-                                <ProfileContent page="personal" />
+                                <ProfileContent
+                                    page="personal"
+                                    data={data && data}
+                                />
                             </div>
                         </div>
                     </div>

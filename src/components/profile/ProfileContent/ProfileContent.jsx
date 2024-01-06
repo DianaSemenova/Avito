@@ -4,16 +4,20 @@ import Avatar from '../Avatar/Avatar';
 import PersonalInfo from '../ProfilePersonalInfo/PersonalInfo';
 import SellerInfo from '../ProfileSellerInfo/SellerInfo';
 
-export default function ProfileContent({ page }) {
+export default function ProfileContent({ page, data }) {
     return (
         <>
-            <Avatar page={page} />
+            <Avatar page={page} data={data} />
             <div
                 className={
                     page === 'personal' ? s.personalRight : s.sellerRight
                 }
             >
-                {page === 'personal' ? <PersonalInfo /> : <SellerInfo />}
+                {page === 'personal' ? (
+                    <PersonalInfo data={data} />
+                ) : (
+                    <SellerInfo />
+                )}
             </div>
         </>
     );
