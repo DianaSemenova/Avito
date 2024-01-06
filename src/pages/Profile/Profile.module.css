@@ -68,6 +68,14 @@
     justify-content: center;
 }
 
+.btnExit {
+    color: #8f9399;
+    text-decoration: underline;
+    font-size: 25px;
+    border: 0;
+    background: none;
+}
+
 @media (max-width: 890px) {
     .profileSellContent {
         max-width: 834px;

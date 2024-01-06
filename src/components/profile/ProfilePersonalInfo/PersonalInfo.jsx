@@ -1,7 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { useEffect } from 'react';
 import s from './PersonalInfo.module.css';
 
-export default function PersonalInfo() {
+export default function PersonalInfo({ data }) {
+    useEffect(() => {
+        console.log('dataUser', data);
+    }, [data]);
+
     return (
         <form className={s.form} action="#">
             <div className={s.formDiv}>
@@ -11,7 +16,7 @@ export default function PersonalInfo() {
                     id="settings-fname"
                     name="fname"
                     type="text"
-                    defaultValue="Ан"
+                    defaultValue={data?.name}
                     placeholder=""
                 />
             </div>
@@ -22,7 +27,7 @@ export default function PersonalInfo() {
                     id="settings-lname"
                     name="lname"
                     type="text"
-                    defaultValue="Городецкий"
+                    defaultValue={data?.surname}
                     placeholder=""
                 />
             </div>
@@ -33,7 +38,7 @@ export default function PersonalInfo() {
                     id="settings-city"
                     name="city"
                     type="text"
-                    defaultValue="Санкт-Петербург"
+                    defaultValue={data?.city}
                     placeholder=""
                 />
             </div>
@@ -44,7 +49,7 @@ export default function PersonalInfo() {
                     id="settings-phone"
                     name="phone"
                     type="tel"
-                    defaultValue={89161234567}
+                    defaultValue={data?.phone}
                     placeholder={+79161234567}
                 />
             </div>
