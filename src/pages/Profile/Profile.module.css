@@ -68,13 +68,6 @@
     justify-content: center;
 }
 
-.btnExit {
-    color: #8f9399;
-    text-decoration: underline;
-    font-size: 25px;
-    border: 0;
-    background: none;
-}
 
 @media (max-width: 890px) {
     .profileSellContent {
@@ -87,15 +80,16 @@
         width: 100%;
     }
 
-    .profilePersonal {
+    .profilePersonal,
+    .profileSeller {
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     }
 
-    .profileSeller {
+    /* .profileSeller {
         -ms-flex-wrap: wrap-reverse;
         flex-wrap: wrap-reverse;
-    }
+    } */
 }
 
 @media (max-width: 620px) {

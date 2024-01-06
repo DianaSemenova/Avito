@@ -30,67 +30,7 @@
     display: -ms-flexbox;
     display: flex;
 }
-.searchBtn {
-    margin-left: 10px;
-    padding: 13px 56px;
-    background-color: #009ee4;
-    border: 1px solid #009ee4;
-    border-radius: 6px;
-    font-size: 16px;
-    line-height: 24px;
-    color: #ffffff;
-}
 
-.searchMainBtn {
-    padding: 13px 36px;
-}
-.searchBtn:hover {
-    background-color: #0080c1;
-}
-searchMainBtn:hover {
-    background-color: #0080c1;
-}
-
-.searchText {
-    width: 100%;
-    height: 50px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    background-color: transparent;
-    padding: 13px 19px;
-    font-size: 16px;
-    color: #000000;
-}
-
-.searchText::-webkit-input-placeholder {
-    background-color: transparent;
-    color: rgba(0, 0, 0, 0.3);
-    font-size: 16px;
-}
-
-.searchText:-ms-input-placeholder {
-    background-color: transparent;
-    color: rgba(0, 0, 0, 0.3);
-    font-size: 16px;
-}
-
-.searchText::-ms-input-placeholder {
-    background-color: transparent;
-    color: rgba(0, 0, 0, 0.3);
-    font-size: 16px;
-}
-
-.searchText::placeholder {
-    background-color: transparent;
-    color: rgba(0, 0, 0, 0.3);
-    font-size: 16px;
-}
-
-.searchTextMob {
-    display: none;
-}
 
 @media screen and (max-width: 580px) {
     .mainSearch {
@@ -124,48 +64,5 @@ searchMainBtn:hover {
     }
     .searchLogo {
         display: none;
-    }
-    .searchBtn {
-        display: none;
-    }
-    .searchText {
-        display: none;
-    }
-
-    .searchTextMob {
-        display: inline-block;
-        width: 100%;
-        height: 32px;
-        border: none;
-        border-radius: 30px;
-        background-color: #ffffff;
-        padding: 5px 17px;
-        font-size: 14px;
-        line-height: 21px;
-        color: #000000;
-    }
-    .searchTextMob::-webkit-input-placeholder {
-        background-color: transparent;
-        color: #b3b3b3;
-        font-size: 14px;
-        line-height: 21px;
-    }
-    .searchTextMob:-ms-input-placeholder {
-        background-color: transparent;
-        color: #b3b3b3;
-        font-size: 14px;
-        line-height: 21px;
-    }
-    .searchTextMob::-ms-input-placeholder {
-        background-color: transparent;
-        color: #b3b3b3;
-        font-size: 14px;
-        line-height: 21px;
-    }
-    .searchTextMob::placeholder {
-        background-color: transparent;
-        color: #b3b3b3;
-        font-size: 14px;
-        line-height: 21px;
     }
 }

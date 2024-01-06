@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect } from 'react';
 import s from './PersonalInfo.module.css';
+import Button from '../../UI/Button/Button';
+import Input from '../../UI/Input/Input';
 
 export default function PersonalInfo({ data }) {
     useEffect(() => {
@@ -11,9 +13,8 @@ export default function PersonalInfo({ data }) {
         <form className={s.form} action="#">
             <div className={s.formDiv}>
                 <label htmlFor="fname">Имя</label>
-                <input
-                    className={s.input}
-                    id="settings-fname"
+                <Input
+                    classes="inputPersonal"
                     name="fname"
                     type="text"
                     defaultValue={data?.name}
@@ -22,9 +23,8 @@ export default function PersonalInfo({ data }) {
             </div>
             <div className={s.formDiv}>
                 <label htmlFor="lname">Фамилия</label>
-                <input
-                    className={s.input}
-                    id="settings-lname"
+                <Input
+                    classes="inputPersonal"
                     name="lname"
                     type="text"
                     defaultValue={data?.surname}
@@ -33,9 +33,8 @@ export default function PersonalInfo({ data }) {
             </div>
             <div className={s.formDiv}>
                 <label htmlFor="city">Город</label>
-                <input
-                    className={s.input}
-                    id="settings-city"
+                <Input
+                    classes="inputPersonal"
                     name="city"
                     type="text"
                     defaultValue={data?.city}
@@ -44,18 +43,15 @@ export default function PersonalInfo({ data }) {
             </div>
             <div className={s.formDiv}>
                 <label htmlFor="phone">Телефон</label>
-                <input
-                    className={s.inputPhone}
-                    id="settings-phone"
+                <Input
+                    classes="inputPhone"
                     name="phone"
                     type="tel"
                     defaultValue={data?.phone}
                     placeholder={+79161234567}
                 />
             </div>
-            <button type="button" className={s.btn} id="settings-btn">
-                Сохранить
-            </button>
+            <Button classes="btnPersonal">Сохранить</Button>
         </form>
     );
 }

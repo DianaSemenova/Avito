@@ -1,28 +1,41 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import s from './Header.module.css';
+import Button from '../../UI/Button/Button';
+import Modal from '../../UI/Modal/Modal';
 
 export default function Header() {
     const { access } = useSelector((state) => state.auth);
     const navigate = useNavigate();
+    const [modalActive, setModalActive] = useState(false);
 
     return (
         <header className={s.header}>
             <nav className={s.nav}>
                 {access && (
-                    <button type="button" className={s.btnMain}>
-                        Разместить объявление
-                    </button>
+                    <>
+                        <Button
+                            classes="btnMain"
+                            onClick={() => setModalActive(true)}
+                        >
+                            Разместить объявление
+                        </Button>
+                        <Modal active={modalActive} setActive={setModalActive}>
+                            <div>Добавить объявление</div>
+                        </Modal>
+                    </>
                 )}
-                <button
-                    type="button"
-                    className={s.btnMain}
+                <Button
+                    classes="btnMain"
                     onClick={() =>
-                        access ? navigate('/profile-personal') : navigate('/auth')
+                        access
+                            ? navigate('/profile-personal')
+                            : navigate('/auth')
                     }
                 >
                     {access ? 'Личный кабинет' : 'Вход в личный кабинет'}
-                </button>
+                </Button>
             </nav>
         </header>
     );

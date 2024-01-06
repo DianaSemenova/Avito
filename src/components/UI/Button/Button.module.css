@@ -1,0 +1,163 @@
+.btnEnter,
+.btnSignup {
+    width: 278px;
+    height: 46px;
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+}
+
+.btnEnter {
+    background-color: #009ee4;
+    margin-top: 40px;
+    border: none;
+    color: #ffffff;
+}
+
+.btnEnter:active {
+    background-color: #0080c1;
+}
+.btnSignup {
+    background-color: transparent;
+    border: 1px solid #d0cece;
+    margin-top: 10px;
+    color: #000000;
+}
+.btnSignup:hover {
+    background-color: #d1e7f0;
+}
+.btnSignup:active {
+    background-color: #0080c1;
+    color: #ffffff;
+}
+
+.btnMain {
+    padding: 8px 24px;
+    border: 1px solid #ffffff;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.btnMain:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid #ffffff;
+}
+
+.searchBtn,
+.searchMainBtn {
+    margin-left: 10px;
+    padding: 13px 56px;
+    background-color: #009ee4;
+    border: 1px solid #009ee4;
+    border-radius: 6px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #ffffff;
+}
+
+.searchMainBtn {
+    padding: 13px 36px;
+}
+
+.btnPersonal {
+    font-size: 16px;
+    line-height: 1;
+    color: #ffffff;
+    width: 154px;
+    height: 50px;
+    margin: 10px 7px 0;
+    background-color: #009ee4;
+    border-radius: 6px;
+    border: 1px solid #009ee4;
+}
+.btnSeller {
+    margin-top: 20px;
+    background-color: #009ee4;
+    border-radius: 6px;
+    border: 1px solid #009ee4;
+    width: 214px;
+    height: 62px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+}
+.btnExit {
+    color: #8f9399;
+    text-decoration: underline;
+    font-size: 25px;
+    border: 0;
+    background: none;
+}
+.btnExit:hover {
+    color: #6b6e74;
+}
+.btnExit:active {
+    color: #6b6e74;
+}
+
+.searchBtn:hover,
+.searchMainBtn:hover,
+.btnPersonal:hover,
+.btnSeller:hover,
+.btnEnter:hover {
+    background-color: #0080c1;
+}
+.disabled {
+    opacity: 0.5;
+}
+
+@media screen and (max-width: 768px) {
+    .btnEnter {
+        height: 46px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+        border: none;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .btnSignup {
+        height: 46px;
+        border: 1px solid #d9d9d9;
+        font-size: 16px;
+        line-height: 24px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .btnPersonal {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .btnPersonal {
+        font-size: 16px;
+        line-height: 1;
+        color: #ffffff;
+        height: 50px;
+        margin: 10px 7px 0;
+        background-color: #009ee4;
+        border-radius: 6px;
+        border: 1px solid #009ee4;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .searchBtn,
+    .searchMainBtn {
+        display: none;
+    }
+    .btnSeller {
+        width: 100%;
+        height: 57px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+    }
+}

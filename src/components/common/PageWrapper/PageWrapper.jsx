@@ -1,6 +1,8 @@
 /* eslint-disable no-return-assign */
 import { useLocation, useNavigate } from 'react-router-dom';
 import s from './PageWrapper.module.css';
+import Button from '../../UI/Button/Button';
+import Input from '../../UI/Input/Input';
 
 export default function PageWrapper() {
     const location = useLocation();
@@ -19,30 +21,27 @@ export default function PageWrapper() {
             <form className={s.searchForm} action="#">
                 {location.pathname === '/' ? (
                     <>
-                        <input
-                            className={s.searchText}
+                        <Input
+                            classes="searchText"
                             type="search"
                             placeholder="Поиск по объявлениям"
                             name="search"
                         />
-                        <input
-                            className={s.searchTextMob}
+                        <Input
+                            classes="searchTextMob"
                             type="search"
                             placeholder="Поиск"
                             name="search-mob"
                         />
-                        <button type="button" className={s.searchBtn}>
-                            Найти
-                        </button>
+                        <Button classes="searchBtn">Найти</Button>
                     </>
                 ) : (
-                    <button
-                        type="button"
-                        className={`${s.searchBtn} ${s.searchMainBtn}`}
+                    <Button
+                        classes="searchMainBtn"
                         onClick={() => navigate('/')}
                     >
                         Вернуться на главную
-                    </button>
+                    </Button>
                 )}
             </form>
         </div>
