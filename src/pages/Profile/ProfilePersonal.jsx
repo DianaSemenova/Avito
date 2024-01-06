@@ -11,6 +11,12 @@ import { setAuth } from '../../store/slices/auth';
 
 export default function ProfilePersonal() {
     const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        localStorage.removeItem('auth');
+        window.location.href = '/';
+    };
+
     const product = [
         {
             name: 'Ракетка для большого тенниса Triumph Pro ST',
@@ -41,7 +47,7 @@ export default function ProfilePersonal() {
                     city: data.city,
                     phone: data.phone,
                     avatar: data.avatar,
-                    role: data.role
+                    role: data.role,
                 }),
             );
         }
@@ -67,6 +73,14 @@ export default function ProfilePersonal() {
                             </div>
                         </div>
                     </div>
+
+                    <button
+                        type="button"
+                        className={s.btnExit}
+                        onClick={() => handleLogout()}
+                    >
+                        Выход из аккаунта
+                    </button>
 
                     <h3 className={s.mainTitle}>Мои товары</h3>
                 </div>
