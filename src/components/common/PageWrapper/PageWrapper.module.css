@@ -44,8 +44,10 @@
 .searchMainBtn {
     padding: 13px 36px;
 }
-.searchBtn,
-.searchMainBtn:hover {
+.searchBtn:hover {
+    background-color: #0080c1;
+}
+searchMainBtn:hover {
     background-color: #0080c1;
 }
 

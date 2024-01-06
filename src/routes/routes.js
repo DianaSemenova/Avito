@@ -9,9 +9,10 @@ import ProfileSeller from '../pages/Profile/ProfileSeller';
 export function AppRoutes() {
     return (
         <Routes>
-            <Route path="/auth" element={<Auth />} />
-
             <Route path="/" element={<Layout />}>
+                <Route path="/registration" element={<Auth />} />
+                <Route path="/auth" element={<Auth />} />
+
                 <Route path="/" element={<MainPage />} />
                 <Route element={<ProtectedRoute isAllowed />}>
                     <Route

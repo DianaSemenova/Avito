@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import s from './Header.module.css';
 
 export default function Header() {
-    const isAllowed = true;
+    const isAllowed = false;
+    const navigate = useNavigate();
 
     return (
         <header className={s.header}>
@@ -11,7 +13,15 @@ export default function Header() {
                         Разместить объявление
                     </button>
                 )}
-                <button type="button" className={s.btnMain}>
+                <button
+                    type="button"
+                    className={s.btnMain}
+                    onClick={() =>
+                        isAllowed
+                            ? navigate('/profile-personal')
+                            : navigate('/auth')
+                    }
+                >
                     {isAllowed ? 'Личный кабинет' : 'Вход в личный кабинет'}
                 </button>
             </nav>
