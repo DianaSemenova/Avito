@@ -2,6 +2,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import s from './PageWrapper.module.css';
 import Button from '../../UI/Button/Button';
+import Input from '../../UI/Input/Input';
 
 export default function PageWrapper() {
     const location = useLocation();
@@ -20,14 +21,14 @@ export default function PageWrapper() {
             <form className={s.searchForm} action="#">
                 {location.pathname === '/' ? (
                     <>
-                        <input
-                            className={s.searchText}
+                        <Input
+                            classes="searchText"
                             type="search"
                             placeholder="Поиск по объявлениям"
                             name="search"
                         />
-                        <input
-                            className={s.searchTextMob}
+                        <Input
+                            classes="searchTextMob"
                             type="search"
                             placeholder="Поиск"
                             name="search-mob"

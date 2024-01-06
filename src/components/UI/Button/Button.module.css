@@ -108,6 +108,9 @@
 .btnEnter:hover {
     background-color: #0080c1;
 }
+.disabled {
+    opacity: 0.5;
+}
 
 @media screen and (max-width: 768px) {
     .btnEnter {

@@ -7,6 +7,7 @@ import {
 } from '../../../services/auth';
 import { setAuth } from '../../../store/slices/auth';
 import Button from '../../UI/Button/Button';
+import Input from '../../UI/Input/Input';
 
 export default function AuthForm({ navigate, isLogin }) {
     const dispatch = useDispatch();
@@ -64,21 +65,19 @@ export default function AuthForm({ navigate, isLogin }) {
             </div>
 
             <div className={s.wrapperInput}>
-                <input
-                    className={s.input}
+                <Input
+                    classes="input"
                     type="text"
                     name="login"
-                    id="formlogin"
                     placeholder="email"
                     onChange={(e) => {
                         setEmail(e.target.value);
                     }}
                 />
-                <input
-                    className={s.input}
+                <Input
+                    classes="input"
                     type="password"
                     name="password"
-                    id="formpassword"
                     placeholder="Пароль"
                     onChange={(e) => {
                         setPassword(e.target.value);
@@ -86,28 +85,26 @@ export default function AuthForm({ navigate, isLogin }) {
                 />
                 {!isLogin && (
                     <>
-                        <input
-                            className={s.input}
+                        <Input
+                            classes="input"
                             type="password"
                             name="password"
-                            id="formpassword"
                             placeholder="Повторите пароль"
                             onChange={(e) => {
                                 setRepeatPassword(e.target.value);
                             }}
                         />
-                        <input
-                            className={s.input}
+                        <Input
+                            classes="input"
                             type="text"
                             name="name"
-                            id="f"
                             placeholder="Имя (необязательно)"
                             onChange={(e) => {
                                 setName(e.target.value);
                             }}
                         />
-                        <input
-                            className={s.input}
+                        <Input
+                            classes="input"
                             type="text"
                             name="name"
                             placeholder="Фамилия (необязательно)"
@@ -115,8 +112,8 @@ export default function AuthForm({ navigate, isLogin }) {
                                 setSurname(e.target.value);
                             }}
                         />
-                        <input
-                            className={s.input}
+                        <Input
+                            classes="input"
                             type="text"
                             name="city"
                             placeholder="Город (необязательно)"

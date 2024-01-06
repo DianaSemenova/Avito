@@ -64,26 +64,6 @@
     margin: 0 7px 20px;
 }
 
-.input {
-    width: 300px;
-}
-.inputPhone {
-    width: 614px;
-}
-/* .btn {
-    font-size: 16px;
-    line-height: 1;
-    color: #ffffff;
-    width: 154px;
-    height: 50px;
-    margin: 10px 7px 0;
-    background-color: #009ee4;
-    border-radius: 6px;
-    border: 1px solid #009ee4;
-}
-.btn:hover {
-    background-color: #0080c1;
-} */
 
 @media screen and (max-width: 620px) {
     .form {
@@ -123,22 +103,10 @@
         margin-bottom: 6px;
     }
     .formDiv {
-        /* display: inline-block; */
         margin: 0 0px 18px;
     }
     .input,
     .inputPhone {
         width: 100%;
     }
-    /* .btn {
-        font-size: 16px;
-        line-height: 1;
-        color: #ffffff;
-        width: 154px;
-        height: 50px;
-        margin: 10px 7px 0;
-        background-color: #009ee4;
-        border-radius: 6px;
-        border: 1px solid #009ee4;
-    } */
 }

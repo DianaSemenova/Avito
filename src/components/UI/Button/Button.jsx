@@ -4,7 +4,7 @@ export default function Button({ children, classes, onClick, isDone = false }) {
     return (
         <button
             type="button"
-            className={`${s.button} ${s[classes]} ${isDone && s.disabled}`}
+            className={`${s[classes]} ${isDone && s.disabled}`}
             onClick={onClick}
             disabled={isDone}
         >
