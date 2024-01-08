@@ -1,5 +1,5 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { setAuth } from '../store/slices/auth';
+import { setAuth } from '../../store/slices/auth';
 
 const baseQueryWithReauth = async (args, api, extraOptions) => {
     const baseQuery = fetchBaseQuery({
