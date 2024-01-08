@@ -23,7 +23,6 @@ export default function AuthForm({ navigate, isLogin }) {
     const handleLogin = async () => {
         try {
             const response = await loginUser({ email, password });
-            console.log('response', response);
 
             dispatch(
                 setAuth({
