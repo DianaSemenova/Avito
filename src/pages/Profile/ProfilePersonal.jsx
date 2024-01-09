@@ -20,20 +20,6 @@ export default function ProfilePersonal() {
         window.location.href = '/';
     };
 
-    // const product = [
-    //     {
-    //         name: 'Ракетка для большого тенниса Triumph Pro ST',
-    //         price: '2 200',
-    //         place: 'Санкт-Петербург',
-    //         date: '10:45',
-    //     },
-    //     {
-    //         name: 'Ракетка для большого тенниса Triumph Pro ST',
-    //         price: '2 200',
-    //         place: 'Санкт-Петербург',
-    //         date: '10:45',
-    //     },
-    // ];
 
     const { data } = useGetUserQuery();
     const user = useSelector((state) => state?.auth);

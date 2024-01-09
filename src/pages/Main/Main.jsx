@@ -1,78 +1,15 @@
-import { useEffect } from 'react';
 import s from './Main.module.css';
 import PageWrapper from '../../components/common/PageWrapper/PageWrapper';
 import Product from '../../components/common/CardsContent/Product';
 import { useGetAdsAllQuery } from '../../services/ads';
 
 export default function MainPage() {
-    // const product = [
-    //     {
-    //         name: 'Ракетка для большого тенниса Triumph Pro ST',
-    //         price: '2 200',
-    //         place: 'Санкт-Петербург',
-    //         date: '10:45',
-    //     },
-    //     {
-    //         name: 'Ракетка для большого тенниса Triumph Pro ST',
-    //         price: '2 200',
-    //         place: 'Санкт-Петербург',
-    //         date: '10:45',
-    //     },
-    //     {
-    //         name: 'Ракетка для большого тенниса Triumph Pro ST',
-    //         price: '2 200',
-    //         place: 'Санкт-Петербург',
-    //         date: '10:45',
-    //     },
-    //     {
-    //         name: 'Ракетка для большого тенниса Triumph Pro ST',
-    //         price: '2 200',
-    //         place: 'Санкт-Петербург',
-    //         date: '10:45',
-    //     },
-    //     {
-    //         name: 'Ракетка для большого тенниса Triumph Pro ST',
-    //         price: '2 200',
-    //         place: 'Санкт-Петербург',
-    //         date: '10:45',
-    //     },
-    //     {
-    //         name: 'Ракетка для большого тенниса Triumph Pro ST',
-    //         price: '2 200',
-    //         place: 'Санкт-Петербург',
-    //         date: '10:45',
-    //     },
-    //     {
-    //         name: 'Ракетка для большого тенниса Triumph Pro ST',
-    //         price: '2 200',
-    //         place: 'Санкт-Петербург',
-    //         date: '10:45',
-    //     },
-    //     {
-    //         name: 'Ракетка для большого тенниса Triumph Pro ST',
-    //         price: '2 200',
-    //         place: 'Санкт-Петербург',
-    //         date: '10:45',
-    //     },
-    //     {
-    //         name: 'Ракетка для большого тенниса Triumph Pro ST',
-    //         price: '2 200',
-    //         place: 'Санкт-Петербург',
-    //         date: '10:45',
-    //     },
-    //     {
-    //         name: 'Ракетка для большого тенниса Triumph Pro ST',
-    //         price: '2 200',
-    //         place: 'Санкт-Петербург',
-    //         date: '10:45',
-    //     },
-    // ];
-    const { data, error } = useGetAdsAllQuery();
-    useEffect(() => {
-        console.log('ads', data);
-        console.log('error', error);
-    }, [data]);
-    
+    const { data, error, isLoading } = useGetAdsAllQuery();
+
+    console.log('ads', data);
+    console.log('error', error);
+    console.log('isLoading', isLoading);
+
     return (
         <main className="main">
             <PageWrapper />
