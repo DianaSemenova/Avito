@@ -3,7 +3,7 @@ import baseQueryWithReauth from './baseQueryWithReauth/baseQueryWithReauth';
 
 export const adsQuery = createApi({
     reducerPath: 'adsQuery',
-    tagTypes: ['Ads'],
+    // tagTypes: ['Ads'],
 
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8090/',
@@ -11,13 +11,13 @@ export const adsQuery = createApi({
     endpoints: (build) => ({
         getAdsAll: build.query({
             query: () => '/ads',
-            providesTags: (result) =>
-                result
-                    ? [
-                          ...result.map(({ id }) => ({ type: 'Ads', id })),
-                          { type: 'Ads', id: 'LIST' },
-                      ]
-                    : [{ type: 'Ads', id: 'LIST' }],
+            // providesTags: (result) =>
+            //     result
+            //         ? [
+            //               ...result.map(({ id }) => ({ type: 'Ads', id })),
+            //               { type: 'Ads', id: 'LIST' },
+            //           ]
+            //         : [{ type: 'Ads', id: 'LIST' }],
         }),
         getAd: build.query({
             query: (id) => `/ads/${id}`,
@@ -27,7 +27,7 @@ export const adsQuery = createApi({
 
 export const adsQueryAuth = createApi({
     reducerPath: 'adsQuery',
-    tagTypes: ['AdsUser', 'Ads'],
+    tagTypes: ['AdsUser'],
 
     baseQuery: baseQueryWithReauth,
 
@@ -41,7 +41,7 @@ export const adsQueryAuth = createApi({
                     'content-type': 'application/json',
                 },
                 invalidatesTags: [
-                    { type: 'Ads', id: 'LIST' },
+                    // { type: 'Ads', id: 'LIST' },
                     { type: 'AdsUser', id: 'LIST' },
                 ],
             }),

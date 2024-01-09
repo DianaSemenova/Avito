@@ -11,7 +11,7 @@ export default function Product({ data }) {
                         <div className={s.cardsItem} key={Math.random()}>
                             <div className={s.cardsCard}>
                                 <div className={s.cardImage}>
-                                    <img src={item.images.url} alt="picture" />
+                                    <img src={item.images[0]?.url} alt="picture" />
                                 </div>
                                 <div className="card__content">
                                     <h3 className={s.cardTitle}>
