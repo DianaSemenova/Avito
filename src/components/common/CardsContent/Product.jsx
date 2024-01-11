@@ -1,32 +1,21 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import s from './Product.module.css';
+import ProductItem from './ProductItem';
 
 export default function Product({ data }) {
-   
+    const isLoading = true;
+
     return (
         <div className={s.mainContent}>
             <div className={s.cards}>
-                {data &&
+                {isLoading &&
+                    Array(16)
+                        .fill()
+                        .map(() => <ProductItem key={Math.random()} />)}
+
+                {data?.length > 0 &&
+                    !isLoading &&
                     data.map((item) => (
-                        <div className={s.cardsItem} key={Math.random()}>
-                            <div className={s.cardsCard}>
-                                <div className={s.cardImage}>
-                                    <img src={item.images[0]?.url} alt="picture" />
-                                </div>
-                                <div className="card__content">
-                                    <h3 className={s.cardTitle}>
-                                        {item.title}
-                                    </h3>
-                                    <p className={s.cardPrice}>{item.price}</p>
-                                    <p className={s.cardPlace}>
-                                        {item.user.city}
-                                    </p>
-                                    <p className={s.cardDate}>
-                                        Сегодня в&nbsp;{item.created_on}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        <ProductItem key={Math.random()} item={item} />
                     ))}
             </div>
         </div>

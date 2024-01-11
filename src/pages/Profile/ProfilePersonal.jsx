@@ -13,13 +13,12 @@ import { useGetAdsUserQuery } from '../../services/ads';
 
 export default function ProfilePersonal() {
     const dispatch = useDispatch();
-    const { data: adsUser } = useGetAdsUserQuery();
+    const { data: adsUser, isLoading } = useGetAdsUserQuery();
 
     const handleLogout = () => {
         localStorage.removeItem('auth');
         window.location.href = '/';
     };
-
 
     const { data } = useGetUserQuery();
     const user = useSelector((state) => state?.auth);
@@ -69,7 +68,7 @@ export default function ProfilePersonal() {
 
                     <h3 className={s.mainTitle}>Мои товары</h3>
                 </div>
-                <Product data={adsUser} />
+                <Product data={adsUser} isLoading={isLoading} />
             </div>
         </main>
     );

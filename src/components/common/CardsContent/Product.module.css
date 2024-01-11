@@ -52,6 +52,9 @@
     width: 270px;
     height: 270px;
     background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .cardImage img {
@@ -91,6 +94,11 @@
 
 .cardPlace {
     margin-bottom: 4px;
+}
+.noPhoto {
+    color: #5f5f5f;
+    font-size: 22px;
+    text-align: center;
 }
 
 @media screen and (max-width: 1158px) {

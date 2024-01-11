@@ -8,14 +8,14 @@ export default function MainPage() {
 
     console.log('ads', data);
     console.log('error', error);
-    console.log('isLoading', isLoading);
+    console.log('isLoadingMain', isLoading);
 
     return (
         <main className="main">
             <PageWrapper />
             <div className={s.mainContainer}>
                 <h2 className={s.h2}>Объявления</h2>
-                <Product data={data && data} />
+                <Product data={data} isLoading={isLoading} />
             </div>
         </main>
     );
