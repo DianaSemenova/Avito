@@ -38,9 +38,9 @@ export default function AddNewAdv({ setActive }) {
                     />
                 </div>
 
-                <div className="formImg">
-                    <p className="form-newArt__p">
-                        Фотографии товара<span>не более 5 фотографий</span>
+                <div className={s.formImg}>
+                    <p className={s.formText}>
+                        Фотографии товара <span>не более 5 фотографий</span>
                     </p>
                     <div className={s.formBarImg}>
                         <div className="form-newArt__img">
