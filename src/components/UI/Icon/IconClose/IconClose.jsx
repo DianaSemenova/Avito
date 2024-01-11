@@ -1,9 +1,10 @@
 import s from './IconClose.module.css';
 
-export default function IconClose({isAddPhoto = false}) {
+export default function IconClose({isAddPhoto = false, onClick}) {
     return (
         <svg
             className={`${s.svg } ${isAddPhoto && s.svgRotate}`}
+            onClick={onClick}
             width="43"
             height="43"
             viewBox="0 0 43 43"
