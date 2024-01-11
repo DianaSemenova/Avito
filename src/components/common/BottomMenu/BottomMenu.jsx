@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import s from './BottomMenu.module.css';
 import Modal from '../../UI/Modal/Modal';
+import AddNewAdv from '../../ads/AddNewAdv/AddNewAdv';
 
 export default function BottomMenuMob() {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function BottomMenuMob() {
                     <img src="img/icon_02.png" alt="home" />
                 </div>
                 <Modal active={modalActive} setActive={setModalActive}>
-                    <div>Добавить объявление</div>
+                    <AddNewAdv />
                 </Modal>
                 <div
                     className={s.footerImg}
