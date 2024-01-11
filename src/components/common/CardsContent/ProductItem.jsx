@@ -31,7 +31,7 @@ export default function ProductItem({ item }) {
                         </h3>
 
                         <p className={s.cardPrice}>
-                            {item ? item.price : <Skeleton width={250} />}
+                            {item ? item.price : <Skeleton width={100} height={52}/>}
                         </p>
                         <p className={s.cardPlace}>
                             {item ? (
