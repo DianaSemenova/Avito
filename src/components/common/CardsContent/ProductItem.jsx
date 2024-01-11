@@ -1,9 +1,10 @@
+import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import s from './Product.module.css';
 
 export default function ProductItem({ item }) {
     return (
-        <SkeletonTheme color="grey" highlightColor="#444">
+        <SkeletonTheme color="#333" highlightColor="#f2f1f0;">
             <div className={s.cardsItem}>
                 <div className={s.cardsCard}>
                     {item ? (
@@ -26,25 +27,29 @@ export default function ProductItem({ item }) {
                             {item ? (
                                 item.title
                             ) : (
-                                <Skeleton width={100} height={52} />
+                                <Skeleton width={100} height={20} />
                             )}
                         </h3>
 
                         <p className={s.cardPrice}>
-                            {item ? item.price : <Skeleton width={100} height={52}/>}
+                            {item ? (
+                                item.price
+                            ) : (
+                                <Skeleton width={100} height={20} />
+                            )}
                         </p>
                         <p className={s.cardPlace}>
                             {item ? (
                                 item.user.city
                             ) : (
-                                <Skeleton width={100} height={52} />
+                                <Skeleton width={100} height={20} />
                             )}
                         </p>
                         <p className={s.cardDate}>
                             {item ? (
                                 item.created_on
                             ) : (
-                                <Skeleton width={100} height={52} />
+                                <Skeleton width={200} height={20} />
                             )}
                         </p>
                     </div>
