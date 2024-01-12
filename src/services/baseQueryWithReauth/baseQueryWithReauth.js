@@ -31,35 +31,43 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
         return logOut();
     }
 
-    if (auth.refresh) {
-        const refreshToken = await baseQuery(
-            {
-                url: 'auth/login/',
-                method: 'PUT',
-                body: {
-                    access_token: auth.refresh,
-                    refresh_token: auth.refresh,
-                },
+    // if (auth.refresh) {
+
+    const refreshToken = await baseQuery(
+        {
+            url: 'auth/login/',
+            method: 'PUT',
+            body: {
+                access_token: auth.access,
+                refresh_token: auth.refresh,
             },
-            api,
-            extraOptions,
-        );
+            headers: {
+                'content-type': 'application/json',
+            },
+        },
+        api,
+        extraOptions,
+    );
 
-        // if (!refreshToken.data.access_token) {
-        //     return logOut();
-        // }
-
-        api.dispatch(
-            setAuth({ ...auth, access: refreshToken?.data?.access_token }),
-        );
-
-        const retryResult = await baseQuery(args, api, extraOptions);
-
-        if (retryResult?.error?.status === 401) {
-            return logOut();
-        }
-        return retryResult;
+    if (!refreshToken.data.access_token) {
+        return logOut();
     }
+
+    api.dispatch(
+        setAuth({
+            ...auth,
+            access: refreshToken.data?.access_token,
+            refresh: refreshToken.data?.refresh_token,
+        }),
+    );
+
+    const retryResult = await baseQuery(args, api, extraOptions);
+
+    if (retryResult?.error?.status === 401) {
+        return logOut();
+    }
+    return retryResult;
+    // }
 };
 
 export default baseQueryWithReauth;

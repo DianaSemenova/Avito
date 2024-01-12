@@ -1,14 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useEffect } from 'react';
 import s from './PersonalInfo.module.css';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
 
 export default function PersonalInfo({ data }) {
-    useEffect(() => {
-        console.log('dataUser', data);
-    }, [data]);
-
     return (
         <form className={s.form} action="#">
             <div className={s.formDiv}>

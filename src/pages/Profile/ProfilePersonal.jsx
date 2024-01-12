@@ -13,7 +13,7 @@ import { useGetAdsUserQuery } from '../../services/ads';
 
 export default function ProfilePersonal() {
     const dispatch = useDispatch();
-    const { data: adsUser, isLoading } = useGetAdsUserQuery();
+    const { data: adsUser, isLoading, error } = useGetAdsUserQuery();
 
     const handleLogout = () => {
         localStorage.removeItem('auth');
@@ -68,7 +68,7 @@ export default function ProfilePersonal() {
 
                     <h3 className={s.mainTitle}>Мои товары</h3>
                 </div>
-                <Product data={adsUser} isLoading={isLoading} />
+                <Product data={adsUser} isLoading={isLoading} error={error} />
             </div>
         </main>
     );

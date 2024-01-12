@@ -6,16 +6,12 @@ import { useGetAdsAllQuery } from '../../services/ads';
 export default function MainPage() {
     const { data, error, isLoading } = useGetAdsAllQuery();
 
-    console.log('ads', data);
-    console.log('error', error);
-    console.log('isLoadingMain', isLoading);
-
     return (
         <main className="main">
             <PageWrapper />
             <div className={s.mainContainer}>
                 <h2 className={s.h2}>Объявления</h2>
-                <Product data={data} isLoading={isLoading} />
+                <Product data={data} isLoading={isLoading} error={error} />
             </div>
         </main>
     );
