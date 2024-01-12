@@ -14,7 +14,7 @@ export default function PageWrapper() {
 
             <img
                 className={s.searchLogoMob}
-                src="./img/logo-mob.png"
+                src="../img/logo-mob.png"
                 alt="logo"
             />
 

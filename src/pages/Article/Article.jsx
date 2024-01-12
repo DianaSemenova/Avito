@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import s from './Article.module.css';
 import PageWrapper from '../../components/common/PageWrapper/PageWrapper';
 import { useGetAdvQuery, useGetCommentsAdvQuery } from '../../services/ads';
-import getNumberComments from '../../utils/getNumberComments';
+import getReviewsEnding from '../../utils/getReviewsEnding';
 
 export default function Article() {
     const { id } = useParams();
@@ -21,28 +21,29 @@ export default function Article() {
                     <div className={s.articleLeft}>
                         <div className={s.articleFillImg}>
                             <div className={s.articleImg}>
-                                <img src="" alt="" />
+                                {data?.images[0] ? (
+                                    <img
+                                        src={`http://localhost:8090/${data.images[0].url}`}
+                                        alt={data.title}
+                                    />
+                                ) : (
+                                    <p className={s.noPhoto}>No photo</p>
+                                )}
                             </div>
-                            <div className={s.imgBar}>
-                                <div className={s.imgBarDiv}>
-                                    <img src="" alt="" />
-                                </div>
-                                <div className={s.imgBarDiv}>
-                                    <img src="" alt="" />
-                                </div>
-                                <div className={s.imgBarDiv}>
-                                    <img src="" alt="" />
-                                </div>
-                                <div className={s.imgBarDiv}>
-                                    <img src="" alt="" />
-                                </div>
-                                <div className={s.imgBarDiv}>
-                                    <img src="" alt="" />
-                                </div>
-                                <div className={s.imgBarDiv}>
-                                    <img src="" alt="" />
-                                </div>
-                            </div>
+                            <ul className={s.imgBar}>
+                                {data?.images.length > 1 &&
+                                    data.images.map((image) => (
+                                        <li
+                                            className={s.imgBarDiv}
+                                            key={image.id}
+                                        >
+                                            <img
+                                                src={`http://localhost:8090/${image.url}`}
+                                                alt={data.title}
+                                            />
+                                        </li>
+                                    ))}
+                            </ul>
                             <div className={s.imgBarMob}>
                                 <div className={s.imgBarMobCircle} />
                                 <div className={s.imgBarMobCircle} />
@@ -63,7 +64,7 @@ export default function Article() {
                                     href=""
                                     target="_blank"
                                 >
-                                    {getNumberComments(comments)}
+                                    {getReviewsEnding(comments)}
                                 </a>
                             </div>
                             <p className={s.articlePrice}>{data?.price} ₽</p>

@@ -1,5 +1,6 @@
 .main {
     margin: 0 auto;
+    min-height: 100vh;
 }
 
 .mainContainer {
@@ -91,14 +92,14 @@
     -webkit-box-align: top;
     -ms-flex-align: top;
     align-items: top;
-    -webkit-box-pack: center;
+    gap: 59px;
+    /* -webkit-box-pack: center;
     -ms-flex-pack: center;
-    justify-content: center;
+    justify-content: center; */
 }
 
 .articleLeft {
     max-width: 480px;
-    margin-right: 54px;
 }
 
 .articleFillImg {
@@ -120,14 +121,18 @@
     height: 480px;
     background-color: #f0f0f0;
     margin: 0 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .articleImg img {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
     -o-object-fit: cover;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .imgBarMob {
@@ -165,10 +170,11 @@
 
 .imgBarDiv img {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
     -o-object-fit: cover;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .articleRight {
@@ -289,6 +295,10 @@
     line-height: 32px;
     color: #5f5f5f;
 }
+.noPhoto {
+    color: #5f5f5f;
+    font-size: 22px;
+}
 
 @media screen and (max-width: 966px) {
     .articleLeft {
@@ -300,6 +310,11 @@
     }
     .btn-remove {
         width: 225px;
+    }
+    .articContent {      
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
     }
 }
 
