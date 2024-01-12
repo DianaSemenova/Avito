@@ -20,7 +20,9 @@ export default function BottomMenuMob() {
                 </div>
                 <div
                     className={s.footerImg}
-                    onClick={() => setModalActive(true)}
+                    onClick={() =>
+                        user ? setModalActive(true) : navigate('/auth')
+                    }
                 >
                     <img src="img/icon_02.png" alt="home" />
                 </div>

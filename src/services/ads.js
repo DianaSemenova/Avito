@@ -3,7 +3,7 @@ import baseQueryWithReauth from './baseQueryWithReauth/baseQueryWithReauth';
 
 export const adsQuery = createApi({
     reducerPath: 'adsQuery',
-    tagTypes: ['AdsUser', 'Ads'],
+    tagTypes: ['AdsUser', 'Ads', 'Comments'],
     baseQuery: baseQueryWithReauth,
 
     endpoints: (build) => ({
@@ -17,22 +17,8 @@ export const adsQuery = createApi({
                       ]
                     : [{ type: 'Ads', id: 'LIST' }],
         }),
-        getAd: build.query({
+        getAdv: build.query({
             query: (id) => `/ads/${id}`,
-        }),
-        addAds: build.mutation({
-            query: (body) => ({
-                url: '/ads',
-                method: 'POST',
-                body,
-                headers: {
-                    'content-type': 'application/json',
-                },
-                invalidatesTags: [
-                    { type: 'Ads', id: 'LIST' },
-                    { type: 'AdsUser', id: 'LIST' },
-                ],
-            }),
         }),
         getAdsUser: build.query({
             query: () => '/ads/me',
@@ -44,12 +30,111 @@ export const adsQuery = createApi({
                       ]
                     : [{ type: 'AdsUser', id: 'LIST' }],
         }),
+        addNewAdvText: build.mutation({
+            query: (body) => ({
+                url: '/adstext',
+                method: 'POST',
+                body,
+                headers: {
+                    'content-type': 'application/json',
+                },
+                invalidatesTags: [
+                    { type: 'Ads', id: 'LIST' },
+                    { type: 'AdsUser', id: 'LIST' },
+                ],
+            }),
+        }),
+        updateAdv: build.mutation({
+            query: (body, id) => ({
+                url: `/ads/${id}`,
+                method: 'PATCH',
+                body,
+                headers: {
+                    'content-type': 'application/json',
+                },
+                invalidatesTags: [
+                    { type: 'Ads', id: 'LIST' },
+                    { type: 'AdsUser', id: 'LIST' },
+                ],
+            }),
+        }),
+        deletedAdv: build.mutation({
+            query: (id) => ({
+                url: `/ads/${id}`,
+                method: 'DELETED',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                invalidatesTags: [
+                    { type: 'Ads', id: 'LIST' },
+                    { type: 'AdsUser', id: 'LIST' },
+                ],
+            }),
+        }),
+        uploadImageAdv: build.mutation({
+            query: (body, id) => ({
+                url: `/ads/${id}/image`,
+                method: 'POST',
+                body,
+                headers: {
+                    'content-type': 'application/json',
+                },
+                invalidatesTags: [
+                    { type: 'Ads', id: 'LIST' },
+                    { type: 'AdsUser', id: 'LIST' },
+                ],
+            }),
+        }),
+        deleteImageAdv: build.mutation({
+            query: (body, id) => ({
+                url: `/ads/${id}/image`,
+                method: 'DELETE',
+                body,
+                headers: {
+                    'content-type': 'application/json',
+                },
+                invalidatesTags: [
+                    { type: 'Ads', id: 'LIST' },
+                    { type: 'AdsUser', id: 'LIST' },
+                ],
+            }),
+        }),
+        getCommentsAdv: build.query({
+            query: (id) => `/ads/${id}/comments`,
+            providesTags: (result) =>
+                result
+                    ? [
+                          ...result.map(({ id }) => ({ type: 'Comments', id })),
+                          { type: 'Comments', id: 'LIST' },
+                      ]
+                    : [{ type: 'Comments', id: 'LIST' }],
+        }),
+        createComment: build.mutation({
+            query: (body, id) => ({
+                url: `/ads/${id}/comments`,
+                method: 'POST',
+                body,
+                headers: {
+                    'content-type': 'application/json',
+                },
+                invalidatesTags: [
+                    { type: 'Ads', id: 'LIST' },
+                    { type: 'AdsUser', id: 'LIST' },
+                ],
+            }),
+        }),
     }),
 });
 
 export const {
     useGetAdsAllQuery,
-    useGetAdQuery,
+    useGetAdvQuery,
     useGetAdsUserQuery,
-    useAddAdsMutation,
+    useAddNewAdvTextMutation,
+    useUpdateAdvMutation,
+    useDeletedAdvMutation,
+    useUploadImageAdvMutation,
+    useDeleteImageAdvMutation,
+    useGetCommentsAdvQuery,
+    useCreateCommentMutation,
 } = adsQuery;

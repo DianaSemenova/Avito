@@ -2,7 +2,6 @@ import s from './Product.module.css';
 import ProductItem from './ProductItem';
 
 export default function Product({ data, isLoading }) {
-    // const isLoading = true;
 
     return (
         <div className={s.mainContent}>
