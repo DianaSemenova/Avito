@@ -20,8 +20,8 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
         return result;
     }
     const logOut = () => {
-        api.dispatch(setAuth(null));
         localStorage.removeItem('auth');
+        api.dispatch(setAuth(null));
     };
 
     const { auth } = api.getState();

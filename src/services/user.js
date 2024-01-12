@@ -9,13 +9,7 @@ export const userQuery = createApi({
     endpoints: (build) => ({
         getUser: build.query({
             query: () => '/user',
-            providesTags: (result) =>
-                result
-                    ? [
-                          ...result.map(({ id }) => ({ type: 'User', id })),
-                          { type: 'User', id: 'LIST' },
-                      ]
-                    : [{ type: 'User', id: 'LIST' }],
+            providesTags: (result) => result && [{ type: 'User', id: 'LIST' }],
         }),
         updateUser: build.mutation({
             query: (body) => ({
