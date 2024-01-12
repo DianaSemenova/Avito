@@ -1,8 +1,18 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { useParams } from 'react-router-dom';
 import s from './Article.module.css';
 import PageWrapper from '../../components/common/PageWrapper/PageWrapper';
+import { useGetAdvQuery, useGetCommentsAdvQuery } from '../../services/ads';
+import getNumberComments from '../../utils/getNumberComments';
 
 export default function Article() {
+    const { id } = useParams();
+    const { data } = useGetAdvQuery(id);
+    const { data: comments } = useGetCommentsAdvQuery(id);
+
+    console.log('articledata', data);
+    console.log('comments', comments);
+
     return (
         <main className={s.main}>
             <PageWrapper />
@@ -44,21 +54,19 @@ export default function Article() {
                     </div>
                     <div className={s.articleRight}>
                         <div className={s.articleBlock}>
-                            <h3 className={s.articleTitle}>
-                                Ракетка для большого тенниса Triumph Pro STС Б/У
-                            </h3>
+                            <h3 className={s.articleTitle}>{data?.title}</h3>
                             <div className={s.articleInfo}>
-                                <p className={s.articleDate}>Сегодня в 10:45</p>
-                                <p className={s.articleCity}>Санкт-Петербург</p>
+                                <p className={s.articleDate}>{data?.date}</p>
+                                <p className={s.articleCity}> {data?.city}</p>
                                 <a
                                     className={s.articleLink}
                                     href=""
                                     target="_blank"
                                 >
-                                    4 отзыва
+                                    {getNumberComments(comments)}
                                 </a>
                             </div>
-                            <p className={s.articlePrice}>2 200 ₽</p>
+                            <p className={s.articlePrice}>{data?.price} ₽</p>
                             <div className={s.btnBlock}>
                                 {/* <button className="article__btn btn-redact btn-hov02">
                                     Редактировать
@@ -85,17 +93,7 @@ export default function Article() {
             <div className={s.mainContainer}>
                 <h3 className={s.mainTitle}>Описание товара</h3>
                 <div className={s.mainContent}>
-                    <p className={s.mainText}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
-                    </p>
+                    <p className={s.mainText}>{data?.description}</p>
                 </div>
             </div>
         </main>

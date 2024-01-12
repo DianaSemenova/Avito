@@ -1,11 +1,19 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import { useNavigate } from 'react-router-dom';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import s from './Product.module.css';
 
 export default function ProductItem({ item }) {
+    const navigate = useNavigate();
+
     return (
-        <SkeletonTheme color="#333" highlightColor="#f2f1f0;">
-            <div className={s.cardsItem}>
+        <SkeletonTheme color="#333" highlightColor="#f2f1f0">
+            <div
+                className={s.cardsItem}
+                onClick={() => navigate(`/article/${item.id}`)}
+            >
                 <div className={s.cardsCard}>
                     {item ? (
                         <div className={s.cardImage}>

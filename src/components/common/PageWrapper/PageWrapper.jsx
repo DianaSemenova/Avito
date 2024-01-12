@@ -10,7 +10,7 @@ export default function PageWrapper() {
 
     return (
         <div className={s.mainSearch}>
-            <img className={s.searchLogo} src="./img/logo.png" alt="logo" />
+            <img className={s.searchLogo} src="../img/logo.png" alt="logo" />
 
             <img
                 className={s.searchLogoMob}

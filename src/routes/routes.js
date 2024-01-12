@@ -15,7 +15,7 @@ export function AppRoutes({ user }) {
                 <Route path="/auth" element={<Auth />} />
 
                 <Route path="/" element={<MainPage />} />
-                <Route path="/article" element={<Article />} />
+                <Route path="/article/:id" element={<Article />} />
 
                 <Route element={<ProtectedRoute isAllowed={!!user} />}>
                     <Route
