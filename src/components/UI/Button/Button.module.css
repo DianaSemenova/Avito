@@ -3,7 +3,9 @@
 .searchMainBtn,
 .btnPersonal,
 .btnSeller,
-.btnAdv {
+.btnAdv,
+.articleBtn,
+.btnRemove {
     background-color: #009ee4;
     border: 1px solid #009ee4;
     color: #ffffff;
@@ -14,7 +16,9 @@
 .searchMainBtn:hover,
 .btnPersonal:hover,
 .btnSeller:hover,
-.btnAdv:hover {
+.btnAdv:hover,
+.articleBtn:hover,
+.btnRemove:hover {
     background-color: #0080c1;
 }
 
@@ -23,7 +27,9 @@
 .searchMainBtn:active,
 .btnPersonal:active,
 .btnSeller:active,
-.btnAdv:active {
+.btnAdv:active,
+.articleBtn:active,
+.btnRemove:active {
     background-color: #0080c1;
 }
 .disabled {
@@ -126,6 +132,20 @@
     line-height: 24px;
 }
 
+.articleBtn,
+.btnRemove {
+    border-radius: 6px;
+    padding: 13px 37px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+}
+@media screen and (max-width: 1020px) {
+    .articleBtn,
+    .btnRemove {
+        width: 100%;
+    }
+}
 @media screen and (max-width: 768px) {
     .btnEnter {
         height: 46px;
@@ -147,6 +167,7 @@
     .btnPersonal {
         width: 100%;
     }
+   
 }
 
 @media screen and (max-width: 620px) {

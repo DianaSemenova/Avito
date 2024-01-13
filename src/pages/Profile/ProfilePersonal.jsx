@@ -28,7 +28,7 @@ export default function ProfilePersonal() {
             dispatch(
                 setAuth({
                     ...user,
-                    ID: data.id,
+                    userID: data.id,
                     email: data.email,
                     name: data.name,
                     surname: data.surname,

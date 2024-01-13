@@ -1,16 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import s from './Article.module.css';
 import PageWrapper from '../../components/common/PageWrapper/PageWrapper';
 import { useGetAdvQuery, useGetCommentsAdvQuery } from '../../services/ads';
 import getReviewsEnding from '../../utils/getReviewsEnding';
+import Button from '../../components/UI/Button/Button';
 
 export default function Article() {
     const { id } = useParams();
     const { data } = useGetAdvQuery(id);
     const { data: comments } = useGetCommentsAdvQuery(id);
+    const { ID } = useSelector((state) => state.auth);
 
     console.log('articledata', data);
     console.log('comments', comments);
@@ -114,28 +117,45 @@ export default function Article() {
                                 </div>
                                 <p className={s.articlePrice}>
                                     {data ? (
-                                        data.price
+                                        `${data.price} ₽`
                                     ) : (
                                         <Skeleton width={180} height={30} />
                                     )}
-                                    ₽
                                 </p>
                                 <div className={s.btnBlock}>
-                                    {/* <button className="article__btn btn-redact btn-hov02">
-                                    Редактировать
-                                </button>
-                                <button className="article__btn btn-remove btn-hov02">
-                                    Снять с публикации
-                                </button> */}
+                                    {ID === data?.user.id ? (
+                                        <>
+                                            <Button classes="articleBtn">
+                                                Редактировать
+                                            </Button>
+                                            <Button classes="btnRemove">
+                                                Снять с публикации
+                                            </Button>
+                                        </>
+                                    ) : (
+                                        <Button classes="btnSeller">
+                                            Показать&nbsp;телефон
+                                            <span className={s.span}>
+                                                8&nbsp;905&nbsp;ХХХ&nbsp;ХХ&nbsp;ХХ
+                                            </span>
+                                        </Button>
+                                    )}
                                 </div>
                                 <div className={s.articleAuthor}>
                                     <div className={s.authorImg}>
                                         <img src="" alt="" />
                                     </div>
                                     <div className={s.authorCont}>
-                                        <p className={s.authorName}>{data ?  data.user.name : (
-                                        <Skeleton width={80} height={20} />
-                                    )}</p>
+                                        <p className={s.authorName}>
+                                            {data ? (
+                                                data.user.name
+                                            ) : (
+                                                <Skeleton
+                                                    width={80}
+                                                    height={20}
+                                                />
+                                            )}
+                                        </p>
                                         <p className={s.authorAbout}>
                                             Продает товары с&nbsp;мая 2022
                                         </p>

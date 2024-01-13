@@ -93,9 +93,6 @@
     -ms-flex-align: top;
     align-items: top;
     gap: 59px;
-    /* -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center; */
 }
 
 .articleLeft {
@@ -226,18 +223,8 @@
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-}
-
-.article__btn {
-    background-color: #009ee4;
-    border-radius: 6px;
-    border: 1px solid #009ee4;
-    height: 50px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1;
-    color: #ffffff;
-    margin-bottom: 10px;
+    flex-direction: row;
+    gap: 10px;
 }
 
 .articleAuthor {
@@ -253,15 +240,6 @@
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start;
-}
-
-.btn-redact {
-    width: 189px;
-    margin-right: 10px;
-}
-
-.btn-remove {
-    width: 225px;
 }
 
 .authorImg {
@@ -299,19 +277,24 @@
     color: #5f5f5f;
     font-size: 22px;
 }
+.span {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+}
 
 @media screen and (max-width: 966px) {
     .articleLeft {
         margin-right: 20px;
     }
-    .btn-redact {
+    .articleBtn {
         width: 225px;
         margin-right: 0;
     }
-    .btn-remove {
+    .btnRemove {
         width: 225px;
     }
-    .articContent {      
+    .articContent {
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
@@ -464,16 +447,14 @@
         font-weight: 700;
         margin-bottom: 20px;
     }
-    .article__btn {
+    .articleBtn {
         width: 100%;
         height: 57px;
         font-size: 14px;
         line-height: 20px;
         color: #ffffff;
     }
-    .article__btn span {
-        font-size: 12px;
-    }
+
     .articleAuthor {
         margin-top: 30px;
         margin-bottom: 30px;
