@@ -23,7 +23,10 @@ export function AppRoutes({ user }) {
                         element={<ProfilePersonal />}
                     />
                 </Route>
-                <Route path="/profile-seller" element={<ProfileSeller />} />
+                <Route
+                    path="/article/:id/profile-seller"
+                    element={<ProfileSeller />}
+                />
             </Route>
         </Routes>
     );

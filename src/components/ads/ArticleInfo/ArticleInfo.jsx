@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable import/order */
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import s from './ArticleInfo.module.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton from 'react-loading-skeleton';
@@ -65,13 +66,22 @@ export default function ArticleInfo({ data, comments }) {
                     <img src="" alt="" />
                 </div>
                 <div className={s.authorCont}>
-                    <p className={s.authorName}>
-                        {data ? (
-                            data.user.name
-                        ) : (
-                            <Skeleton width={80} height={20} />
-                        )}
-                    </p>
+                    <Link
+                        to={
+                            ID === data?.user.id
+                                ? '/profile-profile'
+                                : '/profile-seller'
+                        }
+                    >
+                        <p className={s.authorName}>
+                            {data ? (
+                                data.user.name
+                            ) : (
+                                <Skeleton width={80} height={20} />
+                            )}
+                        </p>
+                    </Link>
+
                     <p className={s.authorAbout}>
                         Продает товары с&nbsp;мая 2022
                     </p>
