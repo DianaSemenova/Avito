@@ -2,22 +2,35 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     adsAll: [],
-    adv: {},
     adsSeller: [],
-    adsUser: [],
+    sellerInfo: {},
 };
 
-export const authSlice = createSlice({
+export const adsSlice = createSlice({
     name: 'adsReduces',
     initialState,
 
     reducers: {
         setAdsAll: (state, action) => {
-            // const {} = action.payload ;
+            state.adsAll = action.payload;
+        },
+        setAdsSeller: (state, action) => {
+            const { sellerID } = action.payload;
+
+            state.adsSeller = state.adsAll.filter(
+                (adv) => adv.user_id === sellerID,
+            );
+        },
+        setSellerInfo: (state, action) => {
+            const { sellerID } = action.payload;
+
+            state.sellerInfo = state.adsAll.find(
+                (adv) => adv.user_id === sellerID,
+            ).user;
         },
     },
 });
 
-export const { setAuth } = authSlice.actions;
+export const { setAdsAll, setAdsSeller, setSellerInfo } = adsSlice.actions;
 
-export default authSlice.reducer;
+export default adsSlice.reducer;

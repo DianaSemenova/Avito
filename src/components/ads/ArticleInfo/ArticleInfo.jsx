@@ -70,7 +70,7 @@ export default function ArticleInfo({ data, comments }) {
                         to={
                             ID === data?.user.id
                                 ? '/profile-profile'
-                                : '/profile-seller'
+                                : `/profile-seller/${data?.user.id}`
                         }
                     >
                         <p className={s.authorName}>

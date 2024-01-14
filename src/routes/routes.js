@@ -24,7 +24,7 @@ export function AppRoutes({ user }) {
                     />
                 </Route>
                 <Route
-                    path="/article/:id/profile-seller"
+                    path="/profile-seller/:id"
                     element={<ProfileSeller />}
                 />
             </Route>
