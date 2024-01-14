@@ -132,6 +132,10 @@
     cursor: pointer;
 }
 
+.articleImg img:hover {
+    border: 2px solid #009ee4;
+}
+
 .imgBarMob {
     display: none;
 }
@@ -163,8 +167,8 @@
     background-color: #f0f0f0;
     border: 2px solid #f0f0f0;
     margin: 0 5px;
+    transition: all 0.3s;
 }
-
 .imgBarDiv img {
     width: 100%;
     height: 100%;
@@ -172,6 +176,9 @@
     -o-object-fit: cover;
     object-fit: cover;
     cursor: pointer;
+}
+.imgBarDiv:hover {
+    border: 2px solid #009ee4;
 }
 
 .articleRight {
@@ -360,40 +367,7 @@
         margin-right: 0;
         margin-bottom: 20px;
     }
-    .articleFillImg {
-        max-width: 100%;
-        width: 100%;
-        overflow: hidden;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        position: relative;
-    }
-    .articleFillImg::before {
-        content: '';
-        display: block;
-        width: 23px;
-        height: 23px;
-        background-color: transparent;
-        border-top: 2px solid #000000;
-        border-left: 2px solid #000000;
-        -webkit-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-        position: absolute;
-        top: 24px;
-        left: 32px;
-        cursor: pointer;
-    }
+
     .articleImg {
         width: 100%;
         min-width: 320px;
@@ -417,6 +391,7 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
+        cursor: pointer;
     }
     .articleRight {
         max-width: 100%;
@@ -463,7 +438,16 @@
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        border: 1px solid #ffffff;
+        border: 1px solid #009ee4;
+        transition: all 0.3s;
+    }
+    .imgBarMobCircle:hover {
+        border: 1px solid #0080c1;
+        background-color: #0080c1;
+    }
+    .imgBarMobCircle:active {
+        border: 1px solid #0080c1;
+        background-color: #0080c1;
     }
     .authorName {
         font-size: 18px;
@@ -473,5 +457,42 @@
     .authorAbout {
         font-size: 14px;
         line-height: 28px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .articleFillImg {
+        max-width: 100%;
+        width: 100%;
+        overflow: hidden;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        position: relative;
+    }
+    .articleFillImg::before {
+        content: '';
+        display: block;
+        width: 23px;
+        height: 23px;
+        background-color: transparent;
+        border-top: 2px solid #000000;
+        border-left: 2px solid #000000;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        position: absolute;
+        top: 24px;
+        left: 32px;
+        cursor: pointer;
     }
 }

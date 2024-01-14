@@ -9,6 +9,7 @@
     background-color: #009ee4;
     border: 1px solid #009ee4;
     color: #ffffff;
+    transition: all 0.3s;
 }
 
 .btnEnter:hover,
@@ -167,7 +168,6 @@
     .btnPersonal {
         width: 100%;
     }
-   
 }
 
 @media screen and (max-width: 620px) {
