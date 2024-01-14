@@ -68,7 +68,6 @@
     justify-content: center;
 }
 
-
 @media (max-width: 890px) {
     .profileSellContent {
         max-width: 834px;
@@ -99,6 +98,14 @@
     }
 }
 @media screen and (max-width: 580px) {
+    .centerBlock {
+        position: relative;
+    }
+    .centerBlock svg {
+        top: 0px;
+        left: 10px;
+    }
+
     .mainContainer {
         padding: 85px 0px 84px;
     }
@@ -126,21 +133,6 @@
         padding: 0 0 0 26px;
         position: relative;
         cursor: pointer;
-    }
-
-    .headingSeller::before {
-        content: '';
-        display: block;
-        width: 12px;
-        height: 12px;
-        background-color: transparent;
-        border-top: 2px solid #000000;
-        border-left: 2px solid #000000;
-        -webkit-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-        position: absolute;
-        top: 9px;
-        left: 0;
     }
 
     .headingSeller:hover::before {
