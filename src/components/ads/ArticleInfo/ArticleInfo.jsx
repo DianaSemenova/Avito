@@ -69,7 +69,7 @@ export default function ArticleInfo({ data, comments }) {
                     <Link
                         to={
                             ID === data?.user.id
-                                ? '/profile-profile'
+                                ? '/profile-personal'
                                 : `/profile-seller/${data?.user.id}`
                         }
                     >
