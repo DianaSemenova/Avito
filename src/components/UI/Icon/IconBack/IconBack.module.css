@@ -1,11 +1,21 @@
 .svg {
-    cursor: pointer;
+    display: none;
 }
 
-.svg:hover path {
-    stroke: #0080c1;
-}
+@media screen and (max-width: 580px) {
+    .svg {
+        display: block;
+        cursor: pointer;
+        left: 30px;
+        top: 20px;
+        position: absolute;
+    }
 
-.svg:active path {
-    stroke: #0080c1;
+    .svg:hover path {
+        stroke: #0080c1;
+    }
+
+    .svg:active path {
+        stroke: #0080c1;
+    }
 }

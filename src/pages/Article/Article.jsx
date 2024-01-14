@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
@@ -8,8 +8,10 @@ import PageWrapper from '../../components/common/PageWrapper/PageWrapper';
 import { useGetAdvQuery, useGetCommentsAdvQuery } from '../../services/ads';
 import getReviewsEnding from '../../utils/getReviewsEnding';
 import Button from '../../components/UI/Button/Button';
+import IconBack from '../../components/UI/Icon/IconBack/IconBack';
 
 export default function Article() {
+    const navigate = useNavigate();
     const { id } = useParams();
     const { data } = useGetAdvQuery(id);
     const { data: comments } = useGetCommentsAdvQuery(id);
@@ -26,6 +28,7 @@ export default function Article() {
                     <div className={s.articContent}>
                         <div className={s.articleLeft}>
                             <div className={s.articleFillImg}>
+                                <IconBack onClick={() => navigate('/')} />
                                 {data ? (
                                     <div className={s.articleImg}>
                                         {data.images[0] ? (
