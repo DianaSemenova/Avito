@@ -1,4 +1,44 @@
 .btnEnter,
+.searchBtn,
+.searchMainBtn,
+.btnPersonal,
+.btnSeller,
+.btnAdv,
+.articleBtn,
+.btnRemove {
+    background-color: #009ee4;
+    border: 1px solid #009ee4;
+    color: #ffffff;
+    transition: all 0.3s;
+}
+
+.btnEnter:hover,
+.searchBtn:hover,
+.searchMainBtn:hover,
+.btnPersonal:hover,
+.btnSeller:hover,
+.btnAdv:hover,
+.articleBtn:hover,
+.btnRemove:hover {
+    background-color: #0080c1;
+}
+
+.btnEnter:active,
+.searchBtn:active,
+.searchMainBtn:active,
+.btnPersonal:active,
+.btnSeller:active,
+.btnAdv:active,
+.articleBtn:active,
+.btnRemove:active {
+    background-color: #0080c1;
+}
+.disabled {
+    opacity: 0.5;
+    cursor: no-drop;
+}
+
+.btnEnter,
 .btnSignup {
     width: 278px;
     height: 46px;
@@ -9,15 +49,10 @@
 }
 
 .btnEnter {
-    background-color: #009ee4;
     margin-top: 40px;
     border: none;
-    color: #ffffff;
 }
 
-.btnEnter:active {
-    background-color: #0080c1;
-}
 .btnSignup {
     background-color: transparent;
     border: 1px solid #d0cece;
@@ -51,12 +86,9 @@
 .searchMainBtn {
     margin-left: 10px;
     padding: 13px 56px;
-    background-color: #009ee4;
-    border: 1px solid #009ee4;
     border-radius: 6px;
     font-size: 16px;
     line-height: 24px;
-    color: #ffffff;
 }
 
 .searchMainBtn {
@@ -66,26 +98,19 @@
 .btnPersonal {
     font-size: 16px;
     line-height: 1;
-    color: #ffffff;
     width: 154px;
     height: 50px;
     margin: 10px 7px 0;
-    background-color: #009ee4;
     border-radius: 6px;
-    border: 1px solid #009ee4;
 }
 .btnSeller {
     margin-top: 20px;
-    background-color: #009ee4;
     border-radius: 6px;
-    border: 1px solid #009ee4;
     width: 214px;
     height: 62px;
     font-size: 16px;
     font-weight: 500;
     line-height: 22px;
-    color: #ffffff;
-    font-family: 'Roboto', sans-serif;
 }
 .btnExit {
     color: #8f9399;
@@ -101,17 +126,27 @@
     color: #6b6e74;
 }
 
-.searchBtn:hover,
-.searchMainBtn:hover,
-.btnPersonal:hover,
-.btnSeller:hover,
-.btnEnter:hover {
-    background-color: #0080c1;
-}
-.disabled {
-    opacity: 0.5;
+.btnAdv {
+    padding: 13px 37px;
+    border-radius: 6px;
+    font-size: 16px;
+    line-height: 24px;
 }
 
+.articleBtn,
+.btnRemove {
+    border-radius: 6px;
+    padding: 13px 37px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+}
+@media screen and (max-width: 1020px) {
+    .articleBtn,
+    .btnRemove {
+        width: 100%;
+    }
+}
 @media screen and (max-width: 768px) {
     .btnEnter {
         height: 46px;

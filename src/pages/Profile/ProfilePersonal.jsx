@@ -9,29 +9,16 @@ import Product from '../../components/common/CardsContent/Product';
 import { useGetUserQuery } from '../../services/user';
 import { setAuth } from '../../store/slices/auth';
 import Button from '../../components/UI/Button/Button';
+import { useGetAdsUserQuery } from '../../services/ads';
 
 export default function ProfilePersonal() {
     const dispatch = useDispatch();
+    const { data: adsUser, isLoading, error } = useGetAdsUserQuery();
 
     const handleLogout = () => {
         localStorage.removeItem('auth');
         window.location.href = '/';
     };
-
-    const product = [
-        {
-            name: 'Ракетка для большого тенниса Triumph Pro ST',
-            price: '2 200',
-            place: 'Санкт-Петербург',
-            date: '10:45',
-        },
-        {
-            name: 'Ракетка для большого тенниса Triumph Pro ST',
-            price: '2 200',
-            place: 'Санкт-Петербург',
-            date: '10:45',
-        },
-    ];
 
     const { data } = useGetUserQuery();
     const user = useSelector((state) => state?.auth);
@@ -41,7 +28,7 @@ export default function ProfilePersonal() {
             dispatch(
                 setAuth({
                     ...user,
-                    ID: data.id,
+                    userID: data.id,
                     email: data.email,
                     name: data.name,
                     surname: data.surname,
@@ -81,7 +68,7 @@ export default function ProfilePersonal() {
 
                     <h3 className={s.mainTitle}>Мои товары</h3>
                 </div>
-                <Product data={product} />
+                <Product data={adsUser} isLoading={isLoading} error={error} />
             </div>
         </main>
     );

@@ -5,6 +5,7 @@ import Auth from '../pages/Auth/Auth';
 import Layout from '../pages/Layout/Layout';
 import ProfilePersonal from '../pages/Profile/ProfilePersonal';
 import ProfileSeller from '../pages/Profile/ProfileSeller';
+import Article from '../pages/Article/Article';
 
 export function AppRoutes({ user }) {
     return (
@@ -14,6 +15,8 @@ export function AppRoutes({ user }) {
                 <Route path="/auth" element={<Auth />} />
 
                 <Route path="/" element={<MainPage />} />
+                <Route path="/article/:id" element={<Article />} />
+
                 <Route element={<ProtectedRoute isAllowed={!!user} />}>
                     <Route
                         path="/profile-personal"

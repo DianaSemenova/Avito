@@ -1,12 +1,17 @@
 import s from './Button.module.css';
 
-export default function Button({ children, classes, onClick, isDone = false }) {
+export default function Button({
+    children,
+    classes,
+    onClick,
+    isDisabled = false,
+}) {
     return (
         <button
             type="button"
-            className={`${s[classes]} ${isDone && s.disabled}`}
+            className={`${s[classes]} ${isDisabled && s.disabled}`}
             onClick={onClick}
-            disabled={isDone}
+            disabled={isDisabled}
         >
             {children}
         </button>

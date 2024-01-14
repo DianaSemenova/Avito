@@ -16,19 +16,20 @@
 
 .modalActive {
     opacity: 1;
-    pointer-events: all;
 }
 
 .content,
 .contentActive {
-    padding: 36px 54px;
+    width: 600px;
+    height: auto;
     border-radius: 12px;
     background-color: #ffffff;
     transform: scale(0.5);
     transition: 0.4s all;
+    pointer-events: all;
 }
 
 .contentActive {
     transition: 0.4s all;
-    transform: scale(1);
+    transform: scale(0.75);
 }

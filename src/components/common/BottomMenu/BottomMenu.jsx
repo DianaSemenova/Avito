@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import s from './BottomMenu.module.css';
 import Modal from '../../UI/Modal/Modal';
+import AddNewAdv from '../../ads/AddNewAdv/AddNewAdv';
 
 export default function BottomMenuMob() {
     const navigate = useNavigate();
@@ -15,16 +16,18 @@ export default function BottomMenuMob() {
         <footer className={s.footer}>
             <div className={s.container}>
                 <div className={s.footerImg} onClick={() => navigate('/')}>
-                    <img src="img/icon_01.png" alt="home" />
+                    <img src="../img/icon_01.png" alt="home" />
                 </div>
                 <div
                     className={s.footerImg}
-                    onClick={() => setModalActive(true)}
+                    onClick={() =>
+                        user ? setModalActive(true) : navigate('/auth')
+                    }
                 >
-                    <img src="img/icon_02.png" alt="home" />
+                    <img src="../img/icon_02.png" alt="home" />
                 </div>
                 <Modal active={modalActive} setActive={setModalActive}>
-                    <div>Добавить объявление</div>
+                    <AddNewAdv setActive={setModalActive}/>
                 </Modal>
                 <div
                     className={s.footerImg}
@@ -32,7 +35,7 @@ export default function BottomMenuMob() {
                         user ? navigate('/profile-personal') : navigate('/auth')
                     }
                 >
-                    <img src="img/icon_03.png" alt="home" />
+                    <img src="../img/icon_03.png" alt="home" />
                 </div>
             </div>
         </footer>
