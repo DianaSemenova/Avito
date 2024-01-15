@@ -15,13 +15,14 @@ export default function ProfileSeller() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    console.log('id', id);
-
     useEffect(() => {
-        dispatch(
-            setAdsSeller({ sellerID: id }),
-            setSellerInfo({ sellerID: id }),
-        );
+        if (id) {
+            dispatch(
+                setAdsSeller({ sellerID: id }),
+                setSellerInfo({ sellerID: id }),
+            );
+        }
+        console.log('id', id);
     }, [id]);
 
     const { adsSeller } = useSelector((state) => state.ads);

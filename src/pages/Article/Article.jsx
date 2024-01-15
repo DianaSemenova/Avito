@@ -15,6 +15,7 @@ export default function Article() {
 
     console.log('articledata', data);
     console.log('comments', comments);
+    console.log('idArticle', id);
 
     return (
         <SkeletonTheme color="#333" highlightColor="#f2f1f0">
