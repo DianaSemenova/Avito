@@ -3,19 +3,10 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import s from './SellerInfo.module.css';
 import Button from '../../UI/Button/Button';
+import showPhone from '../../../utils/showPhone';
 
 export default function SellerInfo({ data }) {
-    const firstDigit = data?.phone?.match(/(?<=\+)\d/)[0];
-    const nextThreeDigits = data?.phone?.match(/\d{3}/)[0];
     const [isShowPhone, setIsShowPhone] = useState(false);
-    console.log('data1', data);
-
-    const showPhone = () => {
-        if (isShowPhone) {
-            return data.phone;
-        }
-        return `${firstDigit} ${nextThreeDigits} ХХХ ХХ ХХ`;
-    };
 
     return (
         <SkeletonTheme color="#333" highlightColor="#f2f1f0">
@@ -38,7 +29,7 @@ export default function SellerInfo({ data }) {
                 {!isShowPhone && 'Показать телефон'}
                 <span className={s.span}>
                     {data.phone ? (
-                        showPhone()
+                        showPhone({ isShowPhone, data })
                     ) : (
                         <Skeleton width={200} height={20} />
                     )}

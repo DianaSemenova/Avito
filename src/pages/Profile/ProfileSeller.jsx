@@ -47,7 +47,7 @@ export default function ProfileSeller() {
                         Товары продавца
                     </h3>
                 </div>
-                <Product data={adsSeller && adsSeller} />
+                <Product data={adsSeller} isLoading={adsSeller.length === 0} />
             </div>
         </main>
     );

@@ -22,7 +22,11 @@ export default function Header() {
                         >
                             Разместить объявление
                         </Button>
-                        <Modal active={modalActive} setActive={setModalActive}>
+                        <Modal
+                            active={modalActive}
+                            setActive={setModalActive}
+                            pointerEvents
+                        >
                             <AddNewAdv setActive={setModalActive} />
                         </Modal>
                     </>

@@ -8,16 +8,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
     transition: 0.5s;
     overflow-y: auto;
+}
+
+.pointerEvents {
+    pointer-events: none;
 }
 
 .modal {
     display: none;
 }
 
-.content,
 .contentActive {
     width: 600px;
     height: auto;
@@ -34,7 +36,6 @@
 }
 
 @media (max-width: 580px) {
-    .content,
     .contentActive {
         max-width: 600px;
     }

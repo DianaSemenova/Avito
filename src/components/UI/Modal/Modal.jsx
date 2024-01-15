@@ -3,17 +3,24 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import s from './Modal.module.css';
 
-export default function Modal({ active, setActive, children }) {
+export default function Modal({
+    active,
+    setActive,
+    children,
+    pointerEvents = false,
+}) {
     return (
         <div
-            className={active ? s.modalActive : s.modal}
+            className={`${active ? s.modalActive : s.modal} ${
+                pointerEvents && s.pointerEvents
+            }`}
             onClick={(e) => {
                 e.stopPropagation();
-                setActive(false);                
+                setActive(false);
             }}
         >
             <div
-                className={active ? s.contentActive : s.content}
+                className={s.contentActive}
                 onClick={(e) => e.stopPropagation()}
             >
                 {children}
