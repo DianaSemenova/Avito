@@ -1,5 +1,5 @@
 /* eslint-disable no-return-assign */
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import s from './PageWrapper.module.css';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
@@ -10,13 +10,19 @@ export default function PageWrapper() {
 
     return (
         <div className={s.mainSearch}>
-            <img className={s.searchLogo} src="../img/logo.png" alt="logo" />
+            <Link to="/">
+                <img
+                    className={s.searchLogo}
+                    src="../img/logo.png"
+                    alt="logo"
+                />
 
-            <img
-                className={s.searchLogoMob}
-                src="../img/logo-mob.png"
-                alt="logo"
-            />
+                <img
+                    className={s.searchLogoMob}
+                    src="../img/logo-mob.png"
+                    alt="logo"
+                />
+            </Link>
 
             <form className={s.searchForm} action="#">
                 {location.pathname === '/' ? (
@@ -38,9 +44,19 @@ export default function PageWrapper() {
                 ) : (
                     <Button
                         classes="searchMainBtn"
-                        onClick={() => navigate('/')}
+                        onClick={() =>
+                            location.pathname === '/profile-personal' ||
+                            location.pathname === '/auth' ||
+                            location.pathname === '/registration'
+                                ? navigate('/')
+                                : navigate(-1)
+                        }
                     >
-                        Вернуться на главную
+                        {location.pathname === '/profile-personal' ||
+                        location.pathname === '/auth' ||
+                        location.pathname === '/registration'
+                            ? 'Вернуться на главную'
+                            : 'Вернуться назад'}
                     </Button>
                 )}
             </form>

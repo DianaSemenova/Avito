@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import s from './AuthForm.module.css';
 import {
     useLoginUserMutation,
@@ -59,9 +60,12 @@ export default function AuthForm({ navigate, isLogin }) {
 
     return (
         <form className={s.modalFormLogin} id="formLogIn" action="#">
-            <div className={s.logo}>
-                <img src="../img/logo_modal.png" alt="logo" />
-            </div>
+            <Link to="/">
+                {' '}
+                <div className={s.logo}>
+                    <img src="../img/logo_modal.png" alt="logo" />
+                </div>
+            </Link>
 
             <div className={s.wrapperInput}>
                 <Input

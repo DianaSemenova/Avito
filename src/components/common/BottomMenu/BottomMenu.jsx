@@ -26,8 +26,12 @@ export default function BottomMenuMob() {
                 >
                     <img src="../img/icon_02.png" alt="home" />
                 </div>
-                <Modal active={modalActive} setActive={setModalActive}>
-                    <AddNewAdv setActive={setModalActive}/>
+                <Modal
+                    active={modalActive}
+                    setActive={setModalActive}
+                    pointerEvents
+                >
+                    <AddNewAdv setActive={setModalActive} />
                 </Modal>
                 <div
                     className={s.footerImg}

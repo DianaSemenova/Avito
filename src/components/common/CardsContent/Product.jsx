@@ -6,7 +6,7 @@ export default function Product({ data, isLoading }) {
         <div className={s.mainContent}>
             <div className={s.cards}>
                 {isLoading &&
-                    Array(16)
+                    Array(12)
                         .fill()
                         .map(() => <ProductItem key={Math.random()} />)}
 
