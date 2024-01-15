@@ -15,6 +15,8 @@ export default function ProfileSeller() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    console.log('id', id);
+
     useEffect(() => {
         dispatch(
             setAdsSeller({ sellerID: id }),
