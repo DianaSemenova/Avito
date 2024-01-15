@@ -8,9 +8,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 1;
     pointer-events: none;
     transition: 0.5s;
+    overflow-y: auto;
 }
 
 .modal {
@@ -31,4 +31,11 @@
 .contentActive {
     transition: 0.4s all;
     transform: scale(0.75);
+}
+
+@media (max-width: 580px) {
+    .content,
+    .contentActive {
+        max-width: 600px;
+    }
 }
