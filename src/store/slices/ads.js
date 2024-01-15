@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     adsAll: [],
+    isLoading: null,
+    error: null,
     adsSeller: [],
     sellerInfo: {},
 };
@@ -13,6 +15,12 @@ export const adsSlice = createSlice({
     reducers: {
         setAdsAll: (state, action) => {
             state.adsAll = action.payload;
+        },
+        setIsLoading: (state, action) => {
+            state.isLoading = action.payload;
+        },
+        setError: (state, action) => {
+            state.error = action.payload;
         },
         setAdsSeller: (state, action) => {
             const { sellerID } = action.payload;
@@ -34,6 +42,12 @@ export const adsSlice = createSlice({
     },
 });
 
-export const { setAdsAll, setAdsSeller, setSellerInfo } = adsSlice.actions;
+export const {
+    setAdsAll,
+    setAdsSeller,
+    setSellerInfo,
+    setIsLoading,
+    setError,
+} = adsSlice.actions;
 
 export default adsSlice.reducer;
