@@ -44,9 +44,15 @@ export default function PageWrapper() {
                 ) : (
                     <Button
                         classes="searchMainBtn"
-                        onClick={() => navigate(-1)}
+                        onClick={() =>
+                            location.pathname === '/profile-personal'
+                                ? navigate('/')
+                                : navigate(-1)
+                        }
                     >
-                        Вернуться назад
+                        {location.pathname === '/profile-personal'
+                            ? 'Вернуться на главную'
+                            : 'Вернуться назад'}
                     </Button>
                 )}
             </form>
