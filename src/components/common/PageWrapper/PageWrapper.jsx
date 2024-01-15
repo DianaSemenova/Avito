@@ -45,12 +45,16 @@ export default function PageWrapper() {
                     <Button
                         classes="searchMainBtn"
                         onClick={() =>
-                            location.pathname === '/profile-personal'
+                            location.pathname === '/profile-personal' ||
+                            location.pathname === '/auth' ||
+                            location.pathname === '/registration'
                                 ? navigate('/')
                                 : navigate(-1)
                         }
                     >
-                        {location.pathname === '/profile-personal'
+                        {location.pathname === '/profile-personal' ||
+                        location.pathname === '/auth' ||
+                        location.pathname === '/registration'
                             ? 'Вернуться на главную'
                             : 'Вернуться назад'}
                     </Button>
