@@ -16,7 +16,7 @@ export default function ProfileContent({ page, data }) {
                 {page === 'personal' ? (
                     <PersonalInfo data={data} />
                 ) : (
-                    <SellerInfo />
+                    <SellerInfo data={data}/>
                 )}
             </div>
         </>

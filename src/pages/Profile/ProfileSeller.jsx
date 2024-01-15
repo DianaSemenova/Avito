@@ -14,7 +14,7 @@ export default function ProfileSeller() {
     const { id } = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { adsAll, adsSeller } = useSelector((state) => state.ads);
+    const { adsAll, adsSeller, sellerInfo } = useSelector((state) => state.ads);
 
     useEffect(() => {
         if (id) {
@@ -35,7 +35,10 @@ export default function ProfileSeller() {
                     <div className={s.mainProfile}>
                         <div className={s.profileSellContent}>
                             <div className={s.profileSeller}>
-                                <ProfileContent page="seller" />
+                                <ProfileContent
+                                    page="seller"
+                                    data={sellerInfo}
+                                />
                             </div>
                         </div>
                     </div>
