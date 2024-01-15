@@ -14,18 +14,15 @@ export default function ProfileSeller() {
     const { id } = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { adsAll, adsSeller } = useSelector((state) => state.ads);
 
     useEffect(() => {
         if (id) {
-            dispatch(
-                setAdsSeller({ sellerID: id }),
-                setSellerInfo({ sellerID: id }),
-            );
+            dispatch(setAdsSeller({ sellerID: id }));
+            dispatch(setSellerInfo({ sellerID: id }));
         }
-        console.log('id', id);
-    }, [id]);
+    }, [id, adsAll]);
 
-    const { adsSeller } = useSelector((state) => state.ads);
     console.log(adsSeller);
 
     return (
@@ -47,7 +44,7 @@ export default function ProfileSeller() {
                         Товары продавца
                     </h3>
                 </div>
-                <Product data={adsSeller} />
+                <Product data={adsSeller && adsSeller} />
             </div>
         </main>
     );

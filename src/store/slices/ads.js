@@ -17,16 +17,19 @@ export const adsSlice = createSlice({
         setAdsSeller: (state, action) => {
             const { sellerID } = action.payload;
 
-            state.adsSeller = state.adsAll.filter(
-                (adv) => adv.user_id === sellerID,
-            );
+            if (state.adsAll.length > 0) {
+                state.adsSeller = state.adsAll.filter(
+                    (adv) => adv.user_id === Number(sellerID),
+                );
+            }
         },
         setSellerInfo: (state, action) => {
             const { sellerID } = action.payload;
-
-            state.sellerInfo = state.adsAll.find(
-                (adv) => adv.user_id === sellerID,
-            ).user;
+            if (state.adsAll.length > 0) {
+                state.sellerInfo = state.adsAll.find(
+                    (adv) => adv.user_id === Number(sellerID),
+                ).user;
+            }
         },
     },
 });
