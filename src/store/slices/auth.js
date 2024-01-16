@@ -33,7 +33,7 @@ export const authSlice = createSlice({
             const {
                 access,
                 refresh,
-                userID,
+                ID,
                 email,
                 name,
                 surname,
@@ -44,7 +44,7 @@ export const authSlice = createSlice({
             } = action.payload ?? initialState;
             state.access = access;
             state.refresh = refresh;
-            state.ID = userID;
+            state.ID = ID;
             state.email = email;
             state.name = name;
             state.surname = surname;
