@@ -6,7 +6,8 @@
 .btnAdv,
 .articleBtn,
 .btnRemove,
-.addComment {
+.addComment,
+.back {
     background-color: #009ee4;
     border: 1px solid #009ee4;
     color: #ffffff;
@@ -21,7 +22,8 @@
 .btnAdv:hover,
 .articleBtn:hover,
 .btnRemove:hover,
-.addComment:hover {
+.addComment:hover,
+.back:hover {
     background-color: #0080c1;
 }
 
@@ -33,7 +35,8 @@
 .btnAdv:active,
 .articleBtn:active,
 .btnRemove:active,
-.addComment:active {
+.addComment:active,
+.back:active {
     background-color: #0080c1;
 }
 .disabled {
@@ -86,15 +89,20 @@
 }
 
 .searchBtn,
-.searchMainBtn {
+.searchMainBtn,
+.back {
     margin-left: 10px;
     padding: 13px 56px;
     border-radius: 6px;
     font-size: 16px;
     line-height: 24px;
 }
+.back {
+    font-size: 24px;
+}
 
-.searchMainBtn {
+.searchMainBtn,
+.back {
     padding: 13px 36px;
 }
 
@@ -116,21 +124,29 @@
     line-height: 22px;
 }
 .btnExit,
-.btnComments {
+.btnComments,
+.auth {
     border: 0;
     background: none;
 }
 
-.btnExit {
+.btnExit,
+.auth {
     color: #8f9399;
     text-decoration: underline;
     font-size: 25px;
 }
+.auth {
+    font-size: 16px;
+    font-weight: 600;
+}
 
-.btnExit:hover {
+.btnExit:hover,
+.auth:hover {
     color: #6b6e74;
 }
-.btnExit:active {
+.btnExit:active,
+.auth:hover {
     color: #6b6e74;
 }
 
@@ -203,7 +219,8 @@
 
 @media screen and (max-width: 580px) {
     .searchBtn,
-    .searchMainBtn {
+    .searchMainBtn,
+    .back {
         display: none;
     }
     .btnSeller {

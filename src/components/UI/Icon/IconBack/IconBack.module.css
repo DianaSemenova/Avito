@@ -1,6 +1,13 @@
 .svg {
     display: none;
 }
+.svg:hover path {
+    stroke: #0080c1;
+}
+
+.svg:active path {
+    stroke: #0080c1;
+}
 
 @media screen and (max-width: 580px) {
     .svg {

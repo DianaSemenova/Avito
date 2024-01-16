@@ -64,6 +64,7 @@ export default function ArticleInfo({ data, comments }) {
                     active={modalActive}
                     setActive={setModalActive}
                     width="900px"
+                    pointerEvents
                 >
                     <CommentsModal setActive={setModalActive} />
                 </Modal>

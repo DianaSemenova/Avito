@@ -9,6 +9,7 @@ import {
 import { setAuth } from '../../../store/slices/auth';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
+import IconBack from '../../UI/Icon/IconBack/IconBack';
 
 export default function AuthForm({ navigate, isLogin }) {
     const dispatch = useDispatch();
@@ -60,6 +61,7 @@ export default function AuthForm({ navigate, isLogin }) {
 
     return (
         <form className={s.modalFormLogin} id="formLogIn" action="#">
+            <IconBack onClick={() => navigate(-1)} />
             <Link to="/">
                 {' '}
                 <div className={s.logo}>

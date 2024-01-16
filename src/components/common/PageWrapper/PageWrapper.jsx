@@ -42,22 +42,17 @@ export default function PageWrapper() {
                         <Button classes="searchBtn">Найти</Button>
                     </>
                 ) : (
-                    <Button
-                        classes="searchMainBtn"
-                        onClick={() =>
-                            location.pathname === '/profile-personal' ||
-                            location.pathname === '/auth' ||
-                            location.pathname === '/registration'
-                                ? navigate('/')
-                                : navigate(-1)
-                        }
-                    >
-                        {location.pathname === '/profile-personal' ||
-                        location.pathname === '/auth' ||
-                        location.pathname === '/registration'
-                            ? 'Вернуться на главную'
-                            : 'Вернуться назад'}
-                    </Button>
+                    <>
+                        <Button classes="back" onClick={() => navigate(-1)}>
+                            &lt;
+                        </Button>
+                        <Button
+                            classes="searchMainBtn"
+                            onClick={() => navigate('/')}
+                        >
+                            Вернуться на главную
+                        </Button>
+                    </>
                 )}
             </form>
         </div>
