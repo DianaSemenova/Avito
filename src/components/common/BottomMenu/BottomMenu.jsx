@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import s from './BottomMenu.module.css';
-import Modal from '../../UI/Modal/Modal';
+import Modal from '../../UI/ModalTest/Modal';
 import AddNewAdv from '../../ads/AddNewAdv/AddNewAdv';
 
 export default function BottomMenuMob() {
