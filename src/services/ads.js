@@ -110,17 +110,16 @@ export const adsQuery = createApi({
                     : [{ type: 'Comments', id: 'LIST' }],
         }),
         createComment: build.mutation({
-            query: (body, id) => ({
-                url: `/ads/${id}/comments`,
+            query: (body) => ({
+                url: `/ads/${body.id}/comments`,
                 method: 'POST',
-                body,
+                body: JSON.stringify({
+                    text: body.text,
+                }),
                 headers: {
                     'content-type': 'application/json',
                 },
-                invalidatesTags: [
-                    { type: 'Ads', id: 'LIST' },
-                    { type: 'AdsUser', id: 'LIST' },
-                ],
+                invalidatesTags: [{ type: 'Comments', id: 'LIST' }],
             }),
         }),
     }),

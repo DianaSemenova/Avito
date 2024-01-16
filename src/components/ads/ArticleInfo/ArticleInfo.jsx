@@ -12,7 +12,7 @@ import showPhone from '../../../utils/showPhone';
 import Modal from '../../UI/Modal/Modal';
 import CommentsModal from '../Modal/Comments/Comments';
 
-export default function ArticleInfo({ data, comments }) {
+export default function ArticleInfo({ data, comments, articleID }) {
     const { ID } = useSelector((state) => state.auth);
     const [isShowPhone, setIsShowPhone] = useState(false);
     const [modalActive, setModalActive] = useState(false);
@@ -69,7 +69,7 @@ export default function ArticleInfo({ data, comments }) {
                     <CommentsModal
                         setActive={setModalActive}
                         comments={comments}
-                        ID ={ID}
+                        articleID={articleID}
                     />
                 </Modal>
             </div>

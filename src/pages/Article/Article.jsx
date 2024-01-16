@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import s from './Article.module.css';
@@ -14,7 +15,9 @@ export default function Article() {
     const { data: comments } = useGetCommentsAdvQuery(id);
 
     console.log('articledata', data);
-    console.log('comments', comments);
+    useEffect(() => {
+        console.log('comments', comments);
+    }, [comments]);
 
     return (
         <SkeletonTheme color="#333" highlightColor="#f2f1f0">
@@ -26,7 +29,11 @@ export default function Article() {
                             <ArticleImage data={data} />
                         </div>
                         <div className={s.articleRight}>
-                            <ArticleInfo data={data} comments={comments} />
+                            <ArticleInfo
+                                data={data}
+                                comments={comments}
+                                articleID={id}
+                            />
                         </div>
                     </div>
                 </div>

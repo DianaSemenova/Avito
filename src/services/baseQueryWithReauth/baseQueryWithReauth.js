@@ -25,14 +25,11 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     };
 
     const { auth } = api.getState();
-    console.log('auth.refresh', auth.refresh);
+    console.log('authBaseQuery', auth);
 
     if (!auth.refresh) {
         return logOut();
     }
-
-    // if (auth.refresh) {
-
     const refreshToken = await baseQuery(
         {
             url: 'auth/login/',
@@ -48,15 +45,13 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
         api,
         extraOptions,
     );
-
     if (!refreshToken.data.access_token) {
         return logOut();
     }
-
     api.dispatch(
         setAuth({
             ...auth,
-            access: refreshToken.data?.refresh_token,
+            access: refreshToken.data?.access_token,
             refresh: refreshToken.data?.refresh_token,
         }),
     );
@@ -67,7 +62,6 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
         return logOut();
     }
     return retryResult;
-    // }
 };
 
 export default baseQueryWithReauth;

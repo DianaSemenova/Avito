@@ -1,14 +1,32 @@
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import s from './Comments.module.css';
 import IconClose from '../../../UI/Icon/IconClose/IconClose';
 import Button from '../../../UI/Button/Button';
+import {
+    useCreateCommentMutation,
+    // useGetCommentsAdvQuery,
+} from '../../../../services/ads';
 
-export default function CommentsModal({ setActive, comments }) {
+export default function CommentsModal({ setActive, comments, articleID }) {
     const navigate = useNavigate();
-    const { ID } = useSelector((state) => state.auth);
+    const { ID, access } = useSelector((state) => state.auth);
+    const [postComment] = useCreateCommentMutation();
+    const [textComment, setTextComment] = useState('');
+    // const { data: comments } = useGetCommentsAdvQuery(articleID);
+
     const handleCloseClick = () => {
+        setTextComment('');
         setActive(false);
+    };
+
+    const createComment = async () => {
+        try {
+            await postComment({ text: textComment, id: articleID });
+        } catch (currentError) {
+            console.log('currentError', currentError);
+        }
     };
 
     return (
@@ -17,7 +35,7 @@ export default function CommentsModal({ setActive, comments }) {
                 <h2 className={s.title}>Отзывы о товаре</h2>
                 <IconClose onClick={handleCloseClick} />
             </div>
-            {ID ? (
+            {access ? (
                 <div className={s.addCommentAuth}>
                     <h3 className={s.tileComment}>Добавить отзыв</h3>
                     <textarea
@@ -26,9 +44,15 @@ export default function CommentsModal({ setActive, comments }) {
                         name="text"
                         cols="auto"
                         rows="5"
+                        value={textComment}
                         placeholder="Введите отзыв"
+                        onChange={(e) => setTextComment(e.target.value)}
                     />
-                    <Button classes="addComment" disabled>
+                    <Button
+                        classes="addComment"
+                        isDisabled={!textComment}
+                        onClick={() => createComment()}
+                    >
                         Опубликовать
                     </Button>
                 </div>
