@@ -5,7 +5,8 @@
 .btnSeller,
 .btnAdv,
 .articleBtn,
-.btnRemove {
+.btnRemove,
+.addComment {
     background-color: #009ee4;
     border: 1px solid #009ee4;
     color: #ffffff;
@@ -19,7 +20,8 @@
 .btnSeller:hover,
 .btnAdv:hover,
 .articleBtn:hover,
-.btnRemove:hover {
+.btnRemove:hover,
+.addComment:hover {
     background-color: #0080c1;
 }
 
@@ -30,7 +32,8 @@
 .btnSeller:active,
 .btnAdv:active,
 .articleBtn:active,
-.btnRemove:active {
+.btnRemove:active,
+.addComment:active {
     background-color: #0080c1;
 }
 .disabled {
@@ -112,13 +115,18 @@
     font-weight: 500;
     line-height: 22px;
 }
+.btnExit,
+.btnComments {
+    border: 0;
+    background: none;
+}
+
 .btnExit {
     color: #8f9399;
     text-decoration: underline;
     font-size: 25px;
-    border: 0;
-    background: none;
 }
+
 .btnExit:hover {
     color: #6b6e74;
 }
@@ -126,13 +134,23 @@
     color: #6b6e74;
 }
 
-.btnAdv {
-    padding: 13px 37px;
-    border-radius: 6px;
+.btnComments {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 21px;
+    color: #009ee4;
+    transition: color 0.3s;
 }
 
+.btnComments:active {
+    text-decoration: underline;
+    color: #0080c1;
+}
+.btnComments:hover {
+    text-decoration: underline;
+    color: #0080c1;
+}
+.btnAdv,
+.addComment,
 .articleBtn,
 .btnRemove {
     border-radius: 6px;

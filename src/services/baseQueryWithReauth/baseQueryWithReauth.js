@@ -56,7 +56,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     api.dispatch(
         setAuth({
             ...auth,
-            access: refreshToken.data?.access_token,
+            access: refreshToken.data?.refresh_token,
             refresh: refreshToken.data?.refresh_token,
         }),
     );
