@@ -66,7 +66,11 @@ export default function ArticleInfo({ data, comments }) {
                     width="900px"
                     pointerEvents
                 >
-                    <CommentsModal setActive={setModalActive} />
+                    <CommentsModal
+                        setActive={setModalActive}
+                        comments={comments}
+                        ID ={ID}
+                    />
                 </Modal>
             </div>
             <p className={s.articlePrice}>

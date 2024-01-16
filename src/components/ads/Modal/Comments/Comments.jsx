@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import s from './Comments.module.css';
 import IconClose from '../../../UI/Icon/IconClose/IconClose';
 import Button from '../../../UI/Button/Button';
 
-export default function CommentsModal({ setActive }) {
+export default function CommentsModal({ setActive, comments }) {
     const navigate = useNavigate();
     const { ID } = useSelector((state) => state.auth);
     const handleCloseClick = () => {
@@ -42,67 +42,60 @@ export default function CommentsModal({ setActive }) {
                     </Button>
                 </div>
             )}
-            <ul className={ID ? s.ulAuth : s.ul}>
-                <li className={s.listComments}>
-                    <div className={s.avatar}>
-                        <img src="#" alt="avatar" />
-                    </div>
-                    <div className={s.authorInfo}>
-                        <p className={s.name}>
-                            Олег <span>14 августа</span>
-                        </p>
-                        <div>
-                            <h4 className={s.titleComment}>Комментарий</h4>
-                            <p className={s.textComment}>
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Voluptate, adipisci assumenda
-                                repudiandae eveniet fugit consequuntur ipsum!
-                                Ad, delectus a. Sapiente placeat sed fuga quis
-                                dolorum ullam quos doloribus, beatae ducimus!
-                            </p>
-                        </div>
-                    </div>
-                </li>
-                <li className={s.listComments}>
-                    <div className={s.avatar}>
-                        <img src="#" alt="avatar" />
-                    </div>
-                    <div className={s.authorInfo}>
-                        <p className={s.name}>
-                            Олег <span>14 августа</span>
-                        </p>
-                        <div>
-                            <h5 className={s.titleComment}>Комментарий</h5>
-                            <p className={s.textComment}>
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Voluptate, adipisci assumenda
-                                repudiandae eveniet fugit consequuntur ipsum!
-                                Ad, delectus a. Sapiente placeat sed fuga quis
-                                dolorum ullam quos doloribus, beatae ducimus!
-                            </p>
-                        </div>
-                    </div>
-                </li>
-                <li className={s.listComments}>
-                    <div className={s.avatar}>
-                        <img src="#" alt="avatar" />
-                    </div>
-                    <div className={s.authorInfo}>
-                        <p className={s.name}>
-                            Олег <span>14 августа</span>
-                        </p>
-                        <div>
-                            <h4 className={s.titleComment}>Комментарий</h4>
-                            <p className={s.textComment}>
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Voluptate, adipisci assumenda
-                                repudiandae eveniet fugit consequuntur ipsum!
-                                Ad, delectus a. Sapiente placeat sed fuga quis
-                                dolorum ullam quos doloribus, beatae ducimus!
-                            </p>
-                        </div>
-                    </div>
-                </li>
+            <ul className={comments?.length > 0 ? s.ul : s.ulNoComment}>
+                {comments?.length > 0 ? (
+                    comments.map((comment) => (
+                        <li className={s.listComments} key={comment.id}>
+                            <div className={s.avatar}>
+                                <Link
+                                    to={
+                                        ID === comment.author.id
+                                            ? '/profile-personal'
+                                            : `/profile-seller/${comment.author.id}`
+                                    }
+                                >
+                                    {comment.author.avatar && (
+                                        <img
+                                            src={`http://localhost:8090/${comment.author.avatar}`}
+                                            alt="avatar"
+                                        />
+                                    )}
+                                </Link>
+                            </div>
+                            <div className={s.authorInfo}>
+                                <div className={s.authorItem}>
+                                    {' '}
+                                    <Link
+                                        to={
+                                            ID === comment.author.id
+                                                ? '/profile-personal'
+                                                : `/profile-seller/${comment.author.id}`
+                                        }
+                                    >
+                                        <p className={s.name}>
+                                            {comment.author.name}
+                                            <span>{comment.created_on}</span>
+                                        </p>
+                                    </Link>
+                                    <Button classes="auth">Ответить</Button>
+                                </div>
+
+                                <div>
+                                    <h4 className={s.titleComment}>
+                                        Комментарий
+                                    </h4>
+                                    <p className={s.textComment}>
+                                        {comment.text}
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    ))
+                ) : (
+                    <li className={s.noComment}>
+                        <h2 className={s.noCommentText}>Отзывов пока нет</h2>
+                    </li>
+                )}
             </ul>
         </div>
     );
