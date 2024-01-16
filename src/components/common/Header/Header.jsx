@@ -4,7 +4,7 @@ import { useState } from 'react';
 import s from './Header.module.css';
 import Button from '../../UI/Button/Button';
 import Modal from '../../UI/Modal/Modal';
-import AddNewAdv from '../../ads/AddNewAdv/AddNewAdv';
+import AddNewAdv from '../../ads/Modal/AddNewAdv/AddNewAdv';
 
 export default function Header() {
     const { access } = useSelector((state) => state.auth);

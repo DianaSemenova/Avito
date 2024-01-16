@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import s from './AddNewAdv.module.css';
-import IconClose from '../../UI/Icon/IconClose/IconClose';
-import IconRUb from '../../UI/Icon/IconRUB/IconRUB';
-import Input from '../../UI/Input/Input';
-import Button from '../../UI/Button/Button';
+import IconClose from '../../../UI/Icon/IconClose/IconClose';
+import IconRUb from '../../../UI/Icon/IconRUB/IconRUB';
+import Input from '../../../UI/Input/Input';
+import Button from '../../../UI/Button/Button';
 
 export default function AddNewAdv({ setActive }) {
     const handleCloseClick = () => {

@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/jsx-no-comment-textnodes */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import s from './Modal.module.css';
+import s from './ModalTest.module.css';
 
-export default function Modal({
+export default function ModalTest({
     active,
     setActive,
     children,

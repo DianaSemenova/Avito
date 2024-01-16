@@ -31,8 +31,12 @@
     pointer-events: all;
 }
 
-@media (max-width: 580px) {
+@media (max-width: 590px) {
+    .modalBlock {
+        z-index: 3;
+        padding: 10px;
+    }
     .modal {
-        max-width: 600px;
+        width: 100%;
     }
 }
