@@ -4,7 +4,7 @@ import { useState } from 'react';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import s from './Avatar.module.css';
-import Modal from '../../UI/Modal/Modal';
+import Modal from '../../UI/ModalTest/Modal';
 
 export default function Avatar({ page, data }) {
     const [modalActive, setModalActive] = useState(false);

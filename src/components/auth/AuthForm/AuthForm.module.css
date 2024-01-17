@@ -12,6 +12,14 @@
     -ms-flex-align: center;
     align-items: center;
     padding: 43px 47px 47px 40px;
+    /* position: relative; */
+}
+.modalFormLogin svg {
+    display: block;
+    cursor: pointer;
+    left: -50px;
+    top: 50px;
+    position: absolute;
 }
 
 .wrapperInput {
@@ -79,5 +87,9 @@
 @media screen and (max-width: 580px) {
     .modalFormLogin {
         background-color: #f4f5f6;
+    }
+    .modalFormLogin svg {
+        left: 0px;
+        top: 35px;
     }
 }

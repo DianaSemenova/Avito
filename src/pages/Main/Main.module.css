@@ -3,12 +3,16 @@
     margin: 0 auto;
     padding: 52px 10px 37px;
 }
-.h2 {
+.h2,
+.h3 {
     color: #000;
     font-size: 40px;
     font-style: normal;
     font-weight: 500;
     line-height: 220%;
+}
+.h3 {
+    font-size: 25px;
 }
 
 @media screen and (max-width: 590px) {
@@ -17,5 +21,8 @@
     }
     .h2 {
         font-size: 24px;
+    }
+    .h3 {
+        font-size: 18px;
     }
 }

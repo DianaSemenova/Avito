@@ -9,10 +9,13 @@ import Skeleton from 'react-loading-skeleton';
 import Button from '../../UI/Button/Button';
 import getReviewsEnding from '../../../utils/getReviewsEnding';
 import showPhone from '../../../utils/showPhone';
+import Modal from '../../UI/Modal/Modal';
+import CommentsModal from '../Modal/Comments/Comments';
 
-export default function ArticleInfo({ data, comments }) {
+export default function ArticleInfo({ data, comments, articleID }) {
     const { ID } = useSelector((state) => state.auth);
     const [isShowPhone, setIsShowPhone] = useState(false);
+    const [modalActive, setModalActive] = useState(false);
 
     const getAvatar = () => {
         if (data.user.avatar) {
@@ -46,13 +49,29 @@ export default function ArticleInfo({ data, comments }) {
                         <Skeleton width={180} height={20} />
                     )}
                 </p>
-                <a className={s.articleLink} href="" target="_blank">
+
+                <Button
+                    classes="btnComments"
+                    onClick={() => setModalActive(true)}
+                >
                     {comments ? (
                         getReviewsEnding(comments)
                     ) : (
                         <Skeleton width={100} height={10} />
                     )}
-                </a>
+                </Button>
+                <Modal
+                    active={modalActive}
+                    setActive={setModalActive}
+                    width="900px"
+                    pointerEvents
+                >
+                    <CommentsModal
+                        setActive={setModalActive}
+                        comments={comments}
+                        articleID={articleID}
+                    />
+                </Modal>
             </div>
             <p className={s.articlePrice}>
                 {data ? (

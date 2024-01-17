@@ -1,12 +1,28 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable import/order */
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import s from './ArticleImage.module.css';
 import IconBack from '../../UI/Icon/IconBack/IconBack';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton from 'react-loading-skeleton';
+import Modal from '../../UI/Modal/Modal';
 
 export default function ArticleImage({ data }) {
+    const host = 'http://localhost:8090/';
     const navigate = useNavigate();
+    const [imageMain, setImageMain] = useState('');
+    const [modalActive, setModalActive] = useState(false);
+
+    useEffect(() => {
+        if (data?.images[0]) {
+            setImageMain(`${host}${data?.images[0]?.url}`);
+        }
+    }, [data]);
+
+    console.log(imageMain);
 
     return (
         <div className={s.articleFillImg}>
@@ -15,8 +31,9 @@ export default function ArticleImage({ data }) {
                 <div className={s.articleImg}>
                     {data.images[0] ? (
                         <img
-                            src={`http://localhost:8090/${data.images[0].url}`}
+                            src={imageMain}
                             alt={data.title}
+                            onClick={() => setModalActive(true)}
                         />
                     ) : (
                         <p className={s.noPhoto}>No photo</p>
@@ -25,13 +42,25 @@ export default function ArticleImage({ data }) {
             ) : (
                 <Skeleton width={480} height={480} />
             )}
+            <Modal active={modalActive} setActive={setModalActive}>
+                <img className={s.img} src={imageMain} alt={data?.title} />
+            </Modal>
             <ul className={s.imgBar}>
                 {data
                     ? data.images?.length > 1 &&
                       data.images.map((image) => (
-                          <li className={s.imgBarDiv} key={image.id}>
+                          <li
+                              className={`${s.imgBarDiv} ${
+                                  imageMain === `${host}${image.url}` &&
+                                  s.active
+                              }`}
+                              key={image.id}
+                              onClick={() =>
+                                  setImageMain(`${host}${image.url}`)
+                              }
+                          >
                               <img
-                                  src={`http://localhost:8090/${image.url}`}
+                                  src={`${host}${image.url}`}
                                   alt={data.title}
                               />
                           </li>
@@ -45,11 +74,15 @@ export default function ArticleImage({ data }) {
                           ))}
             </ul>
             <div className={s.imgBarMob}>
-                <div className={s.imgBarMobCircle} />
-                <div className={s.imgBarMobCircle} />
-                <div className={s.imgBarMobCircle} />
-                <div className={s.imgBarMobCircle} />
-                <div className={s.imgBarMobCircle} />
+                {data?.images?.length > 1 &&
+                    data.images.map((image) => (
+                        <div
+                            className={`${s.imgBarMobCircle} ${
+                                imageMain === `${host}${image.url}` && s.active
+                            }`}
+                            onClick={() => setImageMain(`${host}${image.url}`)}
+                        />
+                    ))}
             </div>
         </div>
     );

@@ -49,6 +49,7 @@ body {
     -webkit-text-size-adjust: 100%;
     font-family: 'Roboto', sans-serif;
     color: #000000;
+    overflow: auto;
 }
 input,
 div,
@@ -65,4 +66,9 @@ h5,
 h6 {
     font-size: inherit;
     font-weight: 400;
+}
+
+input,
+textarea {
+    outline-color: #009ee4;
 }
