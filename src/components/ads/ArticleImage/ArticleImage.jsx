@@ -83,11 +83,6 @@ export default function ArticleImage({ data }) {
                             onClick={() => setImageMain(`${host}${image.url}`)}
                         />
                     ))}
-                {/* <div className={s.imgBarMobCircle} />
-                 <div className={s.imgBarMobCircle} />
-                 <div className={s.imgBarMobCircle} />
-                 <div className={s.imgBarMobCircle} />
-                 <div className={s.imgBarMobCircle} /> */}
             </div>
         </div>
     );
