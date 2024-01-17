@@ -1,6 +1,8 @@
 import './style.css';
 import { BrowserRouter } from 'react-router-dom';
 import { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppRoutes } from './routes/routes';
 import { useGetAdsAllQuery } from './services/ads';
@@ -29,6 +31,12 @@ function App() {
     return (
         <BrowserRouter>
             <AppRoutes user={access} />
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar
+                limit={1}
+            />
         </BrowserRouter>
     );
 }
