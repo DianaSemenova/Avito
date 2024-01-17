@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable import/order */
@@ -7,11 +8,13 @@ import s from './ArticleImage.module.css';
 import IconBack from '../../UI/Icon/IconBack/IconBack';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton from 'react-loading-skeleton';
+import Modal from '../../UI/Modal/Modal';
 
 export default function ArticleImage({ data }) {
     const host = 'http://localhost:8090/';
     const navigate = useNavigate();
     const [imageMain, setImageMain] = useState('');
+    const [modalActive, setModalActive] = useState(false);
 
     useEffect(() => {
         if (data?.images[0]) {
@@ -27,7 +30,11 @@ export default function ArticleImage({ data }) {
             {data ? (
                 <div className={s.articleImg}>
                     {data.images[0] ? (
-                        <img src={imageMain} alt={data.title} />
+                        <img
+                            src={imageMain}
+                            alt={data.title}
+                            onClick={() => setModalActive(true)}
+                        />
                     ) : (
                         <p className={s.noPhoto}>No photo</p>
                     )}
@@ -35,6 +42,9 @@ export default function ArticleImage({ data }) {
             ) : (
                 <Skeleton width={480} height={480} />
             )}
+            <Modal active={modalActive} setActive={setModalActive}>
+                <img className={s.img} src={imageMain} alt={data?.title} />
+            </Modal>
             <ul className={s.imgBar}>
                 {data
                     ? data.images?.length > 1 &&
@@ -64,11 +74,20 @@ export default function ArticleImage({ data }) {
                           ))}
             </ul>
             <div className={s.imgBarMob}>
-                <div className={s.imgBarMobCircle} />
-                <div className={s.imgBarMobCircle} />
-                <div className={s.imgBarMobCircle} />
-                <div className={s.imgBarMobCircle} />
-                <div className={s.imgBarMobCircle} />
+                {data?.images?.length > 1 &&
+                    data.images.map((image) => (
+                        <div
+                            className={`${s.imgBarMobCircle} ${
+                                imageMain === `${host}${image.url}` && s.active
+                            }`}
+                            onClick={() => setImageMain(`${host}${image.url}`)}
+                        />
+                    ))}
+                {/* <div className={s.imgBarMobCircle} />
+                 <div className={s.imgBarMobCircle} />
+                 <div className={s.imgBarMobCircle} />
+                 <div className={s.imgBarMobCircle} />
+                 <div className={s.imgBarMobCircle} /> */}
             </div>
         </div>
     );
