@@ -11,11 +11,11 @@ import UpdatePassword from '../ModalUpdatePassword/UpdatePassword';
 
 export default function PersonalInfo({ data }) {
     const dispatch = useDispatch();
-    const [name, setName] = useState(data?.name);
-    const [surname, setSurname] = useState(data?.surname);
-    const [email, setEmail] = useState(data?.email);
-    const [city, setCity] = useState(data?.city);
-    const [phone, setPhone] = useState(data?.phone);
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+    const [email, setEmail] = useState('');
+    const [city, setCity] = useState('');
+    const [phone, setPhone] = useState('');
     const [postDataUser] = useUpdateUserMutation();
     const [modalActive, setModalActive] = useState(false);
 
