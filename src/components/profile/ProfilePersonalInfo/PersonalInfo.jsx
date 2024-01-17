@@ -62,7 +62,7 @@ export default function PersonalInfo({ data }) {
                 <label htmlFor="fname">Имя</label>
                 <Input
                     classes="inputPersonal"
-                    name="fname"
+                    name="text"
                     type="text"
                     value={name}
                     placeholder=""
@@ -77,7 +77,7 @@ export default function PersonalInfo({ data }) {
                 <label htmlFor="lname">Фамилия</label>
                 <Input
                     classes="inputPersonal"
-                    name="lname"
+                    name="text"
                     type="text"
                     value={surname}
                     placeholder=""

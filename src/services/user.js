@@ -41,7 +41,7 @@ export const userQuery = createApi({
                 console.log('formData', formData);
                 return {
                     url: '/user/avatar',
-                    method: 'PATCH',
+                    method: 'POST',
                     body: formData,
                     // headers: {
                     //     'content-type': 'multipart/form-data',
