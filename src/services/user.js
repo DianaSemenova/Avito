@@ -37,17 +37,18 @@ export const userQuery = createApi({
             }),
         }),
         uploadAvatar: build.mutation({
-            query: (formData) => ({
-                // console.log("fileQuery", file)
-
-                url: '/user/avatar',
-                method: 'PATCH',
-                body: formData,
-                // headers: {
-                //     'content-type': 'multipart/form-data',
-                // },
-                invalidatesTags: ['User'],
-            }),
+            query: (formData) => {
+                console.log('formData', formData);
+                return {
+                    url: '/user/avatar',
+                    method: 'PATCH',
+                    body: formData,
+                    // headers: {
+                    //     'content-type': 'multipart/form-data',
+                    // },
+                    invalidatesTags: ['User'],
+                };
+            },
         }),
     }),
 });
