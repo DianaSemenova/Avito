@@ -9,7 +9,7 @@ export const userQuery = createApi({
     endpoints: (build) => ({
         getUser: build.query({
             query: () => '/user',
-            providesTags: (result) => result && [{ type: 'User', id: 'LIST' }],
+            providesTags: ['User'],
         }),
         updateUser: build.mutation({
             query: (body) => ({
@@ -19,7 +19,7 @@ export const userQuery = createApi({
                 headers: {
                     'content-type': 'application/json',
                 },
-                invalidatesTags: [{ type: 'User', id: 'LIST' }],
+                invalidatesTags: ['User'],
             }),
         }),
         updatePassword: build.mutation({
@@ -33,18 +33,20 @@ export const userQuery = createApi({
                 headers: {
                     'content-type': 'application/json',
                 },
-                invalidatesTags: [{ type: 'User', id: 'LIST' }],
+                invalidatesTags: ['User'],
             }),
         }),
         uploadAvatar: build.mutation({
-            query: (body) => ({
+            query: (formData) => ({
+                // console.log("fileQuery", file)
+
                 url: '/user/avatar',
                 method: 'PATCH',
-                body,
-                headers: {
-                    'content-type': 'application/json',
-                },
-                invalidatesTags: [{ type: 'User', id: 'LIST' }],
+                body: formData,
+                // headers: {
+                //     'content-type': 'multipart/form-data',
+                // },
+                invalidatesTags: ['User'],
             }),
         }),
     }),
