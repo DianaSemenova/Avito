@@ -43,6 +43,7 @@ export default function ProfilePersonal() {
         }
     }, [data]);
 
+   
     return (
         <SkeletonTheme color="#333" highlightColor="#f2f1f0">
             <main>
