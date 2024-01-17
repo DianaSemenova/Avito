@@ -1,12 +1,25 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable import/order */
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import s from './ArticleImage.module.css';
 import IconBack from '../../UI/Icon/IconBack/IconBack';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton from 'react-loading-skeleton';
 
 export default function ArticleImage({ data }) {
+    const host = 'http://localhost:8090/';
     const navigate = useNavigate();
+    const [imageMain, setImageMain] = useState('');
+
+    useEffect(() => {
+        if (data?.images[0]) {
+            setImageMain(`${host}${data?.images[0]?.url}`);
+        }
+    }, [data]);
+
+    console.log(imageMain);
 
     return (
         <div className={s.articleFillImg}>
@@ -14,10 +27,7 @@ export default function ArticleImage({ data }) {
             {data ? (
                 <div className={s.articleImg}>
                     {data.images[0] ? (
-                        <img
-                            src={`http://localhost:8090/${data.images[0].url}`}
-                            alt={data.title}
-                        />
+                        <img src={imageMain} alt={data.title} />
                     ) : (
                         <p className={s.noPhoto}>No photo</p>
                     )}
@@ -29,9 +39,18 @@ export default function ArticleImage({ data }) {
                 {data
                     ? data.images?.length > 1 &&
                       data.images.map((image) => (
-                          <li className={s.imgBarDiv} key={image.id}>
+                          <li
+                              className={`${s.imgBarDiv} ${
+                                  imageMain === `${host}${image.url}` &&
+                                  s.active
+                              }`}
+                              key={image.id}
+                              onClick={() =>
+                                  setImageMain(`${host}${image.url}`)
+                              }
+                          >
                               <img
-                                  src={`http://localhost:8090/${image.url}`}
+                                  src={`${host}${image.url}`}
                                   alt={data.title}
                               />
                           </li>

@@ -66,7 +66,7 @@
     background-color: #f0f0f0;
     border: 2px solid #f0f0f0;
     margin: 0 5px;
-    transition: all 0.3s;
+    transition: all 0.2s;
 }
 .imgBarDiv img {
     width: 100%;
@@ -78,6 +78,9 @@
 }
 .imgBarDiv:hover {
     border: 2px solid #009ee4;
+}
+.active {
+    border: 3px solid #009ee4;
 }
 .noPhoto {
     color: #5f5f5f;
