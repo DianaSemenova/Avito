@@ -57,5 +57,5 @@ export const {
     useGetUserQuery,
     useUpdateUserMutation,
     useUpdatePasswordMutation,
-    useUploadAvatardMutation,
+    useUploadAvatarMutation,
 } = userQuery;

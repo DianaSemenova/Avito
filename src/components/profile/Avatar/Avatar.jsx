@@ -9,14 +9,14 @@ import { toast } from 'react-toastify';
 import s from './Avatar.module.css';
 import Modal from '../../UI/ModalTest/Modal';
 import Input from '../../UI/Input/Input';
-import { useUpdateAdvMutation } from '../../../services/ads';
+import { useUploadAvatarMutation } from '../../../services/user';
 // import { setAuth } from '../../../store/slices/auth';
 
 export default function Avatar({ page, data }) {
     // const dispatch = useDispatch();
     const [modalActive, setModalActive] = useState(false);
     const [isUploadBtn, setIsUploadBtn] = useState(false);
-    const [setAvatar] = useUpdateAdvMutation();
+    const [setAvatar] = useUploadAvatarMutation();
 
     const handleAvatarUpload = async (file) => {
         try {
@@ -35,14 +35,8 @@ export default function Avatar({ page, data }) {
             //       avatar
             //     }),
             // );
-            if (response.error.data.detail) {
-                toast.error(response.error.data.detail, {
-                    className: s.error,
-                });
-                console.log(response.error.data.detail[0].msg);
-            } else {
-                toast.success('Аватар успешно изменен!');
-            }
+
+            toast.success('Аватар успешно изменен!');
         } catch (error) {
             toast.error(error.message, { className: s.error });
         }
