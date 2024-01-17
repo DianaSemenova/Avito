@@ -4,7 +4,12 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppRoutes } from './routes/routes';
 import { useGetAdsAllQuery } from './services/ads';
-import { setAdsAll, setIsLoading, setError } from './store/slices/ads';
+import {
+    setAdsAll,
+    setIsLoading,
+    setError,
+    setSearchData,
+} from './store/slices/ads';
 
 function App() {
     const dispatch = useDispatch();
@@ -17,8 +22,8 @@ function App() {
 
         if (data) {
             dispatch(setAdsAll(data));
+            dispatch(setSearchData());
         }
-        
     }, [data, isLoading, error]);
 
     return (

@@ -1,12 +1,37 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-return-assign */
 import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import s from './PageWrapper.module.css';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
+import { setFilterAdsAll } from '../../../store/slices/ads';
 
-export default function PageWrapper() {
+export default function PageWrapper({
+    searchText,
+    setSearchText,
+    isMob,
+    setIsMob,
+    setIsClickAdd,
+}) {
     const location = useLocation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { searchData } = useSelector((state) => state.ads);
+
+    useEffect(() => {
+        if (isMob && searchText) {
+            dispatch(setFilterAdsAll(searchText));
+        }
+    }, [searchText, isMob]);
+
+    const getSearchData = () => {
+        const data = searchData.map((item) => (
+            <option key={Math.random()} value={item} />
+        ));
+        return data;
+    };
 
     return (
         <div className={s.mainSearch}>
@@ -32,14 +57,37 @@ export default function PageWrapper() {
                             type="search"
                             placeholder="Поиск по объявлениям"
                             name="search"
+                            list="ads"
+                            value={searchText}
+                            onChange={(e) => {
+                                setSearchText(e.target.value);
+                                setIsMob(false);
+                            }}
                         />
                         <Input
                             classes="searchTextMob"
                             type="search"
                             placeholder="Поиск"
                             name="search-mob"
+                            list="ads"
+                            value={searchText}
+                            onChange={(e) => {
+                                setSearchText(e.target.value);
+                                setIsMob(true);
+                            }}
                         />
-                        <Button classes="searchBtn">Найти</Button>
+                        {searchText && (
+                            <datalist id="ads">{getSearchData()}</datalist>
+                        )}
+                        <Button
+                            classes="searchBtn"
+                            onClick={() => {
+                                dispatch(setFilterAdsAll(searchText));
+                                setIsClickAdd(true);
+                            }}
+                        >
+                            Найти
+                        </Button>
                     </>
                 ) : (
                     <>
