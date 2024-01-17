@@ -7,6 +7,7 @@ import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
 import { useUpdateUserMutation } from '../../../services/user';
 import { setAuth } from '../../../store/slices/auth';
+import UpdatePassword from '../ModalUpdatePassword/UpdatePassword';
 
 export default function PersonalInfo({ data }) {
     const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export default function PersonalInfo({ data }) {
     const [city, setCity] = useState(data?.city);
     const [phone, setPhone] = useState(data?.phone);
     const [postDataUser] = useUpdateUserMutation();
+    const [modalActive, setModalActive] = useState(false);
 
     useEffect(() => {
         if (data) {
@@ -134,6 +136,13 @@ export default function PersonalInfo({ data }) {
             >
                 Сохранить
             </Button>
+            <Button classes="btnPersonal" onClick={() => setModalActive(true)}>
+                Изменить пароль
+            </Button>
+            <UpdatePassword
+                modalActive={modalActive}
+                setModalActive={setModalActive}
+            />
         </form>
     );
 }

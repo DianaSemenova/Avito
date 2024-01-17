@@ -26,7 +26,10 @@ export const userQuery = createApi({
             query: (body) => ({
                 url: '/user/password',
                 method: 'PATCH',
-                body,
+                body: JSON.stringify({
+                    password_1: body.password,
+                    password_2: body.newPaswword,
+                }),
                 headers: {
                     'content-type': 'application/json',
                 },
