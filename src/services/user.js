@@ -37,7 +37,9 @@ export const userQuery = createApi({
             }),
         }),
         uploadAvatar: build.mutation({
-            query: (formData) => {
+            query: ({ file }) => {
+                const formData = new FormData();
+                formData.append('file', file);
                 console.log('formData', formData);
                 return {
                     url: '/user/avatar',

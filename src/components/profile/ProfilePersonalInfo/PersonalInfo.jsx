@@ -76,6 +76,7 @@ export default function PersonalInfo({ data, isLoading }) {
                     {!isLoading ? (
                         <Input
                             classes="inputPersonal"
+                            id="fname"
                             name="text"
                             type="text"
                             value={name}
@@ -95,6 +96,7 @@ export default function PersonalInfo({ data, isLoading }) {
                     {!isLoading ? (
                         <Input
                             classes="inputPersonal"
+                            id="lname"
                             name="text"
                             type="text"
                             value={surname}
@@ -110,10 +112,11 @@ export default function PersonalInfo({ data, isLoading }) {
                         email !== data?.email && s.active
                     }`}
                 >
-                    <label htmlFor="city">E-mail</label>
+                    <label htmlFor="email">E-mail</label>
                     {!isLoading ? (
                         <Input
                             classes="inputPersonal"
+                            id="email"
                             name="email"
                             type="email"
                             value={email}

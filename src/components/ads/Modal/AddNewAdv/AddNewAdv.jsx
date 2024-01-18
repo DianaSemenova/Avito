@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
@@ -22,13 +22,21 @@ export default function AddNewAdv({ setActive }) {
     const [postImageAdv] = useUploadImageAdvMutation();
     const [images, setImages] = useState([]);
 
-    useEffect(() => {
-        console.log('images', images);
-    }, [images]);
+    // useEffect(() => {
+    //     if (!modalActive) {
+    // setTitle('');
+    // setDescription('');
+    // setPrice('');
+
+    //     }
+    // }, [modalActive]);
 
     const handleCloseClick = () => {
         setActive(false);
         setImages([]);
+        setTitle('');
+        setDescription('');
+        setPrice('');
     };
 
     const addNewAdv = async () => {
@@ -38,24 +46,22 @@ export default function AddNewAdv({ setActive }) {
                 description,
                 price,
             });
-            console.log(response.data.id);
 
             if (images.length > 0) {
                 images.forEach(async (image) => {
-                    // Создаетс форма данных для отправки картинки
-                    const formData = new FormData();
                     console.log('image', image);
-                    console.log('formData', formData);
 
-                    formData.append('file', image);
-
-                    await postImageAdv(formData, response.data.id);
+                    await postImageAdv({ image, id: response.data.id });
                 });
             }
 
             setActive(false);
             toast.success('Объявление успешно создано!');
             navigate('/profile-personal');
+            setImages([]);
+            setTitle('');
+            setDescription('');
+            setPrice('');
         } catch (error) {
             toast.error(error.message, { className: s.error });
         }
@@ -65,19 +71,19 @@ export default function AddNewAdv({ setActive }) {
         <div className={s.wrapper}>
             <div className={s.block}>
                 <h2 className={s.title}>Новое объявление</h2>
-                <IconClose onClick={handleCloseClick} />
+                <IconClose onClick={() => handleCloseClick()} />
             </div>
             <form action="#" className={s.form}>
                 <div className={s.formBlock}>
-                    <label htmlFor="name" className={s.name}>
+                    <label htmlFor="nameAdv_2" className={s.name}>
                         Название
                     </label>
                     <Input
                         classes="areaAdv"
                         type="text"
                         name="name"
-                        placeholder="Введите название"
-                        id="name"
+                        placeholder="Введите название (обязательно)"
+                        id="nameAdv_2"
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
@@ -89,7 +95,7 @@ export default function AddNewAdv({ setActive }) {
                         name="text"
                         cols="auto"
                         rows="10"
-                        placeholder="Введите название"
+                        placeholder="Введите описание"
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
@@ -100,49 +106,56 @@ export default function AddNewAdv({ setActive }) {
                     </p>
                     <div className={s.formBarImg}>
                         {Array.from({ length: 5 }, (_, index) => (
-                            <label
+                            <div
                                 key={Math.random()}
-                                htmlFor={`fileAdv${index}`}
+                                // htmlFor={`fileAdv${index}`}
                                 className={s.divImg}
                             >
                                 {images[index] ? (
                                     <img
                                         key={Math.random()}
                                         src={URL.createObjectURL(images[index])}
-                                        alt={images[index].id}
+                                        alt="adv"
                                     />
                                 ) : (
-                                    <IconClose isAddPhoto />
+                                    <label
+                                        // key={Math.random()}
+                                        htmlFor={`fileAdv${index}`}
+                                        // className={s.divImg}
+                                    >
+                                        <IconClose isAddPhoto />
+                                    </label>
                                 )}
                                 <Input
                                     type="file"
                                     accept="image/*, .png, .jpg, .gif, .web, .jpeg"
-                                    multiple
+                                    // multiple
                                     id={`fileAdv${index}`}
                                     onChange={(e) => {
-                                        const selectedImages = Array.from(
-                                            e.target.files,
-                                        );
                                         console.log(
                                             'selectedImages',
-                                            selectedImages,
+                                            e.target.files[0],
                                         );
                                         setImages([
                                             ...images,
-                                            ...selectedImages,
+                                            e.target.files[0],
                                         ]);
                                     }}
                                 />
-                            </label>
+                            </div>
                         ))}
                     </div>
                 </div>
                 <div className={`${s.formBlock} ${s.blockPrice}`}>
-                    <label className={s.name}>Цена</label>
+                    <label htmlFor="rub" className={s.name}>
+                        Цена
+                    </label>
                     <Input
                         classes="areaAdvPrice"
-                        type="text"
+                        type="number"
                         name="name"
+                        id="rub"
+                        placeholder="Цена (обязательно)"
                         onChange={(e) => setPrice(e.target.value)}
                     />
                     <IconRUb />
