@@ -68,23 +68,23 @@ export default function AddNewAdv({ setActive }) {
                         Фотографии товара <span>не более 5 фотографий</span>
                     </p>
                     <div className={s.formBarImg}>
-                        <div className="form-newArt__img">
+                        <div className={s.divImg}>
                             <IconClose isAddPhoto />
                             <div className="form-newArt__img-cover" />
                         </div>
-                        <div className="form-newArt__img">
+                        <div className={s.divImg}>
                             <IconClose isAddPhoto />
                             <div className="form-newArt__img-cover" />
                         </div>
-                        <div className="form-newArt__img">
+                        <div className={s.divImg}>
                             <div className="form-newArt__img-cover" />
                             <IconClose isAddPhoto />
                         </div>
-                        <div className="form-newArt__img">
+                        <div className={s.divImg}>
                             <div className="form-newArt__img-cover" />
                             <IconClose isAddPhoto />
                         </div>
-                        <div className="form-newArt__img">
+                        <div className={s.divImg}>
                             <div className="form-newArt__img-cover" />
                             <IconClose isAddPhoto />
                         </div>
