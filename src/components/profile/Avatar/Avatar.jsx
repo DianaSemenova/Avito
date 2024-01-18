@@ -22,6 +22,8 @@ export default function Avatar({ page, data }) {
         try {
             const formData = new FormData();
             formData.append('file', file);
+
+            console.log('file', file);
             const response = await setAvatar(formData);
             setIsUploadBtn(false);
 

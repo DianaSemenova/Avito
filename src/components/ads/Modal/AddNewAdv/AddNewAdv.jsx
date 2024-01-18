@@ -1,6 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import s from './AddNewAdv.module.css';
@@ -8,7 +8,10 @@ import IconClose from '../../../UI/Icon/IconClose/IconClose';
 import IconRUb from '../../../UI/Icon/IconRUB/IconRUB';
 import Input from '../../../UI/Input/Input';
 import Button from '../../../UI/Button/Button';
-import { useAddNewAdvTextMutation } from '../../../../services/ads';
+import {
+    useAddNewAdvTextMutation,
+    useUploadImageAdvMutation,
+} from '../../../../services/ads';
 
 export default function AddNewAdv({ setActive }) {
     const navigate = useNavigate();
@@ -16,14 +19,39 @@ export default function AddNewAdv({ setActive }) {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [postNewAdvText] = useAddNewAdvTextMutation();
+    const [postImageAdv] = useUploadImageAdvMutation();
+    const [images, setImages] = useState([]);
+
+    useEffect(() => {
+        console.log('images', images);
+    }, [images]);
 
     const handleCloseClick = () => {
         setActive(false);
+        setImages([]);
     };
 
-    const addNewAdvText = async () => {
+    const addNewAdv = async () => {
         try {
-            await postNewAdvText({ title, description, price });
+            const response = await postNewAdvText({
+                title,
+                description,
+                price,
+            });
+            console.log(response.data.id);
+
+            if (images.length > 0) {
+                images.forEach(async (image) => {
+                    // Создаетс форма данных для отправки картинки
+                    const formData = new FormData();
+                    console.log('image', image);
+                    console.log('formData', formData);
+
+                    formData.append('file', image);
+
+                    await postImageAdv(formData, response.data.id);
+                });
+            }
 
             setActive(false);
             toast.success('Объявление успешно создано!');
@@ -41,12 +69,15 @@ export default function AddNewAdv({ setActive }) {
             </div>
             <form action="#" className={s.form}>
                 <div className={s.formBlock}>
-                    <label className={s.name}>Название</label>
+                    <label htmlFor="name" className={s.name}>
+                        Название
+                    </label>
                     <Input
                         classes="areaAdv"
                         type="text"
                         name="name"
                         placeholder="Введите название"
+                        id="name"
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
@@ -68,26 +99,42 @@ export default function AddNewAdv({ setActive }) {
                         Фотографии товара <span>не более 5 фотографий</span>
                     </p>
                     <div className={s.formBarImg}>
-                        <div className={s.divImg}>
-                            <IconClose isAddPhoto />
-                            <div className="form-newArt__img-cover" />
-                        </div>
-                        <div className={s.divImg}>
-                            <IconClose isAddPhoto />
-                            <div className="form-newArt__img-cover" />
-                        </div>
-                        <div className={s.divImg}>
-                            <div className="form-newArt__img-cover" />
-                            <IconClose isAddPhoto />
-                        </div>
-                        <div className={s.divImg}>
-                            <div className="form-newArt__img-cover" />
-                            <IconClose isAddPhoto />
-                        </div>
-                        <div className={s.divImg}>
-                            <div className="form-newArt__img-cover" />
-                            <IconClose isAddPhoto />
-                        </div>
+                        {Array.from({ length: 5 }, (_, index) => (
+                            <label
+                                key={Math.random()}
+                                htmlFor={`fileAdv${index}`}
+                                className={s.divImg}
+                            >
+                                {images[index] ? (
+                                    <img
+                                        key={Math.random()}
+                                        src={URL.createObjectURL(images[index])}
+                                        alt={images[index].id}
+                                    />
+                                ) : (
+                                    <IconClose isAddPhoto />
+                                )}
+                                <Input
+                                    type="file"
+                                    accept="image/*, .png, .jpg, .gif, .web, .jpeg"
+                                    multiple
+                                    id={`fileAdv${index}`}
+                                    onChange={(e) => {
+                                        const selectedImages = Array.from(
+                                            e.target.files,
+                                        );
+                                        console.log(
+                                            'selectedImages',
+                                            selectedImages,
+                                        );
+                                        setImages([
+                                            ...images,
+                                            ...selectedImages,
+                                        ]);
+                                    }}
+                                />
+                            </label>
+                        ))}
                     </div>
                 </div>
                 <div className={`${s.formBlock} ${s.blockPrice}`}>
@@ -102,8 +149,8 @@ export default function AddNewAdv({ setActive }) {
                 </div>
                 <Button
                     classes="btnAdv"
-                    isDisabled={!title}
-                    onClick={() => addNewAdvText()}
+                    isDisabled={!title && !price}
+                    onClick={() => addNewAdv()}
                 >
                     Опубликовать
                 </Button>

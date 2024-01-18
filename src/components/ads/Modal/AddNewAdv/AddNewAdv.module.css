@@ -76,6 +76,9 @@
     justify-content: center;
     align-items: center;
 }
+.divImg input {
+    display: none;
+}
 
 .areaAdv {
     font-family: 'Roboto', sans-serif;

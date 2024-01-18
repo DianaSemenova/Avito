@@ -72,10 +72,10 @@ export const adsQuery = createApi({
             }),
         }),
         uploadImageAdv: build.mutation({
-            query: (body, id) => ({
+            query: (formData, id) => ({
                 url: `/ads/${id}/image`,
                 method: 'POST',
-                body,
+                body: formData,
                 headers: {
                     'content-type': 'application/json',
                 },
