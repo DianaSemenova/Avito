@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
@@ -17,10 +17,6 @@ export default function Avatar({ page, data }) {
     const [modalActive, setModalActive] = useState(false);
     const [isUploadBtn, setIsUploadBtn] = useState(false);
     const [setAvatar] = useUploadAvatarMutation();
-
-    useEffect(() => {
-        console.log('dataavatar', data);
-    }, [data]);
 
     const handleAvatarUpload = async (file) => {
         try {
