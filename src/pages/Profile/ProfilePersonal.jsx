@@ -43,7 +43,6 @@ export default function ProfilePersonal() {
         }
     }, [data]);
 
-   
     return (
         <SkeletonTheme color="#333" highlightColor="#f2f1f0">
             <main>
@@ -66,6 +65,7 @@ export default function ProfilePersonal() {
                                 </h3>
                                 <div className={s.profilePersonal}>
                                     <ProfileContent
+                                        isLoading={isLoading}
                                         page="personal"
                                         data={user && user}
                                     />

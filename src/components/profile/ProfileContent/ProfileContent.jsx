@@ -4,7 +4,7 @@ import Avatar from '../Avatar/Avatar';
 import PersonalInfo from '../ProfilePersonalInfo/PersonalInfo';
 import SellerInfo from '../ProfileSellerInfo/SellerInfo';
 
-export default function ProfileContent({ page, data }) {
+export default function ProfileContent({ page, data, isLoading }) {
     return (
         <>
             <Avatar page={page} data={data} />
@@ -14,9 +14,9 @@ export default function ProfileContent({ page, data }) {
                 }
             >
                 {page === 'personal' ? (
-                    <PersonalInfo data={data} />
+                    <PersonalInfo data={data && data} isLoading={isLoading} />
                 ) : (
-                    <SellerInfo data={data}/>
+                    <SellerInfo data={data} />
                 )}
             </div>
         </>

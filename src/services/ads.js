@@ -3,7 +3,7 @@ import baseQueryWithReauth from './baseQueryWithReauth/baseQueryWithReauth';
 
 export const adsQuery = createApi({
     reducerPath: 'adsQuery',
-    tagTypes: ['AdsUser', 'Ads', 'Comments'],
+    tagTypes: ['AdsUser', 'Ads', 'COMMENTS'],
     baseQuery: baseQueryWithReauth,
 
     endpoints: (build) => ({
@@ -101,7 +101,7 @@ export const adsQuery = createApi({
         }),
         getCommentsAdv: build.query({
             query: (id) => `/ads/${id}/comments`,
-            providesTags: ['Comments'],
+            providesTags: ['COMMENTS'],
             // providesTags: (result) =>
             //     result
             //         ? [
@@ -121,7 +121,7 @@ export const adsQuery = createApi({
                     'content-type': 'application/json',
                 },
                 // invalidatesTags: [{ type: 'Comments', id: 'LIST' }],
-                invalidatesTags: ['Comments'],
+                invalidatesTags: ['COMMENTS'],
             }),
         }),
     }),
