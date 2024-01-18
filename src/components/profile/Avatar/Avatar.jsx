@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { toast } from 'react-toastify';
@@ -10,31 +10,31 @@ import s from './Avatar.module.css';
 import Input from '../../UI/Input/Input';
 import Modal from '../../UI/Modal/Modal';
 import { useUploadAvatarMutation } from '../../../services/user';
-// import { setAuth } from '../../../store/slices/auth';
+import { setAuth } from '../../../store/slices/auth';
 
 export default function Avatar({ page, data }) {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const [modalActive, setModalActive] = useState(false);
     const [isUploadBtn, setIsUploadBtn] = useState(false);
     const [setAvatar] = useUploadAvatarMutation();
+
+    useEffect(() => {
+        console.log('dataavatar', data);
+    }, [data]);
 
     const handleAvatarUpload = async (file) => {
         try {
             const formData = new FormData();
             formData.append('file', file);
-            console.log('file', file);
-            console.log('formData', formData);
-
             const response = await setAvatar(formData);
-            console.log('responseAvatar', response);
             setIsUploadBtn(false);
 
-            // dispatch(
-            //     setAuth({
-            //         ...data,
-            //       avatar
-            //     }),
-            // );
+            dispatch(
+                setAuth({
+                    ...data,
+                    avatar: response.data.avatar,
+                }),
+            );
 
             toast.success('Аватар успешно изменен!');
         } catch (error) {
@@ -61,7 +61,7 @@ export default function Avatar({ page, data }) {
                 className={page === 'personal' ? s.personalLeft : s.sellerLeft}
             >
                 <div className={s.imgBlock}>
-                    {Object.keys(data)?.length > 0 ? (
+                    {data.name || data.email ? (
                         getAvatar()
                     ) : (
                         <Skeleton width={170} height={170} circle />
@@ -87,11 +87,7 @@ export default function Avatar({ page, data }) {
                         />
                     ))}
 
-                <Modal
-                    active={modalActive}
-                    setActive={setModalActive}
-                    // width="300px"
-                >
+                <Modal active={modalActive} setActive={setModalActive}>
                     <div className={s.imgModal}>
                         <img
                             src={`http://localhost:8090/${data.avatar}`}
