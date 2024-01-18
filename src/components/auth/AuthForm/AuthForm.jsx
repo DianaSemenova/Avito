@@ -72,7 +72,7 @@ export default function AuthForm({ navigate, isLogin }) {
             <div className={s.wrapperInput}>
                 <Input
                     classes="input"
-                    type="text"
+                    type="email"
                     name="login"
                     placeholder="email"
                     onChange={(e) => {

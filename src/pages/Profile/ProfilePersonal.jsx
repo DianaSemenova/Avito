@@ -65,6 +65,7 @@ export default function ProfilePersonal() {
                                 </h3>
                                 <div className={s.profilePersonal}>
                                     <ProfileContent
+                                        isLoading={isLoading}
                                         page="personal"
                                         data={user && user}
                                     />

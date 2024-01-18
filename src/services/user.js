@@ -9,7 +9,7 @@ export const userQuery = createApi({
     endpoints: (build) => ({
         getUser: build.query({
             query: () => '/user',
-            providesTags: (result) => result && [{ type: 'User', id: 'LIST' }],
+            providesTags: ['User'],
         }),
         updateUser: build.mutation({
             query: (body) => ({
@@ -19,30 +19,36 @@ export const userQuery = createApi({
                 headers: {
                     'content-type': 'application/json',
                 },
-                invalidatesTags: [{ type: 'User', id: 'LIST' }],
+                invalidatesTags: ['User'],
             }),
         }),
         updatePassword: build.mutation({
             query: (body) => ({
                 url: '/user/password',
                 method: 'PATCH',
-                body,
+                body: JSON.stringify({
+                    password_1: body.password,
+                    password_2: body.newPaswword,
+                }),
                 headers: {
                     'content-type': 'application/json',
                 },
-                invalidatesTags: [{ type: 'User', id: 'LIST' }],
+                invalidatesTags: ['User'],
             }),
         }),
         uploadAvatar: build.mutation({
-            query: (body) => ({
-                url: '/user/avatar',
-                method: 'PATCH',
-                body,
-                headers: {
-                    'content-type': 'application/json',
-                },
-                invalidatesTags: [{ type: 'User', id: 'LIST' }],
-            }),
+            query: (formData) => {
+                console.log('formData', formData);
+                return {
+                    url: '/user/avatar',
+                    method: 'POST',
+                    body: formData,
+                    // headers: {
+                    //     'content-type': 'multipart/form-data',
+                    // },
+                    invalidatesTags: ['User'],
+                };
+            },
         }),
     }),
 });
@@ -51,5 +57,5 @@ export const {
     useGetUserQuery,
     useUpdateUserMutation,
     useUpdatePasswordMutation,
-    useUploadAvatardMutation,
+    useUploadAvatarMutation,
 } = userQuery;

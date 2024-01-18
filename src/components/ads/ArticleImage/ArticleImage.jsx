@@ -77,6 +77,7 @@ export default function ArticleImage({ data }) {
                 {data?.images?.length > 1 &&
                     data.images.map((image) => (
                         <div
+                            key={Math.random()}
                             className={`${s.imgBarMobCircle} ${
                                 imageMain === `${host}${image.url}` && s.active
                             }`}
