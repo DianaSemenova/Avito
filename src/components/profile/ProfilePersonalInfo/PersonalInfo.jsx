@@ -22,7 +22,13 @@ export default function PersonalInfo({ data, isLoading }) {
     const [modalActive, setModalActive] = useState(false);
 
     useEffect(() => {
-        if (data) {
+        if (
+            data.name ||
+            data.surname ||
+            data.email ||
+            data.city ||
+            data.phone
+        ) {
             setName(data.name);
             setSurname(data.surname);
             setEmail(data.email);
@@ -60,7 +66,7 @@ export default function PersonalInfo({ data, isLoading }) {
 
     return (
         <SkeletonTheme color="#333" highlightColor="#f2f1f0">
-            <div className={s.form} action="#">
+            <form className={s.form} action="#">
                 <div
                     className={`${s.formDiv} ${
                         name !== data?.name && s.active
@@ -181,7 +187,7 @@ export default function PersonalInfo({ data, isLoading }) {
                     modalActive={modalActive}
                     setModalActive={setModalActive}
                 />
-            </div>
+            </form>
         </SkeletonTheme>
     );
 }
