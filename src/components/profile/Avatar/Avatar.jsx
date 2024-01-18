@@ -7,8 +7,8 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { toast } from 'react-toastify';
 import s from './Avatar.module.css';
-import Modal from '../../UI/ModalTest/Modal';
 import Input from '../../UI/Input/Input';
+import Modal from '../../UI/Modal/Modal';
 import { useUploadAvatarMutation } from '../../../services/user';
 // import { setAuth } from '../../../store/slices/auth';
 
@@ -87,11 +87,17 @@ export default function Avatar({ page, data }) {
                         />
                     ))}
 
-                <Modal active={modalActive} setActive={setModalActive}>
-                    <img
-                        src={`http://localhost:8090/${data.avatar}`}
-                        alt="avatar"
-                    />
+                <Modal
+                    active={modalActive}
+                    setActive={setModalActive}
+                    // width="300px"
+                >
+                    <div className={s.imgModal}>
+                        <img
+                            src={`http://localhost:8090/${data.avatar}`}
+                            alt="avatar"
+                        />
+                    </div>
                 </Modal>
             </div>
         </SkeletonTheme>
