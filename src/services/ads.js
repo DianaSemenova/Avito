@@ -62,9 +62,6 @@ export const adsQuery = createApi({
             query: ({ id }) => ({
                 url: `/ads/${id}`,
                 method: 'DELETED',
-                headers: {
-                    'content-type': 'application/json',
-                },
                 invalidatesTags: [
                     { type: 'Ads', id: 'LIST' },
                     { type: 'AdsUser', id: 'LIST' },
