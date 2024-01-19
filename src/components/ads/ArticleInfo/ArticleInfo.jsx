@@ -28,10 +28,10 @@ export default function ArticleInfo({ data, comments, articleID }) {
             console.log('errorDeleteAdvText', errorDeleteAdvText);
 
             if (errorDeleteAdvText) {
+                toast.error(errorDeleteAdvText.error, { className: s.error });
+            } else {
                 toast.success('Объявление успешно снято с публикации!');
                 navigate('/profile-personal');
-            } else {
-                toast.error(errorDeleteAdvText, { className: s.error });
             }
         } catch (error) {
             toast.error(error.message, { className: s.error });
