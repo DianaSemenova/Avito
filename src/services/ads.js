@@ -76,15 +76,10 @@ export const adsQuery = createApi({
                 const formData = new FormData();
                 formData.append('file', image);
 
-                console.log('formDataQuery', image);
-                console.log('responseQuery', id);
                 return {
                     url: `/ads/${id}/image`,
                     method: 'POST',
                     body: formData,
-                    headers: {
-                        'content-type': 'application/json',
-                    },
                     invalidatesTags: [
                         { type: 'Ads', id: 'LIST' },
                         { type: 'AdsUser', id: 'LIST' },

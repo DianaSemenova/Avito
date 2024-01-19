@@ -11,11 +11,28 @@ import getReviewsEnding from '../../../utils/getReviewsEnding';
 import showPhone from '../../../utils/showPhone';
 import Modal from '../../UI/Modal/Modal';
 import CommentsModal from '../Modal/Comments/Comments';
+import {
+    useDeleteImageAdvMutation,
+    useDeletedAdvMutation,
+} from '../../../services/ads';
 
 export default function ArticleInfo({ data, comments, articleID }) {
     const { ID } = useSelector((state) => state.auth);
     const [isShowPhone, setIsShowPhone] = useState(false);
     const [modalActive, setModalActive] = useState(false);
+    const [deleteImage] = useDeleteImageAdvMutation();
+    const [deleteTextAdv] = useDeletedAdvMutation();
+
+    const deleteAdv = async () => {
+        try {
+            if (data.image || data.image > 0) {
+                await deleteImage();
+            }
+            await deleteTextAdv({ id: articleID });
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
 
     const getAvatar = () => {
         if (data.user.avatar) {
@@ -85,7 +102,10 @@ export default function ArticleInfo({ data, comments, articleID }) {
                     (ID === data?.user.id ? (
                         <>
                             <Button classes="articleBtn">Редактировать</Button>
-                            <Button classes="btnRemove">
+                            <Button
+                                classes="btnRemove"
+                                onClick={() => deleteAdv()}
+                            >
                                 Снять с публикации
                             </Button>
                         </>

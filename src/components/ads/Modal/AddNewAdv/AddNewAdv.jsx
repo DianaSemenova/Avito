@@ -49,8 +49,6 @@ export default function AddNewAdv({ setActive, mobile = false }) {
 
             if (images.length > 0) {
                 images.forEach(async (image) => {
-                    console.log('image', image);
-
                     await postImageAdv({ image, id: response.data.id });
                 });
             }
@@ -136,7 +134,7 @@ export default function AddNewAdv({ setActive, mobile = false }) {
                                 <Input
                                     type="file"
                                     accept="image/*, .png, .jpg, .gif, .web, .jpeg"
-                                    // multiple
+                                    multiple
                                     id={
                                         mobile
                                             ? `fileAdvMob${index}`
