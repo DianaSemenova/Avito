@@ -22,17 +22,19 @@ export default function PersonalInfo({ data, isLoading }) {
     const [modalActive, setModalActive] = useState(false);
 
     useEffect(() => {
-        if (
-            data.name ||
-            data.surname ||
-            data.email ||
-            data.city ||
-            data.phone
-        ) {
+        if (data.name) {
             setName(data.name);
+        }
+        if (data.surname) {
             setSurname(data.surname);
+        }
+        if (data.email) {
             setEmail(data.email);
+        }
+        if (data.city) {
             setCity(data.city);
+        }
+        if (data.phone) {
             setPhone(data.phone);
         }
     }, [data]);
