@@ -64,8 +64,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+.labelRemove {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #009ee4;
+}
+.labelRemove:hover {
+    background-color: #0080c1;
+}
+.labelRemove:active {
+    background-color: #0080c1;
+}
+.labelRemove svg {
+    width: 23px;
+    height: 23px;
 }
 
+.labelRemove svg path {
+    width: 23px;
+    height: 23px;
+    stroke: #ffffff;
+}
+.labelRemove:hover svg path {
+    stroke: #ffffff;
+}
+.labelRemove:active svg path {
+    stroke: #ffffff;
+}
 .divImg img {
     width: 90px;
     height: 90px;
@@ -75,6 +103,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0.6;
 }
 .divImg input {
     display: none;

@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -37,6 +39,12 @@ export default function AddNewAdv({ setActive, mobile = false }) {
         setTitle('');
         setDescription('');
         setPrice('');
+    };
+
+    const removeImage = (index) => {
+        const filterImages = images.filter((_, i) => i !== index);
+
+        setImages(filterImages);
     };
 
     const addNewAdv = async () => {
@@ -107,26 +115,35 @@ export default function AddNewAdv({ setActive, mobile = false }) {
                     </p>
                     <div className={s.formBarImg}>
                         {Array.from({ length: 5 }, (_, index) => (
-                            <div
-                                key={Math.random()}
-                                // htmlFor={`fileAdv${index}`}
-                                className={s.divImg}
-                            >
+                            <div key={Math.random()} className={s.divImg}>
                                 {images[index] ? (
-                                    <img
-                                        key={Math.random()}
-                                        src={URL.createObjectURL(images[index])}
-                                        alt="adv"
-                                    />
+                                    <>
+                                        <img
+                                            key={Math.random()}
+                                            src={URL.createObjectURL(
+                                                images[index],
+                                            )}
+                                            alt="adv"
+                                        />
+                                        <label
+                                            className={s.labelRemove}
+                                            htmlFor={
+                                                mobile
+                                                    ? `removeMob${index}`
+                                                    : `remove${index}`
+                                            }
+                                            onClick={() => removeImage(index)}
+                                        >
+                                            <IconClose />
+                                        </label>
+                                    </>
                                 ) : (
                                     <label
-                                        // key={Math.random()}
                                         htmlFor={
                                             mobile
                                                 ? `fileAdvMob${index}`
                                                 : `fileAdv${index}`
                                         }
-                                        // className={s.divImg}
                                     >
                                         <IconClose isAddPhoto />
                                     </label>
