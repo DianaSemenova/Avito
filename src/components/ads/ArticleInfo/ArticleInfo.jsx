@@ -13,12 +13,14 @@ import showPhone from '../../../utils/showPhone';
 import Modal from '../../UI/Modal/Modal';
 import CommentsModal from '../Modal/Comments/Comments';
 import { useDeleteAdvMutation } from '../../../services/ads';
+import AdvSettings from '../Modal/AdvSettings/AdvSettings';
 
 export default function ArticleInfo({ data, comments, articleID }) {
     const navigate = useNavigate();
     const { ID } = useSelector((state) => state.auth);
     const [isShowPhone, setIsShowPhone] = useState(false);
     const [modalActive, setModalActive] = useState(false);
+    const [modalSettingsActive, setModalSettingsActive] = useState(false);
     const [deleteTextAdv, { error: errorDeleteAdvText }] =
         useDeleteAdvMutation();
 
@@ -105,7 +107,23 @@ export default function ArticleInfo({ data, comments, articleID }) {
                 {data &&
                     (ID === data?.user.id ? (
                         <>
-                            <Button classes="articleBtn">Редактировать</Button>
+                            <Button
+                                classes="articleBtn"
+                                onClick={() => setModalSettingsActive(true)}
+                            >
+                                Редактировать
+                            </Button>
+                            <Modal
+                                active={modalSettingsActive}
+                                setActive={setModalSettingsActive}
+                                pointerEvents
+                            >
+                                <AdvSettings
+                                    setActive={setModalSettingsActive}
+                                    data={data}
+                                    articleID={articleID}
+                                />
+                            </Modal>
                             <Button
                                 classes="btnRemove"
                                 onClick={() => deleteAdv()}

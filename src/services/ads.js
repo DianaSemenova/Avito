@@ -45,10 +45,14 @@ export const adsQuery = createApi({
             }),
         }),
         updateAdv: build.mutation({
-            query: (body, id) => ({
-                url: `/ads/${id}`,
+            query: (body) => ({
+                url: `/ads/${body.id}`,
                 method: 'PATCH',
-                body,
+                body: JSON.stringify({
+                    title: body.title,
+                    description: body.description,
+                    price: body.price,
+                }),
                 headers: {
                     'content-type': 'application/json',
                 },

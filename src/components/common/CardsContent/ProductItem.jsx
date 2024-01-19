@@ -41,7 +41,7 @@ export default function ProductItem({ item }) {
 
                         <p className={s.cardPrice}>
                             {item ? (
-                                item.price
+                                `${item.price} ₽`
                             ) : (
                                 <Skeleton width={100} height={20} />
                             )}

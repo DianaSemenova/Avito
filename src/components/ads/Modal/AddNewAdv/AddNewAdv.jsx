@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
@@ -24,6 +24,9 @@ export default function AddNewAdv({ setActive, mobile = false }) {
     const [postImageAdv] = useUploadImageAdvMutation();
     const [images, setImages] = useState([]);
 
+    useEffect(() => {
+        console.log('images', images);
+    }, [images]);
     // useEffect(() => {
     //     if (!modalActive) {
     // setTitle('');
@@ -127,11 +130,6 @@ export default function AddNewAdv({ setActive, mobile = false }) {
                                         />
                                         <label
                                             className={s.labelRemove}
-                                            htmlFor={
-                                                mobile
-                                                    ? `removeMob${index}`
-                                                    : `remove${index}`
-                                            }
                                             onClick={() => removeImage(index)}
                                         >
                                             <IconClose />
