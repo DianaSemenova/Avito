@@ -56,6 +56,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+.cardImage:hover {
+    border: 1px solid #009ee4;
+}
+.cardImage:active {
+    border: 1px solid #009ee4;
 }
 
 .cardImage img {

@@ -59,7 +59,7 @@ export const adsQuery = createApi({
             }),
         }),
         deletedAdv: build.mutation({
-            query: (id) => ({
+            query: ({ id }) => ({
                 url: `/ads/${id}`,
                 method: 'DELETED',
                 headers: {

@@ -2,7 +2,8 @@
 /* eslint-disable import/order */
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import s from './ArticleInfo.module.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton from 'react-loading-skeleton';
@@ -11,26 +12,30 @@ import getReviewsEnding from '../../../utils/getReviewsEnding';
 import showPhone from '../../../utils/showPhone';
 import Modal from '../../UI/Modal/Modal';
 import CommentsModal from '../Modal/Comments/Comments';
-import {
-    useDeleteImageAdvMutation,
-    useDeletedAdvMutation,
-} from '../../../services/ads';
+import { useDeletedAdvMutation } from '../../../services/ads';
 
 export default function ArticleInfo({ data, comments, articleID }) {
+    const navigate = useNavigate();
     const { ID } = useSelector((state) => state.auth);
     const [isShowPhone, setIsShowPhone] = useState(false);
     const [modalActive, setModalActive] = useState(false);
-    const [deleteImage] = useDeleteImageAdvMutation();
-    const [deleteTextAdv] = useDeletedAdvMutation();
+    const [deleteTextAdv, { error: errorDeleteAdvText }] =
+        useDeletedAdvMutation();
 
     const deleteAdv = async () => {
         try {
-            if (data.image || data.image > 0) {
-                await deleteImage();
-            }
             await deleteTextAdv({ id: articleID });
+            console.log('errorDeleteAdvText', errorDeleteAdvText);
+
+            if (errorDeleteAdvText) {
+                toast.success('Объявление успешно снято с публикации!');
+                navigate('/profile-personal');
+            } else {
+                toast.error(errorDeleteAdvText, { className: s.error });
+            }
+            
         } catch (error) {
-            console.log(error.message);
+            toast.error(error.message, { className: s.error });
         }
     };
 
