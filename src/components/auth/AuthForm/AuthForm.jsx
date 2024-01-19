@@ -83,6 +83,7 @@ export default function AuthForm({ navigate, isLogin }) {
                     type="email"
                     name="login"
                     placeholder="email"
+                    autoComplete="true"
                     onChange={(e) => {
                         setEmail(e.target.value);
                     }}
@@ -92,6 +93,7 @@ export default function AuthForm({ navigate, isLogin }) {
                     type="password"
                     name="password"
                     placeholder="Пароль"
+                    autoComplete="true"
                     onChange={(e) => {
                         setPassword(e.target.value);
                     }}
