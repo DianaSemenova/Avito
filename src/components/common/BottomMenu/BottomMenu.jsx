@@ -31,7 +31,7 @@ export default function BottomMenuMob() {
                     setActive={setModalActive}
                     pointerEvents
                 >
-                    <AddNewAdv setActive={setModalActive} />
+                    <AddNewAdv setActive={setModalActive} mobile />
                 </Modal>
                 <div
                     className={s.footerImg}

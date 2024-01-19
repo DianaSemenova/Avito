@@ -13,7 +13,7 @@ import {
     useUploadImageAdvMutation,
 } from '../../../../services/ads';
 
-export default function AddNewAdv({ setActive }) {
+export default function AddNewAdv({ setActive, mobile = false }) {
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -75,7 +75,10 @@ export default function AddNewAdv({ setActive }) {
             </div>
             <form action="#" className={s.form}>
                 <div className={s.formBlock}>
-                    <label htmlFor="nameAdv_2" className={s.name}>
+                    <label
+                        htmlFor={mobile ? 'nameAdvMob' : 'nameAdv'}
+                        className={s.name}
+                    >
                         Название
                     </label>
                     <Input
@@ -83,7 +86,7 @@ export default function AddNewAdv({ setActive }) {
                         type="text"
                         name="name"
                         placeholder="Введите название (обязательно)"
-                        id="nameAdv_2"
+                        id={mobile ? 'nameAdvMob' : 'nameAdv'}
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
@@ -120,7 +123,11 @@ export default function AddNewAdv({ setActive }) {
                                 ) : (
                                     <label
                                         // key={Math.random()}
-                                        htmlFor={`fileAdv${index}`}
+                                        htmlFor={
+                                            mobile
+                                                ? `fileAdvMob${index}`
+                                                : `fileAdv${index}`
+                                        }
                                         // className={s.divImg}
                                     >
                                         <IconClose isAddPhoto />
@@ -130,7 +137,11 @@ export default function AddNewAdv({ setActive }) {
                                     type="file"
                                     accept="image/*, .png, .jpg, .gif, .web, .jpeg"
                                     // multiple
-                                    id={`fileAdv${index}`}
+                                    id={
+                                        mobile
+                                            ? `fileAdvMob${index}`
+                                            : `fileAdv${index}`
+                                    }
                                     onChange={(e) => {
                                         console.log(
                                             'selectedImages',
@@ -147,14 +158,17 @@ export default function AddNewAdv({ setActive }) {
                     </div>
                 </div>
                 <div className={`${s.formBlock} ${s.blockPrice}`}>
-                    <label htmlFor="rub" className={s.name}>
+                    <label
+                        htmlFor={mobile ? 'rubMob' : 'rub'}
+                        className={s.name}
+                    >
                         Цена
                     </label>
                     <Input
                         classes="areaAdvPrice"
                         type="number"
                         name="name"
-                        id="rub"
+                        id={mobile ? 'rubMob' : 'rub'}
                         placeholder="Цена (обязательно)"
                         onChange={(e) => setPrice(e.target.value)}
                     />
