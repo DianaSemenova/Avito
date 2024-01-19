@@ -12,7 +12,7 @@ import getReviewsEnding from '../../../utils/getReviewsEnding';
 import showPhone from '../../../utils/showPhone';
 import Modal from '../../UI/Modal/Modal';
 import CommentsModal from '../Modal/Comments/Comments';
-import { useDeletedAdvMutation } from '../../../services/ads';
+import { useDeleteAdvMutation } from '../../../services/ads';
 
 export default function ArticleInfo({ data, comments, articleID }) {
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ export default function ArticleInfo({ data, comments, articleID }) {
     const [isShowPhone, setIsShowPhone] = useState(false);
     const [modalActive, setModalActive] = useState(false);
     const [deleteTextAdv, { error: errorDeleteAdvText }] =
-        useDeletedAdvMutation();
+        useDeleteAdvMutation();
 
     const deleteAdv = async () => {
         try {
@@ -33,7 +33,6 @@ export default function ArticleInfo({ data, comments, articleID }) {
             } else {
                 toast.error(errorDeleteAdvText, { className: s.error });
             }
-            
         } catch (error) {
             toast.error(error.message, { className: s.error });
         }
