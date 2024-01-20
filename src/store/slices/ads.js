@@ -16,10 +16,18 @@ export const adsSlice = createSlice({
 
     reducers: {
         setAdsAll: (state, action) => {
-            state.adsAll = action.payload;
+            const { data } = action.payload;
+
+            state.adsAll = [...data].sort((a, b) => {
+                const dateA = new Date(a.created_on);
+                const dateB = new Date(b.created_on);
+
+                return dateB - dateA;
+            });
         },
         setSearchData: (state) => {
             if (state.adsAll.length > 0) {
+                // создается массив для выпадающего списка на форме поиска объявлений
                 state.searchData = state.adsAll.map((adv) => adv.title);
             }
         },
@@ -50,13 +58,6 @@ export const adsSlice = createSlice({
             state.filterAdsAll = state.adsAll.filter((item) =>
                 item.title.toLowerCase().includes(action.payload.toLowerCase()),
             );
-
-            // state.filterAdsAll = state.adsAll.filter((adv) =>
-            //     Object.values(adv)
-            //         .join(' ')
-            //         .toLowerCase()
-            //         .includes(action.payload.toLowerCase()),
-            // );
         },
     },
 });

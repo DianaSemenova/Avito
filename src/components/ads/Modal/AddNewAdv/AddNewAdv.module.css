@@ -161,4 +161,7 @@
     .areaAdv {
         border-radius: 20px;
     }
+    .title {
+        font-size: 24px;
+    }
 }

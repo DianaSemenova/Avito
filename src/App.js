@@ -23,7 +23,7 @@ function App() {
         dispatch(setError(error));
 
         if (data) {
-            dispatch(setAdsAll(data));
+            dispatch(setAdsAll({ data }));
             dispatch(setSearchData());
         }
     }, [data, isLoading, error]);
