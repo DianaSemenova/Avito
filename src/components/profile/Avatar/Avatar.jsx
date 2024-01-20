@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { toast } from 'react-toastify';
@@ -10,27 +11,18 @@ import s from './Avatar.module.css';
 import Input from '../../UI/Input/Input';
 import Modal from '../../UI/Modal/Modal';
 import { useUploadAvatarMutation } from '../../../services/user';
-import { setAuth } from '../../../store/slices/auth';
 
 export default function Avatar({ page, data }) {
-    const dispatch = useDispatch();
     const [modalActive, setModalActive] = useState(false);
-    const [isUploadBtn, setIsUploadBtn] = useState(false);
-    const [setAvatar] = useUploadAvatarMutation();
+    const [setAvatar, { isLoading }] = useUploadAvatarMutation();
 
     const handleAvatarUpload = async (file) => {
         try {
-            const response = await setAvatar({ file });
-            setIsUploadBtn(false);
+            await setAvatar({ file });
 
-            dispatch(
-                setAuth({
-                    ...data,
-                    avatar: response.data.avatar,
-                }),
-            );
-
-            toast.success('Аватар успешно изменен!');
+            if (!isLoading) {
+                toast.success('Аватар успешно изменен!');
+            }
         } catch (error) {
             toast.error(error.message, { className: s.error });
         }
@@ -62,24 +54,19 @@ export default function Avatar({ page, data }) {
                     )}
                 </div>
 
-                {page === 'personal' &&
-                    (!isUploadBtn ? (
-                        <div
-                            onClick={() => setIsUploadBtn(true)}
-                            className={s.replacePhoto}
-                        >
-                            Заменить
-                        </div>
-                    ) : (
+                {page === 'personal' && (
+                    <label className={s.replacePhoto} htmlFor="avatarUser">
+                        {isLoading ? 'Фото загружается' : 'Заменить'}
                         <Input
-                            classes="input"
+                            id="avatarUser"
                             type="file"
                             accept="image/*, .png, .jpg, .gif, .web, .jpeg"
                             onChange={(e) =>
                                 handleAvatarUpload(e.target.files[0])
                             }
                         />
-                    ))}
+                    </label>
+                )}
 
                 <Modal active={modalActive} setActive={setModalActive}>
                     <div className={s.imgModal}>

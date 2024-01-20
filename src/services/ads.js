@@ -9,13 +9,7 @@ export const adsQuery = createApi({
     endpoints: (build) => ({
         getAdsAll: build.query({
             query: () => '/ads',
-            providesTags: (result) =>
-                result
-                    ? [
-                          ...result.map(({ id }) => ({ type: 'Ads', id })),
-                          { type: 'Ads', id: 'LIST' },
-                      ]
-                    : [{ type: 'Ads', id: 'LIST' }],
+            providesTags: ['Ads'],
         }),
         getAdv: build.query({
             query: (id) => `/ads/${id}`,
@@ -34,7 +28,7 @@ export const adsQuery = createApi({
                     'content-type': 'application/json',
                 },
             }),
-            invalidatesTags: [{ type: 'Ads', id: 'LIST' }, ['AdsUser']],
+            invalidatesTags: ['Ads', 'AdsUser', 'Adv'],
         }),
         updateAdv: build.mutation({
             query: (body) => ({
@@ -49,22 +43,14 @@ export const adsQuery = createApi({
                     'content-type': 'application/json',
                 },
             }),
-            invalidatesTags: [
-                { type: 'Ads', id: 'LIST' },
-                ['AdsUser'],
-                ['Adv'],
-            ],
+            invalidatesTags: ['Ads', 'AdsUser', 'Adv'],
         }),
         deleteAdv: build.mutation({
             query: ({ id }) => ({
                 url: `/ads/${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: [
-                { type: 'Ads', id: 'LIST' },
-                ['AdsUser'],
-                ['Adv'],
-            ],
+            invalidatesTags: ['Ads', 'AdsUser', 'Adv'],
         }),
         uploadImageAdv: build.mutation({
             query: ({ image, id }) => {
@@ -77,11 +63,7 @@ export const adsQuery = createApi({
                     body: formData,
                 };
             },
-            invalidatesTags: [
-                { type: 'Ads', id: 'LIST' },
-                ['AdsUser'],
-                ['Adv'],
-            ],
+            invalidatesTags: ['Ads', 'AdsUser', 'Adv'],
         }),
         deleteImageAdv: build.mutation({
             query: ({ url, id }) => ({
@@ -91,11 +73,7 @@ export const adsQuery = createApi({
                 },
                 method: 'DELETE',
             }),
-            invalidatesTags: [
-                { type: 'Ads', id: 'LIST' },
-                ['AdsUser'],
-                ['Adv'],
-            ],
+            invalidatesTags: ['Ads', 'AdsUser', 'Adv'],
         }),
         getCommentsAdv: build.query({
             query: (id) => `/ads/${id}/comments`,
