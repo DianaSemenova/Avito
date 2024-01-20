@@ -146,3 +146,14 @@
     color: black;
     font-size: 20px;
 }
+
+.errorFieledBlock input {
+    border: 1px solid red;
+}
+
+.errorFieledText {
+    color: red;
+}
+.iconRubDiv {
+    position: relative;
+}
