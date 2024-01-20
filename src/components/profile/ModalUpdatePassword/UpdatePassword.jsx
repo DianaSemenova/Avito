@@ -4,12 +4,12 @@ import s from './UpdatePassword.module.css';
 import Modal from '../../UI/Modal/Modal';
 import Input from '../../UI/Input/Input';
 import Button from '../../UI/Button/Button';
-import { useUpdateAdvMutation } from '../../../services/ads';
+import { useUpdatePasswordMutation } from '../../../services/user';
 
 export default function UpdatePassword({ modalActive, setModalActive }) {
     const [password, setPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
-    const [postPassword] = useUpdateAdvMutation();
+    const [postPassword, { error, isLoading }] = useUpdatePasswordMutation();
 
     const updatePassword = async () => {
         try {
@@ -18,9 +18,16 @@ export default function UpdatePassword({ modalActive, setModalActive }) {
                 newPassword,
             });
 
-            toast.success('Пароль успешно обновлен!');
-        } catch (error) {
-            toast.error(error.message, { className: s.error });
+            if (error) {
+                toast.error(error.message, { className: s.error });
+                return;
+            }
+            if (!isLoading) {
+                toast.success('Пароль успешно обновлен!');
+                setModalActive(false);
+            }
+        } catch (errorCurrent) {
+            toast.error(errorCurrent.message, { className: s.error });
         }
     };
 
@@ -48,7 +55,7 @@ export default function UpdatePassword({ modalActive, setModalActive }) {
                     isDisabled={!!(!password && !newPassword)}
                     onClick={() => updatePassword()}
                 >
-                    Обновить пароль
+                    {isLoading ? 'Пароль обновляется...' : 'Обновить пароль'}
                 </Button>
             </div>
         </Modal>

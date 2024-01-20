@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import s from './AuthForm.module.css';
 import {
     useLoginUserMutation,
@@ -19,38 +20,49 @@ export default function AuthForm({ navigate, isLogin }) {
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [city, setCity] = useState('');
-    const [loginUser, { error }] = useLoginUserMutation();
+    const [loginUser] = useLoginUserMutation();
     const [registrationUser] = useRegistrationUserMutation();
+    const [error, setError] = useState('');
+    const [errorEmail, setErrorEmail] = useState('');
+    // const [errorPassword, setErrorPassword] = useState('');
+    const [isValid, setIsValid] = useState(true);
 
-    const handleLogin = async () => {
-        try {
-            const response = await loginUser({ email, password });
+    const requiredFields = () => {
+        setIsValid(true);
 
-            dispatch(
-                setAuth({
-                    access: response.data.access_token,
-                    refresh: response.data.refresh_token,
-                }),
-            );
-            navigate('/profile-personal');
-        } catch (currentError) {
-            console.log('currentError', currentError);
+        const patternEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // const patternPassword =
+        //     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+
+        if (!email || !password || !repeatPassword) {
+            setError('Обязательные поля для заполнения');
+            setIsValid(false);
         }
+        if (email && !patternEmail.test(email)) {
+            setErrorEmail('Некорректный формат email');
+            setIsValid(false);
+        }
+        // if (password.length < 8) {
+        //     setErrorPassword('Длина пароля должна быть не менее 8 символов');
+        //     setIsValid(false);
+        // }
+        // if (password.length > 8 && !patternPassword.test(password)) {
+        //     setErrorPassword(
+        //         'Пароль должен содержать символы, буквы и цифры разного регистра',
+        //     );
+        //     setIsValid(false);
+        // }
     };
 
-    const handleRegister = async () => {
-        if (password !== repeatPassword) {
-            console.log('Пароли не совпадают');
-        } else {
+    const handleLogin = async () => {
+        requiredFields();
+
+        if (isValid) {
             try {
-                await registrationUser({
-                    email,
-                    password,
-                    name,
-                    surname,
-                    city,
+                const response = await loginUser({
+                    email: email.replaceAll(' ', ''),
+                    password: password.replaceAll(' ', ''),
                 });
-                const response = await loginUser({ email, password });
 
                 dispatch(
                     setAuth({
@@ -58,11 +70,44 @@ export default function AuthForm({ navigate, isLogin }) {
                         refresh: response.data.refresh_token,
                     }),
                 );
-
                 navigate('/profile-personal');
             } catch (currentError) {
-                console.log('currentError', currentError);
-                console.log('error', error);
+                toast.error(currentError.message, { className: s.error });
+            }
+        }
+    };
+
+    const handleRegister = async () => {
+        requiredFields();
+
+        if (isValid) {
+            if (password !== repeatPassword) {
+                toast.error('Пароли не совпадают', { className: s.error });
+            } else {
+                try {
+                    await registrationUser({
+                        email: email.replaceAll(' ', ''),
+                        password: password.replaceAll(' ', ''),
+                        name,
+                        surname,
+                        city,
+                    });
+                    const response = await loginUser({
+                        email: email.replaceAll(' ', ''),
+                        password: password.replaceAll(' ', ''),
+                    });
+
+                    dispatch(
+                        setAuth({
+                            access: response.data.access_token,
+                            refresh: response.data.refresh_token,
+                        }),
+                    );
+
+                    navigate('/profile-personal');
+                } catch (currentError) {
+                    toast.error(currentError.message, { className: s.error });
+                }
             }
         }
     };
@@ -78,37 +123,63 @@ export default function AuthForm({ navigate, isLogin }) {
             </Link>
 
             <div className={s.wrapperInput}>
-                <Input
-                    classes="input"
-                    type="email"
-                    name="login"
-                    placeholder="email"
-                    autoComplete="true"
-                    onChange={(e) => {
-                        setEmail(e.target.value);
-                    }}
-                />
-                <Input
-                    classes="input"
-                    type="password"
-                    name="password"
-                    placeholder="Пароль"
-                    autoComplete="true"
-                    onChange={(e) => {
-                        setPassword(e.target.value);
-                    }}
-                />
+                <div>
+                    <Input
+                        classes="input"
+                        type="email"
+                        name="login"
+                        placeholder="email"
+                        autoComplete="true"
+                        value={email.replaceAll(' ', '')}
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                        }}
+                    />
+                    {!email && error && (
+                        <p className={s.errorFieled}>{error}</p>
+                    )}
+                    {email && errorEmail && (
+                        <p className={s.errorFieled}>{errorEmail}</p>
+                    )}
+                </div>
+
+                <div>
+                    <Input
+                        classes="input"
+                        type="password"
+                        name="password"
+                        placeholder="Пароль"
+                        value={password.replaceAll(' ', '')}
+                        autoComplete="true"
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                        }}
+                    />
+                    {!password && error && (
+                        <p className={s.errorFieled}>{error}</p>
+                    )}
+                    {/* {password && errorPassword && (
+                        <p className={s.errorFieled}>{errorPassword}</p>
+                    )} */}
+                </div>
+
                 {!isLogin && (
                     <>
-                        <Input
-                            classes="input"
-                            type="password"
-                            name="password"
-                            placeholder="Повторите пароль"
-                            onChange={(e) => {
-                                setRepeatPassword(e.target.value);
-                            }}
-                        />
+                        <div>
+                            <Input
+                                classes="input"
+                                type="password"
+                                name="repeatPassword"
+                                placeholder="Повторите пароль"
+                                value={repeatPassword.replaceAll(' ', '')}
+                                onChange={(e) => {
+                                    setRepeatPassword(e.target.value);
+                                }}
+                            />
+                            {!repeatPassword && error && (
+                                <p className={s.errorFieled}>{error}</p>
+                            )}
+                        </div>
                         <Input
                             classes="input"
                             type="text"

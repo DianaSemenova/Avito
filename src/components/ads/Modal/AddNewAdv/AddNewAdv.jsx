@@ -50,7 +50,6 @@ export default function AddNewAdv({ setActive, mobile = false }) {
     const addNewAdv = async () => {
         if (!title || !price) {
             setErrorFieled('Обязательное поле');
-            console.log(errorFieled);
             return;
         }
         try {

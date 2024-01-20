@@ -25,10 +25,10 @@ export const userQuery = createApi({
         updatePassword: build.mutation({
             query: (body) => ({
                 url: '/user/password',
-                method: 'PATCH',
+                method: 'PUT',
                 body: JSON.stringify({
                     password_1: body.password,
-                    password_2: body.newPaswword,
+                    password_2: body.newPassword,
                 }),
                 headers: {
                     'content-type': 'application/json',
