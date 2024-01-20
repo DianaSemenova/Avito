@@ -32,6 +32,7 @@ export default function UpdatePassword({ modalActive, setModalActive }) {
                     name="password"
                     type="password"
                     placeholder="Старый пароль"
+                    autoComplete="true"
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <Input
@@ -39,6 +40,7 @@ export default function UpdatePassword({ modalActive, setModalActive }) {
                     name="newPassword"
                     type="password"
                     placeholder="Новый пароль"
+                    autoComplete="true"
                     onChange={(e) => setNewPassword(e.target.value)}
                 />
                 <Button

@@ -14,10 +14,13 @@ export default function Article() {
     const { data } = useGetAdvQuery(id);
     const { data: comments } = useGetCommentsAdvQuery(id);
 
-    console.log('articledata', data);
     useEffect(() => {
         console.log('comments', comments);
     }, [comments]);
+
+    useEffect(() => {
+        console.log('articledata', data);
+    }, [data]);
 
     return (
         <SkeletonTheme color="#333" highlightColor="#f2f1f0">

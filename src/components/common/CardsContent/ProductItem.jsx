@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import s from './Product.module.css';
+import { formatDateTime } from '../../../utils/formatDateTime';
 
 export default function ProductItem({ item }) {
     const navigate = useNavigate();
@@ -41,7 +42,7 @@ export default function ProductItem({ item }) {
 
                         <p className={s.cardPrice}>
                             {item ? (
-                                item.price
+                                `${item.price} ₽`
                             ) : (
                                 <Skeleton width={100} height={20} />
                             )}
@@ -55,7 +56,7 @@ export default function ProductItem({ item }) {
                         </p>
                         <p className={s.cardDate}>
                             {item ? (
-                                item.created_on
+                                formatDateTime(item.created_on)
                             ) : (
                                 <Skeleton width={200} height={20} />
                             )}

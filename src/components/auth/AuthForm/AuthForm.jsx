@@ -43,15 +43,23 @@ export default function AuthForm({ navigate, isLogin }) {
             console.log('Пароли не совпадают');
         } else {
             try {
-                const response = await registrationUser({
+                await registrationUser({
                     email,
                     password,
                     name,
                     surname,
                     city,
                 });
+                const response = await loginUser({ email, password });
+
+                dispatch(
+                    setAuth({
+                        access: response.data.access_token,
+                        refresh: response.data.refresh_token,
+                    }),
+                );
+
                 navigate('/profile-personal');
-                console.log('responseReg', response);
             } catch (currentError) {
                 console.log('currentError', currentError);
                 console.log('error', error);
@@ -75,6 +83,7 @@ export default function AuthForm({ navigate, isLogin }) {
                     type="email"
                     name="login"
                     placeholder="email"
+                    autoComplete="true"
                     onChange={(e) => {
                         setEmail(e.target.value);
                     }}
@@ -84,6 +93,7 @@ export default function AuthForm({ navigate, isLogin }) {
                     type="password"
                     name="password"
                     placeholder="Пароль"
+                    autoComplete="true"
                     onChange={(e) => {
                         setPassword(e.target.value);
                     }}

@@ -20,9 +20,7 @@ export default function Avatar({ page, data }) {
 
     const handleAvatarUpload = async (file) => {
         try {
-            const formData = new FormData();
-            formData.append('file', file);
-            const response = await setAvatar(formData);
+            const response = await setAvatar({ file });
             setIsUploadBtn(false);
 
             dispatch(

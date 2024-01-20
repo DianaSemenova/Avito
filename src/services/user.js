@@ -37,15 +37,13 @@ export const userQuery = createApi({
             }),
         }),
         uploadAvatar: build.mutation({
-            query: (formData) => {
-                console.log('formData', formData);
+            query: ({ file }) => {
+                const formData = new FormData();
+                formData.append('file', file);
                 return {
                     url: '/user/avatar',
                     method: 'POST',
                     body: formData,
-                    // headers: {
-                    //     'content-type': 'multipart/form-data',
-                    // },
                     invalidatesTags: ['User'],
                 };
             },

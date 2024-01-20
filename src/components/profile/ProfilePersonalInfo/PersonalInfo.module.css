@@ -63,9 +63,6 @@
     display: inline-block;
     margin: 0 7px 20px;
 }
-.active input {
-    border: 2px solid #009ee4;
-}
 .error {
     background: rgb(241, 156, 156);
     color: black;

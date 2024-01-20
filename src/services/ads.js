@@ -3,7 +3,7 @@ import baseQueryWithReauth from './baseQueryWithReauth/baseQueryWithReauth';
 
 export const adsQuery = createApi({
     reducerPath: 'adsQuery',
-    tagTypes: ['AdsUser', 'Ads', 'COMMENTS'],
+    tagTypes: ['AdsUser', 'Ads', 'Adv', 'Comments'],
     baseQuery: baseQueryWithReauth,
 
     endpoints: (build) => ({
@@ -19,16 +19,18 @@ export const adsQuery = createApi({
         }),
         getAdv: build.query({
             query: (id) => `/ads/${id}`,
+            providesTags: ['Adv'],
         }),
         getAdsUser: build.query({
             query: () => '/ads/me',
-            providesTags: (result) =>
-                result
-                    ? [
-                          ...result.map(({ id }) => ({ type: 'AdsUser', id })),
-                          { type: 'AdsUser', id: 'LIST' },
-                      ]
-                    : [{ type: 'AdsUser', id: 'LIST' }],
+            providesTags: ['AdsUser'],
+            // providesTags: (result) =>
+            //     result
+            //         ? [
+            //               ...result.map(({ id }) => ({ type: 'AdsUser', id })),
+            //               { type: 'AdsUser', id: 'LIST' },
+            //           ]
+            //         : [{ type: 'AdsUser', id: 'LIST' }],
         }),
         addNewAdvText: build.mutation({
             query: (body) => ({
@@ -38,70 +40,73 @@ export const adsQuery = createApi({
                 headers: {
                     'content-type': 'application/json',
                 },
-                invalidatesTags: [
-                    { type: 'Ads', id: 'LIST' },
-                    { type: 'AdsUser', id: 'LIST' },
-                ],
+                invalidatesTags: [{ type: 'Ads', id: 'LIST' }, ['AdsUser']],
             }),
         }),
         updateAdv: build.mutation({
-            query: (body, id) => ({
-                url: `/ads/${id}`,
+            query: (body) => ({
+                url: `/ads/${body.id}`,
                 method: 'PATCH',
-                body,
+                body: JSON.stringify({
+                    title: body.title,
+                    description: body.description,
+                    price: body.price,
+                }),
                 headers: {
                     'content-type': 'application/json',
                 },
                 invalidatesTags: [
                     { type: 'Ads', id: 'LIST' },
-                    { type: 'AdsUser', id: 'LIST' },
+                    ['AdsUser'],
+                    ['Adv'],
                 ],
             }),
         }),
-        deletedAdv: build.mutation({
-            query: (id) => ({
+        deleteAdv: build.mutation({
+            query: ({ id }) => ({
                 url: `/ads/${id}`,
-                method: 'DELETED',
-                headers: {
-                    'content-type': 'application/json',
-                },
+                method: 'DELETE',
                 invalidatesTags: [
                     { type: 'Ads', id: 'LIST' },
-                    { type: 'AdsUser', id: 'LIST' },
+                    ['AdsUser'],
+                    ['Adv'],
                 ],
             }),
         }),
         uploadImageAdv: build.mutation({
-            query: (body, id) => ({
-                url: `/ads/${id}/image`,
-                method: 'POST',
-                body,
-                headers: {
-                    'content-type': 'application/json',
-                },
-                invalidatesTags: [
-                    { type: 'Ads', id: 'LIST' },
-                    { type: 'AdsUser', id: 'LIST' },
-                ],
-            }),
+            query: ({ image, id }) => {
+                const formData = new FormData();
+                formData.append('file', image);
+
+                return {
+                    url: `/ads/${id}/image`,
+                    method: 'POST',
+                    body: formData,
+                    invalidatesTags: [
+                        { type: 'Ads', id: 'LIST' },
+                        ['AdsUser'],
+                        ['Adv'],
+                    ],
+                };
+            },
         }),
         deleteImageAdv: build.mutation({
-            query: (body, id) => ({
+            query: ({ url, id }) => ({
                 url: `/ads/${id}/image`,
-                method: 'DELETE',
-                body,
-                headers: {
-                    'content-type': 'application/json',
+                params: {
+                    file_url: url,
                 },
+                method: 'DELETE',
                 invalidatesTags: [
                     { type: 'Ads', id: 'LIST' },
-                    { type: 'AdsUser', id: 'LIST' },
+                    ['AdsUser'],
+                    ['Adv'],
                 ],
             }),
         }),
         getCommentsAdv: build.query({
             query: (id) => `/ads/${id}/comments`,
-            providesTags: ['COMMENTS'],
+            providesTags: ['Comments'],
             // providesTags: (result) =>
             //     result
             //         ? [
@@ -121,7 +126,7 @@ export const adsQuery = createApi({
                     'content-type': 'application/json',
                 },
                 // invalidatesTags: [{ type: 'Comments', id: 'LIST' }],
-                invalidatesTags: ['COMMENTS'],
+                invalidatesTags: ['Comments'],
             }),
         }),
     }),
@@ -133,7 +138,7 @@ export const {
     useGetAdsUserQuery,
     useAddNewAdvTextMutation,
     useUpdateAdvMutation,
-    useDeletedAdvMutation,
+    useDeleteAdvMutation,
     useUploadImageAdvMutation,
     useDeleteImageAdvMutation,
     useGetCommentsAdvQuery,

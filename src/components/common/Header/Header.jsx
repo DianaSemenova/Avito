@@ -27,7 +27,10 @@ export default function Header() {
                             setActive={setModalActive}
                             pointerEvents
                         >
-                            <AddNewAdv setActive={setModalActive} />
+                            <AddNewAdv
+                                modalActive={modalActive}
+                                setActive={setModalActive}
+                            />
                         </Modal>
                     </>
                 )}

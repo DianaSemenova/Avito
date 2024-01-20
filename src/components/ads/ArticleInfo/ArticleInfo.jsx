@@ -2,7 +2,8 @@
 /* eslint-disable import/order */
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import s from './ArticleInfo.module.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton from 'react-loading-skeleton';
@@ -11,11 +12,37 @@ import getReviewsEnding from '../../../utils/getReviewsEnding';
 import showPhone from '../../../utils/showPhone';
 import Modal from '../../UI/Modal/Modal';
 import CommentsModal from '../Modal/Comments/Comments';
+import { useDeleteAdvMutation } from '../../../services/ads';
+import AdvSettings from '../Modal/AdvSettings/AdvSettings';
+import {
+    formatDateTime,
+    formatDateSellsProduct,
+} from '../../../utils/formatDateTime';
 
 export default function ArticleInfo({ data, comments, articleID }) {
+    const navigate = useNavigate();
     const { ID } = useSelector((state) => state.auth);
     const [isShowPhone, setIsShowPhone] = useState(false);
     const [modalActive, setModalActive] = useState(false);
+    const [modalSettingsActive, setModalSettingsActive] = useState(false);
+    const [deleteTextAdv, { error: errorDeleteAdvText }] =
+        useDeleteAdvMutation();
+
+    const deleteAdv = async () => {
+        try {
+            await deleteTextAdv({ id: articleID });
+            console.log('errorDeleteAdvText', errorDeleteAdvText);
+
+            if (errorDeleteAdvText) {
+                toast.error(errorDeleteAdvText.error, { className: s.error });
+            } else {
+                toast.success('Объявление успешно снято с публикации!');
+                navigate('/profile-personal');
+            }
+        } catch (error) {
+            toast.error(error.message, { className: s.error });
+        }
+    };
 
     const getAvatar = () => {
         if (data.user.avatar) {
@@ -37,7 +64,7 @@ export default function ArticleInfo({ data, comments, articleID }) {
             <div className={s.articleInfo}>
                 <p className={s.articleDate}>
                     {data ? (
-                        data.created_on
+                        formatDateTime(data.created_on)
                     ) : (
                         <Skeleton width={280} height={30} />
                     )}
@@ -84,8 +111,27 @@ export default function ArticleInfo({ data, comments, articleID }) {
                 {data &&
                     (ID === data?.user.id ? (
                         <>
-                            <Button classes="articleBtn">Редактировать</Button>
-                            <Button classes="btnRemove">
+                            <Button
+                                classes="articleBtn"
+                                onClick={() => setModalSettingsActive(true)}
+                            >
+                                Редактировать
+                            </Button>
+                            <Modal
+                                active={modalSettingsActive}
+                                setActive={setModalSettingsActive}
+                                pointerEvents
+                            >
+                                <AdvSettings
+                                    setActive={setModalSettingsActive}
+                                    data={data}
+                                    articleID={articleID}
+                                />
+                            </Modal>
+                            <Button
+                                classes="btnRemove"
+                                onClick={() => deleteAdv()}
+                            >
                                 Снять с публикации
                             </Button>
                         </>
@@ -127,9 +173,8 @@ export default function ArticleInfo({ data, comments, articleID }) {
                         </p>
 
                         <p className={s.authorAbout}>
-                            Продает товары с{' '}
                             {data ? (
-                                data.user.sells_from
+                                formatDateSellsProduct(data.user.sells_from)
                             ) : (
                                 <Skeleton width={200} height={20} />
                             )}

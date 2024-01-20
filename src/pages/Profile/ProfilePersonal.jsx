@@ -22,7 +22,7 @@ export default function ProfilePersonal() {
         window.location.href = '/';
     };
 
-    const { data } = useGetUserQuery();
+    const { data, isLoading: isLoadingUser } = useGetUserQuery();
     const user = useSelector((state) => state?.auth);
 
     useEffect(() => {
@@ -41,6 +41,7 @@ export default function ProfilePersonal() {
                 }),
             );
         }
+        
     }, [data]);
 
     return (
@@ -52,7 +53,7 @@ export default function ProfilePersonal() {
 
                         <h2 className={s.heading}>
                             Здравствуйте,{' '}
-                            {adsUser ? (
+                            {!isLoadingUser ? (
                                 `${user?.name}!`
                             ) : (
                                 <Skeleton width={150} height={40} />
