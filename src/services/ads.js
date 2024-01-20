@@ -3,7 +3,7 @@ import baseQueryWithReauth from './baseQueryWithReauth/baseQueryWithReauth';
 
 export const adsQuery = createApi({
     reducerPath: 'adsQuery',
-    tagTypes: ['AdsUser', 'Ads', 'COMMENTS'],
+    tagTypes: ['AdsUser', 'Ads', 'Adv', 'Comments'],
     baseQuery: baseQueryWithReauth,
 
     endpoints: (build) => ({
@@ -19,16 +19,18 @@ export const adsQuery = createApi({
         }),
         getAdv: build.query({
             query: (id) => `/ads/${id}`,
+            providesTags: ['Adv'],
         }),
         getAdsUser: build.query({
             query: () => '/ads/me',
-            providesTags: (result) =>
-                result
-                    ? [
-                          ...result.map(({ id }) => ({ type: 'AdsUser', id })),
-                          { type: 'AdsUser', id: 'LIST' },
-                      ]
-                    : [{ type: 'AdsUser', id: 'LIST' }],
+            providesTags: ['AdsUser'],
+            // providesTags: (result) =>
+            //     result
+            //         ? [
+            //               ...result.map(({ id }) => ({ type: 'AdsUser', id })),
+            //               { type: 'AdsUser', id: 'LIST' },
+            //           ]
+            //         : [{ type: 'AdsUser', id: 'LIST' }],
         }),
         addNewAdvText: build.mutation({
             query: (body) => ({
@@ -38,10 +40,7 @@ export const adsQuery = createApi({
                 headers: {
                     'content-type': 'application/json',
                 },
-                invalidatesTags: [
-                    { type: 'Ads', id: 'LIST' },
-                    { type: 'AdsUser', id: 'LIST' },
-                ],
+                invalidatesTags: [{ type: 'Ads', id: 'LIST' }, ['AdsUser']],
             }),
         }),
         updateAdv: build.mutation({
@@ -58,7 +57,8 @@ export const adsQuery = createApi({
                 },
                 invalidatesTags: [
                     { type: 'Ads', id: 'LIST' },
-                    { type: 'AdsUser', id: 'LIST' },
+                    ['AdsUser'],
+                    ['Adv'],
                 ],
             }),
         }),
@@ -68,7 +68,8 @@ export const adsQuery = createApi({
                 method: 'DELETE',
                 invalidatesTags: [
                     { type: 'Ads', id: 'LIST' },
-                    { type: 'AdsUser', id: 'LIST' },
+                    ['AdsUser'],
+                    ['Adv'],
                 ],
             }),
         }),
@@ -83,7 +84,8 @@ export const adsQuery = createApi({
                     body: formData,
                     invalidatesTags: [
                         { type: 'Ads', id: 'LIST' },
-                        { type: 'AdsUser', id: 'LIST' },
+                        ['AdsUser'],
+                        ['Adv'],
                     ],
                 };
             },
@@ -97,13 +99,14 @@ export const adsQuery = createApi({
                 method: 'DELETE',
                 invalidatesTags: [
                     { type: 'Ads', id: 'LIST' },
-                    { type: 'AdsUser', id: 'LIST' },
+                    ['AdsUser'],
+                    ['Adv'],
                 ],
             }),
         }),
         getCommentsAdv: build.query({
             query: (id) => `/ads/${id}/comments`,
-            providesTags: ['COMMENTS'],
+            providesTags: ['Comments'],
             // providesTags: (result) =>
             //     result
             //         ? [
@@ -123,7 +126,7 @@ export const adsQuery = createApi({
                     'content-type': 'application/json',
                 },
                 // invalidatesTags: [{ type: 'Comments', id: 'LIST' }],
-                invalidatesTags: ['COMMENTS'],
+                invalidatesTags: ['Comments'],
             }),
         }),
     }),

@@ -22,7 +22,6 @@ export default function ArticleImage({ data }) {
         }
     }, [data]);
 
-    console.log(imageMain);
 
     return (
         <div className={s.articleFillImg}>

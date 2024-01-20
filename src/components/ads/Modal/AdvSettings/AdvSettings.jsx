@@ -44,18 +44,6 @@ export default function AdvSettings({ setActive, data }) {
     }, [title, description, price, imagesUploaded, imagesRemovedDatabase]);
 
     useEffect(() => {
-        console.log('images2', images);
-    }, [images]);
-
-    useEffect(() => {
-        console.log('imagesRemovedDatabase', imagesRemovedDatabase);
-    }, [imagesRemovedDatabase]);
-
-    useEffect(() => {
-        console.log('imagesUploaded', imagesUploaded);
-    }, [imagesUploaded]);
-
-    useEffect(() => {
         setImages([...imagesDatabase, ...imagesUploaded]);
     }, [imagesUploaded, imagesDatabase]);
 
@@ -120,6 +108,7 @@ export default function AdvSettings({ setActive, data }) {
             }
 
             setActive(false);
+            setIsDisabled(true);
             toast.success('Объявление успешно изменено!');
         } catch (error) {
             toast.error(error.message, { className: s.error });
