@@ -35,6 +35,10 @@
     align-items: center;
     gap: 38px;
 }
+.wrapperInput div {
+    width: 100%;
+    height: auto;
+}
 
 .logo {
     width: 140px;
@@ -46,6 +50,15 @@
 .logo img {
     width: 140px;
     height: auto;
+}
+.error {
+    background: rgb(241, 156, 156);
+    color: black;
+    font-size: 20px;
+}
+.errorFieled {
+    padding-top: 5px;
+    color: red;
 }
 
 @media screen and (max-width: 768px) {

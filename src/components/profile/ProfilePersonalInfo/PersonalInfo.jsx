@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
@@ -8,11 +8,9 @@ import s from './PersonalInfo.module.css';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
 import { useUpdateUserMutation } from '../../../services/user';
-import { setAuth } from '../../../store/slices/auth';
 import UpdatePassword from '../ModalUpdatePassword/UpdatePassword';
 
 export default function PersonalInfo({ data, isLoading }) {
-    const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [email, setEmail] = useState('');
@@ -48,17 +46,6 @@ export default function PersonalInfo({ data, isLoading }) {
                 city,
                 phone,
             });
-
-            dispatch(
-                setAuth({
-                    ...data,
-                    email,
-                    name,
-                    surname,
-                    city,
-                    phone,
-                }),
-            );
 
             toast.success('Данные успешно изменены!');
         } catch (error) {

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
@@ -23,16 +23,8 @@ export default function AddNewAdv({ setActive, mobile = false }) {
     const [postNewAdvText] = useAddNewAdvTextMutation();
     const [postImageAdv] = useUploadImageAdvMutation();
     const [images, setImages] = useState([]);
-
-
-    // useEffect(() => {
-    //     if (!modalActive) {
-    // setTitle('');
-    // setDescription('');
-    // setPrice('');
-
-    //     }
-    // }, [modalActive]);
+    const [isDisabled, setIsDisabled] = useState(true);
+    const [errorFieled, setErrorFieled] = useState('');
 
     const handleCloseClick = () => {
         setActive(false);
@@ -40,7 +32,14 @@ export default function AddNewAdv({ setActive, mobile = false }) {
         setTitle('');
         setDescription('');
         setPrice('');
+        setErrorFieled('');
     };
+
+    useEffect(() => {
+        if (title || description || price || images.length > 0) {
+            setIsDisabled(false);
+        }
+    }, [title, description, price, images]);
 
     const removeImage = (index) => {
         const filterImages = images.filter((_, i) => i !== index);
@@ -49,6 +48,10 @@ export default function AddNewAdv({ setActive, mobile = false }) {
     };
 
     const addNewAdv = async () => {
+        if (!title || !price) {
+            setErrorFieled('Обязательное поле');
+            return;
+        }
         try {
             const response = await postNewAdvText({
                 title,
@@ -63,6 +66,7 @@ export default function AddNewAdv({ setActive, mobile = false }) {
             }
 
             setActive(false);
+            setIsDisabled(true);
             toast.success('Объявление успешно создано!');
             navigate('/profile-personal');
             setImages([]);
@@ -81,7 +85,11 @@ export default function AddNewAdv({ setActive, mobile = false }) {
                 <IconClose onClick={() => handleCloseClick()} />
             </div>
             <form action="#" className={s.form}>
-                <div className={s.formBlock}>
+                <div
+                    className={`${s.formBlock} ${
+                        !title && errorFieled && s.errorFieledBlock
+                    }`}
+                >
                     <label
                         htmlFor={mobile ? 'nameAdvMob' : 'nameAdv'}
                         className={s.name}
@@ -92,10 +100,14 @@ export default function AddNewAdv({ setActive, mobile = false }) {
                         classes="areaAdv"
                         type="text"
                         name="name"
+                        value={title}
                         placeholder="Введите название (обязательно)"
                         id={mobile ? 'nameAdvMob' : 'nameAdv'}
                         onChange={(e) => setTitle(e.target.value)}
                     />
+                    {!title && errorFieled && (
+                        <p className={s.errorFieledText}>{errorFieled}</p>
+                    )}
                 </div>
                 <div className={s.formBlock}>
                     <label className={s.name}>Описание</label>
@@ -105,6 +117,7 @@ export default function AddNewAdv({ setActive, mobile = false }) {
                         name="text"
                         cols="auto"
                         rows="10"
+                        value={description}
                         placeholder="Введите описание"
                         onChange={(e) => setDescription(e.target.value)}
                     />
@@ -168,26 +181,37 @@ export default function AddNewAdv({ setActive, mobile = false }) {
                         ))}
                     </div>
                 </div>
-                <div className={`${s.formBlock} ${s.blockPrice}`}>
+                <div
+                    className={`${s.formBlock} ${s.blockPrice} ${
+                        !price && errorFieled && s.errorFieledBlock
+                    }`}
+                >
                     <label
                         htmlFor={mobile ? 'rubMob' : 'rub'}
                         className={s.name}
                     >
                         Цена
                     </label>
-                    <Input
-                        classes="areaAdvPrice"
-                        type="number"
-                        name="name"
-                        id={mobile ? 'rubMob' : 'rub'}
-                        placeholder="Цена (обязательно)"
-                        onChange={(e) => setPrice(e.target.value)}
-                    />
-                    <IconRUb />
+                    <div className={s.iconRubDiv}>
+                        <Input
+                            classes="areaAdvPrice"
+                            type="number"
+                            name="name"
+                            value={price}
+                            id={mobile ? 'rubMob' : 'rub'}
+                            placeholder="Цена (обязательно)"
+                            onChange={(e) => setPrice(e.target.value)}
+                        />
+                        <IconRUb />
+                    </div>
+
+                    {!price && errorFieled && (
+                        <p className={s.errorFieledText}>{errorFieled}</p>
+                    )}
                 </div>
                 <Button
                     classes="btnAdv"
-                    isDisabled={!title || !price}
+                    isDisabled={isDisabled}
                     onClick={() => addNewAdv()}
                 >
                     Опубликовать

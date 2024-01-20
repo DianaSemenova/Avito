@@ -17,8 +17,8 @@ export const authQuery = createApi({
                 headers: {
                     'content-type': 'application/json',
                 },
-                invalidatesTags: [{ type: 'Auth', id: 'LIST' }],
             }),
+            invalidatesTags: [{ type: 'Auth', id: 'LIST' }],
         }),
         registrationUser: build.mutation({
             query: (body) => ({
@@ -28,8 +28,8 @@ export const authQuery = createApi({
                 headers: {
                     'content-type': 'application/json',
                 },
-                invalidatesTags: [{ type: 'Auth', id: 'LIST' }],
             }),
+            invalidatesTags: [{ type: 'Auth', id: 'LIST' }],
         }),
     }),
 });

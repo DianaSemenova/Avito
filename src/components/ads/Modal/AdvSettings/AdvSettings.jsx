@@ -30,6 +30,7 @@ export default function AdvSettings({ setActive, data }) {
         ...imagesUploaded,
     ]);
     const [isDisabled, setIsDisabled] = useState(true);
+    const [errorFieled, setErrorFieled] = useState('');
 
     useEffect(() => {
         if (
@@ -49,6 +50,7 @@ export default function AdvSettings({ setActive, data }) {
 
     const handleCloseClick = () => {
         setActive(false);
+        setErrorFieled(false);
     };
 
     const removeImage = (index) => {
@@ -81,6 +83,11 @@ export default function AdvSettings({ setActive, data }) {
     };
 
     const updateAdv = async () => {
+        if (!title || !price) {
+            setErrorFieled('Обязательное поле');
+            console.log(errorFieled);
+            return;
+        }
         try {
             if (
                 data.title !== title ||
@@ -109,6 +116,7 @@ export default function AdvSettings({ setActive, data }) {
 
             setActive(false);
             setIsDisabled(true);
+            setErrorFieled('');
             toast.success('Объявление успешно изменено!');
         } catch (error) {
             toast.error(error.message, { className: s.error });
@@ -125,7 +133,7 @@ export default function AdvSettings({ setActive, data }) {
                 <div
                     className={`${s.formBlock} ${
                         data.title !== title && s.active
-                    }`}
+                    }  ${!title && errorFieled && s.errorFieledBlock}`}
                 >
                     <label htmlFor="nameAdvSettings" className={s.name}>
                         Название
@@ -139,6 +147,9 @@ export default function AdvSettings({ setActive, data }) {
                         id="nameAdvSettings"
                         onChange={(e) => setTitle(e.target.value)}
                     />
+                    {!title && errorFieled && (
+                        <p className={s.errorFieledText}>{errorFieled}</p>
+                    )}
                 </div>
                 <div
                     className={`${s.formBlock} ${
@@ -209,21 +220,26 @@ export default function AdvSettings({ setActive, data }) {
                 <div
                     className={`${s.formBlock} ${s.blockPrice}  ${
                         data.price !== price && s.active
-                    }`}
+                    } ${!price && errorFieled && s.errorFieledBlock}`}
                 >
                     <label htmlFor="rubSettings" className={s.name}>
                         Цена
                     </label>
-                    <Input
-                        classes="areaAdvPrice"
-                        type="number"
-                        name="name"
-                        id="rubSettings"
-                        value={price}
-                        placeholder="Цена (обязательно)"
-                        onChange={(e) => setPrice(e.target.value)}
-                    />
-                    <IconRUb />
+                    <div className={s.iconRubDiv}>
+                        <Input
+                            classes="areaAdvPrice"
+                            type="number"
+                            name="name"
+                            id="rubSettings"
+                            value={price}
+                            placeholder="Цена (обязательно)"
+                            onChange={(e) => setPrice(e.target.value)}
+                        />
+                        <IconRUb />
+                    </div>
+                    {!price && errorFieled && (
+                        <p className={s.errorFieledText}>{errorFieled}</p>
+                    )}
                 </div>
                 <Button
                     classes="btnAdv"

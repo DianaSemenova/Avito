@@ -4,17 +4,13 @@ import { useNavigate, Link } from 'react-router-dom';
 import s from './Comments.module.css';
 import IconClose from '../../../UI/Icon/IconClose/IconClose';
 import Button from '../../../UI/Button/Button';
-import {
-    useCreateCommentMutation,
-    // useGetCommentsAdvQuery,
-} from '../../../../services/ads';
+import { useCreateCommentMutation } from '../../../../services/ads';
 
 export default function CommentsModal({ setActive, comments, articleID }) {
     const navigate = useNavigate();
     const { ID, access } = useSelector((state) => state.auth);
     const [postComment] = useCreateCommentMutation();
     const [textComment, setTextComment] = useState('');
-    // const { data: comments } = useGetCommentsAdvQuery(articleID);
 
     const handleCloseClick = () => {
         setTextComment('');
@@ -24,6 +20,7 @@ export default function CommentsModal({ setActive, comments, articleID }) {
     const createComment = async () => {
         try {
             await postComment({ text: textComment, id: articleID });
+            setTextComment('');
         } catch (currentError) {
             console.log('currentError', currentError);
         }
