@@ -10,7 +10,7 @@ import Input from '../../../UI/Input/Input';
 import Button from '../../../UI/Button/Button';
 import {
     useUpdateAdvMutation,
-    // useUploadImageAdvMutation,
+    useUploadImageAdvMutation,
 } from '../../../../services/ads';
 
 export default function AdvSettings({ setActive, data }) {
@@ -18,37 +18,97 @@ export default function AdvSettings({ setActive, data }) {
     const [description, setDescription] = useState(data.description || '');
     const [price, setPrice] = useState(data.price || '');
     const [patchAdv] = useUpdateAdvMutation();
-    // const [postImageAdv] = useUploadImageAdvMutation();
-    const [images, setImages] = useState(data.images || []);
+    const [postImageAdv] = useUploadImageAdvMutation();
+    const [imagesUploaded, setImagesUploaded] = useState([]);
+    const [imagesDatabase, setImagesDatabase] = useState(data.images || []);
+    const [imagesRemovedDatabase, setImagesRemovedDatabase] = useState([]);
+    const [images, setImages] = useState([
+        ...imagesDatabase,
+        ...imagesUploaded,
+    ]);
+    const [isDisabled, setIsDisabled] = useState(true);
+
+    useEffect(() => {
+        if (
+            title !== data.title ||
+            description !== data.description ||
+            price !== data.price ||
+            imagesUploaded.length > 0 ||
+            imagesRemovedDatabase.length > 0
+        ) {
+            setIsDisabled(false);
+        }
+    }, [title, description, price, imagesUploaded, imagesRemovedDatabase]);
 
     useEffect(() => {
         console.log('images2', images);
     }, [images]);
+
+    useEffect(() => {
+        console.log('imagesRemovedDatabase', imagesRemovedDatabase);
+    }, [imagesRemovedDatabase]);
+
+    useEffect(() => {
+        console.log('imagesUploaded', imagesUploaded);
+    }, [imagesUploaded]);
+
+    useEffect(() => {
+        setImages([...imagesDatabase, ...imagesUploaded]);
+    }, [imagesUploaded, imagesDatabase]);
 
     const handleCloseClick = () => {
         setActive(false);
     };
 
     const removeImage = (index) => {
-        const filterImages = images.filter((_, i) => i !== index);
+        if (index < imagesDatabase.length) {
+            const removedImage = imagesDatabase[index];
+            // Добавляем удаленное изображение в новый массив
+            setImagesRemovedDatabase((prevRemovedImages) => [
+                ...prevRemovedImages,
+                removedImage,
+            ]);
 
-        setImages(filterImages);
+            const filterImagesDtabase = imagesDatabase.filter(
+                (_, i) => i !== index,
+            );
+
+            setImagesDatabase(filterImagesDtabase);
+        } else {
+            const newIndex =
+                imagesDatabase.length === 0
+                    ? index
+                    : index - imagesDatabase.length;
+
+            console.log('newIndex', newIndex);
+            const filterImages = imagesUploaded.filter(
+                (_, i) => i !== newIndex,
+            );
+
+            setImagesUploaded(filterImages);
+        }
     };
 
     const updateAdv = async () => {
         try {
-            await patchAdv({
-                title,
-                description,
-                price,
-                id: data.id,
-            });
+            if (
+                data.title !== title ||
+                data.description !== description ||
+                data.price !== price
+            ) {
+                await patchAdv({
+                    title,
+                    description,
+                    price,
+                    id: data.id,
+                });
+            }
 
-            // if (images.length > 0) {
-            //     images.forEach(async (image) => {
-            //         await postImageAdv({ image, id: response.data.id });
-            //     });
-            // }
+            if (imagesUploaded.length > 0) {
+                imagesUploaded.forEach(async (image) => {
+                    await postImageAdv({ image, id: data.id });
+                });
+            }
 
             setActive(false);
             toast.success('Объявление успешно изменено!');
@@ -112,8 +172,8 @@ export default function AdvSettings({ setActive, data }) {
                                         <img
                                             key={Math.random()}
                                             src={
-                                                data.images
-                                                    ? `http://localhost:8090/${data.images[index].url}`
+                                                images[index].id
+                                                    ? `http://localhost:8090/${images[index].url}`
                                                     : URL.createObjectURL(
                                                           images[index],
                                                       )
@@ -142,8 +202,8 @@ export default function AdvSettings({ setActive, data }) {
                                             'selectedImages',
                                             e.target.files[0],
                                         );
-                                        setImages([
-                                            ...images,
+                                        setImagesUploaded([
+                                            ...imagesUploaded,
                                             e.target.files[0],
                                         ]);
                                     }}
@@ -173,11 +233,7 @@ export default function AdvSettings({ setActive, data }) {
                 </div>
                 <Button
                     classes="btnAdv"
-                    isDisabled={
-                        data.title === title &&
-                        data.description === description &&
-                        data.price === price
-                    }
+                    isDisabled={isDisabled}
                     onClick={() => updateAdv()}
                 >
                     Сохранить

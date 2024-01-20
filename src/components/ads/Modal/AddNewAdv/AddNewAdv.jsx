@@ -27,6 +27,7 @@ export default function AddNewAdv({ setActive, mobile = false }) {
     useEffect(() => {
         console.log('images', images);
     }, [images]);
+    
     // useEffect(() => {
     //     if (!modalActive) {
     // setTitle('');
@@ -189,7 +190,7 @@ export default function AddNewAdv({ setActive, mobile = false }) {
                 </div>
                 <Button
                     classes="btnAdv"
-                    isDisabled={!title && !price}
+                    isDisabled={!title || !price}
                     onClick={() => addNewAdv()}
                 >
                     Опубликовать
