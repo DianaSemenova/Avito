@@ -14,6 +14,7 @@ import Modal from '../../UI/Modal/Modal';
 import CommentsModal from '../Modal/Comments/Comments';
 import { useDeleteAdvMutation } from '../../../services/ads';
 import AdvSettings from '../Modal/AdvSettings/AdvSettings';
+import { formatDateSellsProduct } from '../../../utils/formatDateTime';
 
 export default function ArticleInfo({ data, comments, articleID }) {
     const navigate = useNavigate();
@@ -169,9 +170,8 @@ export default function ArticleInfo({ data, comments, articleID }) {
                         </p>
 
                         <p className={s.authorAbout}>
-                            Продает товары с{' '}
                             {data ? (
-                                data.user.sells_from
+                                formatDateSellsProduct(data.user.sells_from)
                             ) : (
                                 <Skeleton width={200} height={20} />
                             )}
