@@ -167,10 +167,6 @@ export default function AddNewAdv({ setActive, mobile = false }) {
                                             : `fileAdv${index}`
                                     }
                                     onChange={(e) => {
-                                        console.log(
-                                            'selectedImages',
-                                            e.target.files[0],
-                                        );
                                         setImages([
                                             ...images,
                                             e.target.files[0],

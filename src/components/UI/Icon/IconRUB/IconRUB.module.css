@@ -4,3 +4,13 @@
     left: 170px;
     z-index: 0;
 }
+
+@media screen and (max-width: 580px) {
+    .svg {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 0;
+        left: auto;
+    }
+}

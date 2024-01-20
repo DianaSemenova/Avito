@@ -11,6 +11,9 @@
     -ms-flex-align: center;
     align-items: center;
 }
+.background {
+    background-color: #f0f0f0;
+}
 
 .articleImg {
     width: 480px;
@@ -104,10 +107,10 @@
     }
 
     .articleImg {
-        /* width: 100%; */
+        width: 100%;
         min-width: 320px;
         /* height: 100%; */
-        min-height: 320px;
+        height: auto;
         margin: 0 0px;
     }
     .imgBar {

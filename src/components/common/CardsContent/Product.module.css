@@ -10,7 +10,7 @@
     display: grid;
     -ms-grid-columns: (270px) [4];
     grid-template-columns: repeat(4, 270px);
-    grid-auto-rows: 441px;
+    grid-auto-rows: auto;
     grid-gap: 40px 26px;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
@@ -35,11 +35,14 @@
 .cardsItem {
     margin: 0;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .cardsCard {
     width: 270px;
-    height: 441px;
+    height: auto;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -132,8 +135,19 @@
     .cards {
         display: -ms-grid;
         display: grid;
-        -ms-grid-columns: (270px) [1];
-        grid-template-columns: repeat(1, 270px);
+        -ms-grid-columns: (250px) [2];
+        grid-template-columns: repeat(2, 250px);
+        grid-auto-rows: auto;
+    }
+    .cardImage {
+        width: 250px;
+        height: 250px;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        transition: all 0.2s;
     }
 
     .cardTitle {
@@ -168,11 +182,25 @@
     }
 }
 
-/* @media screen and (max-width: 580px) {
+@media screen and (max-width: 580px) {
     .cards {
         display: -ms-grid;
         display: grid;
-        -ms-grid-columns: (270px) [1];
-        grid-template-columns: repeat(1, 270px);
+        -ms-grid-columns: (137px) [2];
+        grid-template-columns: repeat(2, 137px);
+        grid-auto-rows: auto;
     }
-} */
+    .cardImage {
+        width: 137px;
+        height: 131px;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        transition: all 0.2s;
+    }
+    .noPhoto {
+        font-size: 16px;
+    }
+}

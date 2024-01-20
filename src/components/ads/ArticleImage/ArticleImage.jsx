@@ -22,9 +22,12 @@ export default function ArticleImage({ data }) {
         }
     }, [data]);
 
-
     return (
-        <div className={s.articleFillImg}>
+        <div
+            className={`${s.articleFillImg} ${
+                (!data?.images[0] || !data?.images) && s.background
+            }`}
+        >
             <IconBack onClick={() => navigate(-1)} />
             {data ? (
                 <div className={s.articleImg}>

@@ -16,7 +16,8 @@ export default function PersonalInfo({ data, isLoading }) {
     const [email, setEmail] = useState('');
     const [city, setCity] = useState('');
     const [phone, setPhone] = useState('');
-    const [postDataUser] = useUpdateUserMutation();
+    const [postDataUser, { isLoading: isLoadingUser }] =
+        useUpdateUserMutation();
     const [modalActive, setModalActive] = useState(false);
 
     useEffect(() => {
@@ -46,8 +47,9 @@ export default function PersonalInfo({ data, isLoading }) {
                 city,
                 phone,
             });
-
-            toast.success('Данные успешно изменены!');
+            if (!isLoadingUser) {
+                toast.success('Данные успешно изменены!');
+            }
         } catch (error) {
             toast.error(error.message, { className: s.error });
         }
@@ -167,7 +169,7 @@ export default function PersonalInfo({ data, isLoading }) {
                     }
                     onClick={() => updateDataUser()}
                 >
-                    Сохранить
+                    {isLoadingUser ? 'Данные сохраняются...' : 'Сохранить'}
                 </Button>
                 <Button
                     classes="btnPersonal"

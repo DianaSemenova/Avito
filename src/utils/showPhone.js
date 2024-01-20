@@ -1,7 +1,6 @@
 const showPhone = ({ isShowPhone, data }) => {
     const firstDigit = data?.phone?.match(/\d/)[0];
     const nextThreeDigits = data?.phone?.match(/\d{3}/)[0];
-    console.log('showPhone', data);
 
     if (isShowPhone) {
         return data.phone;

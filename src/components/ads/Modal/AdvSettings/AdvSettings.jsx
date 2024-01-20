@@ -73,7 +73,6 @@ export default function AdvSettings({ setActive, data }) {
                     ? index
                     : index - imagesDatabase.length;
 
-            console.log('newIndex', newIndex);
             const filterImages = imagesUploaded.filter(
                 (_, i) => i !== newIndex,
             );
@@ -85,7 +84,6 @@ export default function AdvSettings({ setActive, data }) {
     const updateAdv = async () => {
         if (!title || !price) {
             setErrorFieled('Обязательное поле');
-            console.log(errorFieled);
             return;
         }
         try {

@@ -98,6 +98,9 @@
     }
 }
 @media screen and (max-width: 580px) {
+    .mainTitle {
+        font-size: 18px;
+    }
     .centerBlock {
         position: relative;
     }
@@ -138,5 +141,17 @@
     .headingSeller:hover::before {
         border-top: 2px solid #0080c1;
         border-left: 2px solid #0080c1;
+    }
+    .backBlock:hover svg path {
+        stroke: #0080c1;
+    }
+    .backBlock:hover h2 {
+        color: #0080c1;
+    }
+    .backBlock:active svg path {
+        stroke: #0080c1;
+    }
+    .backBlock:active h2 {
+        color: #0080c1;
     }
 }

@@ -1,10 +1,12 @@
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import s from './Comments.module.css';
 import IconClose from '../../../UI/Icon/IconClose/IconClose';
 import Button from '../../../UI/Button/Button';
 import { useCreateCommentMutation } from '../../../../services/ads';
+import { formatDateTime } from '../../../../utils/formatDateTime';
 
 export default function CommentsModal({ setActive, comments, articleID }) {
     const navigate = useNavigate();
@@ -22,7 +24,7 @@ export default function CommentsModal({ setActive, comments, articleID }) {
             await postComment({ text: textComment, id: articleID });
             setTextComment('');
         } catch (currentError) {
-            console.log('currentError', currentError);
+            toast.error(currentError.message, { className: s.error });
         }
     };
 
@@ -95,7 +97,11 @@ export default function CommentsModal({ setActive, comments, articleID }) {
                                     >
                                         <p className={s.name}>
                                             {comment.author.name}
-                                            <span>{comment.created_on}</span>
+                                            <span>
+                                                {formatDateTime(
+                                                    comment.created_on,
+                                                )}
+                                            </span>
                                         </p>
                                     </Link>
                                     <Button classes="auth">Ответить</Button>

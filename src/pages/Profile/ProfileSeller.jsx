@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useParams, useNavigate } from 'react-router-dom';
@@ -23,15 +25,17 @@ export default function ProfileSeller() {
         }
     }, [id, adsAll]);
 
-    console.log(adsSeller);
 
     return (
         <main>
             <div className={s.mainContainer}>
                 <div className={s.centerBlock}>
                     <PageWrapper />
-                    <IconBack onClick={() => navigate(-1)} />
-                    <h2 className={s.headingSeller}>Профиль продавца</h2>
+                    <div className={s.backBlock} onClick={() => navigate(-1)}>
+                        <IconBack />
+                        <h2 className={s.headingSeller}>Профиль продавца</h2>
+                    </div>
+
                     <div className={s.mainProfile}>
                         <div className={s.profileSellContent}>
                             <div className={s.profileSeller}>

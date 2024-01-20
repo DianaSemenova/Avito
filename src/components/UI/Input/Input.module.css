@@ -200,4 +200,11 @@
         font-size: 14px;
         line-height: 21px;
     }
+    .areaAdv,
+    .areaAdvPrice {
+        border-radius: 30px;
+    }
+    .areaAdvPrice{
+        width: 100%;
+    }
 }

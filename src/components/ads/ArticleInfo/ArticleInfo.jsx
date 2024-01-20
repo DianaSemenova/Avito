@@ -27,11 +27,11 @@ export default function ArticleInfo({ data, comments, articleID }) {
     const [modalSettingsActive, setModalSettingsActive] = useState(false);
     const [deleteTextAdv, { error: errorDeleteAdvText }] =
         useDeleteAdvMutation();
+    const isTablet = window.matchMedia('(max-width: 920px)').matches;
 
     const deleteAdv = async () => {
         try {
             await deleteTextAdv({ id: articleID });
-            console.log('errorDeleteAdvText', errorDeleteAdvText);
 
             if (errorDeleteAdvText) {
                 toast.error(errorDeleteAdvText.error, { className: s.error });
@@ -90,7 +90,7 @@ export default function ArticleInfo({ data, comments, articleID }) {
                 <Modal
                     active={modalActive}
                     setActive={setModalActive}
-                    width="900px"
+                    width={isTablet ? '600px' : '900px'}
                     pointerEvents
                 >
                     <CommentsModal
