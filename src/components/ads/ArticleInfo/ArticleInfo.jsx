@@ -14,7 +14,10 @@ import Modal from '../../UI/Modal/Modal';
 import CommentsModal from '../Modal/Comments/Comments';
 import { useDeleteAdvMutation } from '../../../services/ads';
 import AdvSettings from '../Modal/AdvSettings/AdvSettings';
-import { formatDateSellsProduct } from '../../../utils/formatDateTime';
+import {
+    formatDateTime,
+    formatDateSellsProduct,
+} from '../../../utils/formatDateTime';
 
 export default function ArticleInfo({ data, comments, articleID }) {
     const navigate = useNavigate();
@@ -61,7 +64,7 @@ export default function ArticleInfo({ data, comments, articleID }) {
             <div className={s.articleInfo}>
                 <p className={s.articleDate}>
                     {data ? (
-                        data.created_on
+                        formatDateTime(data.created_on)
                     ) : (
                         <Skeleton width={280} height={30} />
                     )}
