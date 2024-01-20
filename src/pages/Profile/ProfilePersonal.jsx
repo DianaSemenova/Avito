@@ -24,6 +24,14 @@ export default function ProfilePersonal() {
 
     const { data, isLoading: isLoadingUser } = useGetUserQuery();
     const user = useSelector((state) => state?.auth);
+    const adsUserSort =
+        adsUser?.length > 0 &&
+        [...adsUser].sort((a, b) => {
+            const dateA = new Date(a.created_on);
+            const dateB = new Date(b.created_on);
+
+            return dateB - dateA;
+        });
 
     useEffect(() => {
         if (data) {
@@ -41,7 +49,6 @@ export default function ProfilePersonal() {
                 }),
             );
         }
-        
     }, [data]);
 
     return (
@@ -84,7 +91,7 @@ export default function ProfilePersonal() {
                         <h3 className={s.mainTitle}>Мои товары</h3>
                     </div>
                     <Product
-                        data={adsUser}
+                        data={adsUserSort}
                         isLoading={isLoading}
                         error={error}
                     />
