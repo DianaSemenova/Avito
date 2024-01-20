@@ -19,8 +19,8 @@ export const userQuery = createApi({
                 headers: {
                     'content-type': 'application/json',
                 },
-                invalidatesTags: ['User'],
             }),
+            invalidatesTags: ['User'],
         }),
         updatePassword: build.mutation({
             query: (body) => ({
@@ -33,8 +33,8 @@ export const userQuery = createApi({
                 headers: {
                     'content-type': 'application/json',
                 },
-                invalidatesTags: ['User'],
             }),
+            invalidatesTags: ['User'],
         }),
         uploadAvatar: build.mutation({
             query: ({ file }) => {
@@ -44,9 +44,9 @@ export const userQuery = createApi({
                     url: '/user/avatar',
                     method: 'POST',
                     body: formData,
-                    invalidatesTags: ['User'],
                 };
             },
+            invalidatesTags: ['User'],
         }),
     }),
 });

@@ -24,13 +24,6 @@ export const adsQuery = createApi({
         getAdsUser: build.query({
             query: () => '/ads/me',
             providesTags: ['AdsUser'],
-            // providesTags: (result) =>
-            //     result
-            //         ? [
-            //               ...result.map(({ id }) => ({ type: 'AdsUser', id })),
-            //               { type: 'AdsUser', id: 'LIST' },
-            //           ]
-            //         : [{ type: 'AdsUser', id: 'LIST' }],
         }),
         addNewAdvText: build.mutation({
             query: (body) => ({
@@ -40,8 +33,8 @@ export const adsQuery = createApi({
                 headers: {
                     'content-type': 'application/json',
                 },
-                invalidatesTags: [{ type: 'Ads', id: 'LIST' }, ['AdsUser']],
             }),
+            invalidatesTags: [{ type: 'Ads', id: 'LIST' }, ['AdsUser']],
         }),
         updateAdv: build.mutation({
             query: (body) => ({
@@ -55,23 +48,23 @@ export const adsQuery = createApi({
                 headers: {
                     'content-type': 'application/json',
                 },
-                invalidatesTags: [
-                    { type: 'Ads', id: 'LIST' },
-                    ['AdsUser'],
-                    ['Adv'],
-                ],
             }),
+            invalidatesTags: [
+                { type: 'Ads', id: 'LIST' },
+                ['AdsUser'],
+                ['Adv'],
+            ],
         }),
         deleteAdv: build.mutation({
             query: ({ id }) => ({
                 url: `/ads/${id}`,
                 method: 'DELETE',
-                invalidatesTags: [
-                    { type: 'Ads', id: 'LIST' },
-                    ['AdsUser'],
-                    ['Adv'],
-                ],
             }),
+            invalidatesTags: [
+                { type: 'Ads', id: 'LIST' },
+                ['AdsUser'],
+                ['Adv'],
+            ],
         }),
         uploadImageAdv: build.mutation({
             query: ({ image, id }) => {
@@ -82,13 +75,13 @@ export const adsQuery = createApi({
                     url: `/ads/${id}/image`,
                     method: 'POST',
                     body: formData,
-                    invalidatesTags: [
-                        { type: 'Ads', id: 'LIST' },
-                        ['AdsUser'],
-                        ['Adv'],
-                    ],
                 };
             },
+            invalidatesTags: [
+                { type: 'Ads', id: 'LIST' },
+                ['AdsUser'],
+                ['Adv'],
+            ],
         }),
         deleteImageAdv: build.mutation({
             query: ({ url, id }) => ({
@@ -97,23 +90,16 @@ export const adsQuery = createApi({
                     file_url: url,
                 },
                 method: 'DELETE',
-                invalidatesTags: [
-                    { type: 'Ads', id: 'LIST' },
-                    ['AdsUser'],
-                    ['Adv'],
-                ],
             }),
+            invalidatesTags: [
+                { type: 'Ads', id: 'LIST' },
+                ['AdsUser'],
+                ['Adv'],
+            ],
         }),
         getCommentsAdv: build.query({
             query: (id) => `/ads/${id}/comments`,
             providesTags: ['Comments'],
-            // providesTags: (result) =>
-            //     result
-            //         ? [
-            //               ...result.map(({ id }) => ({ type: 'Comments', id })),
-            //               { type: 'Comments', id: 'LIST' },
-            //           ]
-            //         : [{ type: 'Comments', id: 'LIST' }],
         }),
         createComment: build.mutation({
             query: (body) => ({
@@ -125,9 +111,8 @@ export const adsQuery = createApi({
                 headers: {
                     'content-type': 'application/json',
                 },
-                // invalidatesTags: [{ type: 'Comments', id: 'LIST' }],
-                invalidatesTags: ['Comments'],
             }),
+            invalidatesTags: ['Comments'],
         }),
     }),
 });
