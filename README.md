@@ -64,18 +64,19 @@ markdown
 4. Скачайте архив и разархивируйте его.
 5. Через терминал перейдите в разархивированную папку.
 6. Запустите контейнер с базой данных в терминале:
-
-### `docker-compose -f docker-compose-backend.yaml up -d`
+```
+docker-compose -f docker-compose-backend.yaml up -d
+```
 
 7. После первого выполнения команды все образы подтянуться, но могут не запуститься, в этом случае повторно выполните команду:
-
-### `docker-compose -f docker-compose-backend.yaml up -d`
-
+```
+docker-compose -f docker-compose-backend.yaml up -d
+```
 8. После этого бэкенд и Swagger будут доступны по адресу [http://localhost:8090/](http://localhost:8090/)
 
 ## Помощь и поддержка
 
-Если у вас возникли вопросы или проблемы, пожалуйста, создайте issue в этом репозитории.
+Если у вас возникли вопросы или проблемы, пожалуйста, создайте `issue` в этом репозитории.
 
 # Getting Started with Create React App
 
