@@ -89,13 +89,12 @@ export const adsQuery = createApi({
             },
         }),
         deleteImageAdv: build.mutation({
-            query: (body, id) => ({
+            query: ({ url, id }) => ({
                 url: `/ads/${id}/image`,
-                method: 'DELETE',
-                body,
-                headers: {
-                    'content-type': 'application/json',
+                params: {
+                    file_url: url,
                 },
+                method: 'DELETE',
                 invalidatesTags: [
                     { type: 'Ads', id: 'LIST' },
                     { type: 'AdsUser', id: 'LIST' },

@@ -11,6 +11,7 @@ import Button from '../../../UI/Button/Button';
 import {
     useUpdateAdvMutation,
     useUploadImageAdvMutation,
+    useDeleteImageAdvMutation,
 } from '../../../../services/ads';
 
 export default function AdvSettings({ setActive, data }) {
@@ -19,6 +20,8 @@ export default function AdvSettings({ setActive, data }) {
     const [price, setPrice] = useState(data.price || '');
     const [patchAdv] = useUpdateAdvMutation();
     const [postImageAdv] = useUploadImageAdvMutation();
+    const [deleteImageAdv] = useDeleteImageAdvMutation();
+
     const [imagesUploaded, setImagesUploaded] = useState([]);
     const [imagesDatabase, setImagesDatabase] = useState(data.images || []);
     const [imagesRemovedDatabase, setImagesRemovedDatabase] = useState([]);
@@ -110,6 +113,12 @@ export default function AdvSettings({ setActive, data }) {
                 });
             }
 
+            if (imagesRemovedDatabase.length > 0) {
+                imagesRemovedDatabase.forEach(async (image) => {
+                    await deleteImageAdv({ url: image.url, id: data.id });
+                });
+            }
+
             setActive(false);
             toast.success('Объявление успешно изменено!');
         } catch (error) {
@@ -198,10 +207,6 @@ export default function AdvSettings({ setActive, data }) {
                                     multiple
                                     id={`fileAdvSettings${index}`}
                                     onChange={(e) => {
-                                        console.log(
-                                            'selectedImages',
-                                            e.target.files[0],
-                                        );
                                         setImagesUploaded([
                                             ...imagesUploaded,
                                             e.target.files[0],
