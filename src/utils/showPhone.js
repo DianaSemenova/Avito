@@ -10,7 +10,7 @@ const showPhone = ({ isShowPhone, data }) => {
         return 'Нет телефона';
     }
     if (!firstDigit && !nextThreeDigits && !isShowPhone) {
-        return `X XXXX ХХХ ХХ ХХ`;
+        return `X XXX ХХХ ХХ ХХ`;
     }
 
     return `${firstDigit} ${nextThreeDigits} ХХХ ХХ ХХ`;
