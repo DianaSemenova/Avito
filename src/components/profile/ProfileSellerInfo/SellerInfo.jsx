@@ -28,11 +28,7 @@ export default function SellerInfo({ data }) {
             <Button classes="btnSeller" onClick={() => setIsShowPhone(true)}>
                 {!isShowPhone && 'Показать телефон'}
                 <span className={s.span}>
-                    {data?.phone ? (
-                        showPhone({ isShowPhone, data })
-                    ) : (
-                        <Skeleton width={200} height={20} />
-                    )}
+                    {showPhone({ isShowPhone, data })}
                 </span>
             </Button>
         </SkeletonTheme>
