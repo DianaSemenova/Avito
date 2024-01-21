@@ -3,7 +3,7 @@ const showPhone = ({ isShowPhone, data }) => {
     const nextThreeDigits = data?.phone?.match(/\d{3}/)[0];
 
     if (isShowPhone) {
-        if (data.phone) {
+        if (data?.phone) {
             return data.phone;
         }
 
