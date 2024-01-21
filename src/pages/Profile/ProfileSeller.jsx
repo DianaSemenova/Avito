@@ -25,7 +25,6 @@ export default function ProfileSeller() {
         }
     }, [id, adsAll]);
 
-
     return (
         <main>
             <div className={s.mainContainer}>

@@ -10,10 +10,9 @@ import Article from '../pages/Article/Article';
 export function AppRoutes({ user }) {
     return (
         <Routes>
-              <Route path="/registration" element={<Auth />} />
-                <Route path="/auth" element={<Auth />} />
+            <Route path="/registration" element={<Auth />} />
+            <Route path="/auth" element={<Auth />} />
             <Route path="/" element={<Layout />}>
-              
                 <Route path="/" element={<MainPage />} />
                 <Route path="/article/:id" element={<Article />} />
 
@@ -23,10 +22,7 @@ export function AppRoutes({ user }) {
                         element={<ProfilePersonal />}
                     />
                 </Route>
-                <Route
-                    path="/profile-seller/:id"
-                    element={<ProfileSeller />}
-                />
+                <Route path="/profile-seller/:id" element={<ProfileSeller />} />
             </Route>
         </Routes>
     );

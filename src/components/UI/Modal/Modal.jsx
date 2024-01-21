@@ -19,10 +19,7 @@ export default function Modal({
                 setActive(false);
             }}
         >
-            <div
-                className={s.modal}
-                onClick={(e) => e.stopPropagation()}
-            >
+            <div className={s.modal} onClick={(e) => e.stopPropagation()}>
                 <div
                     className={s.modalContent}
                     style={{ width }}

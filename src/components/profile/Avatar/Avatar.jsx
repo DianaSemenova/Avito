@@ -56,7 +56,7 @@ export default function Avatar({ page, data }) {
 
                 {page === 'personal' && (
                     <label className={s.replacePhoto} htmlFor="avatarUser">
-                        {isLoading ? 'Фото загружается' : 'Заменить'}
+                        {isLoading ? 'Фото загружается...' : 'Заменить'}
                         <Input
                             id="avatarUser"
                             type="file"

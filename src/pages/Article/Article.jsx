@@ -13,7 +13,6 @@ export default function Article() {
     const { data } = useGetAdvQuery(id);
     const { data: comments } = useGetCommentsAdvQuery(id);
 
-
     return (
         <SkeletonTheme color="#333" highlightColor="#f2f1f0">
             <main className={s.main}>

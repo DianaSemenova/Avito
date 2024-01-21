@@ -31,7 +31,6 @@
     display: flex;
 }
 
-
 @media screen and (max-width: 580px) {
     .mainSearch {
         width: 100%;
