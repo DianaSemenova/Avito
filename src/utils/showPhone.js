@@ -3,8 +3,16 @@ const showPhone = ({ isShowPhone, data }) => {
     const nextThreeDigits = data?.phone?.match(/\d{3}/)[0];
 
     if (isShowPhone) {
-        return data.phone;
+        if (data.phone) {
+            return data.phone;
+        }
+
+        return 'Нет телефона';
     }
+    if (!firstDigit && !nextThreeDigits && !isShowPhone) {
+        return `X XXXX ХХХ ХХ ХХ`;
+    }
+
     return `${firstDigit} ${nextThreeDigits} ХХХ ХХ ХХ`;
 };
 export default showPhone;
