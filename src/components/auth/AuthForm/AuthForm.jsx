@@ -29,12 +29,20 @@ export default function AuthForm({ navigate, isLogin }) {
 
     const requiredFields = () => {
         setIsValid(true);
+        setError('');
+        setErrorEmail('');
+        setErrorPassword('');
 
         const patternEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         // const patternPassword =
         //     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 
-        if (!email || !password || !repeatPassword) {
+        if (!email || !password) {
+            setError('Обязательное поле для заполнения');
+            setIsValid(false);
+            return;
+        }
+        if (!isLogin && !repeatPassword) {
             setError('Обязательное поле для заполнения');
             setIsValid(false);
             return;
@@ -182,7 +190,7 @@ export default function AuthForm({ navigate, isLogin }) {
                                     setRepeatPassword(e.target.value);
                                 }}
                             />
-                            {!repeatPassword && error && (
+                            {!isLogin && !repeatPassword && error && (
                                 <p className={s.errorFieled}>{error}</p>
                             )}
                         </div>
