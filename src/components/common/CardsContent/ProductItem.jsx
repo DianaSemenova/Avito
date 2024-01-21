@@ -13,7 +13,7 @@ export default function ProductItem({ item }) {
         <SkeletonTheme color="#333" highlightColor="#f2f1f0">
             <div
                 className={s.cardsItem}
-                onClick={() => navigate(`/article/${item.id}`)}
+                onClick={() => navigate(`/article/${item?.id}`)}
             >
                 <div className={s.cardsCard}>
                     {item ? (

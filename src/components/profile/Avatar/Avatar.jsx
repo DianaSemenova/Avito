@@ -47,7 +47,7 @@ export default function Avatar({ page, data }) {
                 className={page === 'personal' ? s.personalLeft : s.sellerLeft}
             >
                 <div className={s.imgBlock}>
-                    {data.name || data.email ? (
+                    {data?.name || data?.email ? (
                         getAvatar()
                     ) : (
                         <Skeleton width={170} height={170} circle />
@@ -71,7 +71,7 @@ export default function Avatar({ page, data }) {
                 <Modal active={modalActive} setActive={setModalActive}>
                     <div className={s.imgModal}>
                         <img
-                            src={`http://localhost:8090/${data.avatar}`}
+                            src={`http://localhost:8090/${data?.avatar}`}
                             alt="avatar"
                         />
                     </div>

@@ -11,15 +11,15 @@ export default function SellerInfo({ data }) {
     return (
         <SkeletonTheme color="#333" highlightColor="#f2f1f0">
             <h3 className={s.title}>
-                {data.name ? data.name : <Skeleton width={200} height={20} />}
+                {data?.name ? data.name : <Skeleton width={200} height={20} />}
             </h3>
             <p className={s.city}>
-                {data.city ? data.city : <Skeleton width={200} height={20} />}
+                {data?.city ? data.city : <Skeleton width={200} height={20} />}
             </p>
             <p className={s.info}>
                 Продает товары с{' '}
-                {data.sells_from ? (
-                    data.sells_from
+                {data?.sells_from ? (
+                    data?.sells_from
                 ) : (
                     <Skeleton width={200} height={20} />
                 )}
@@ -28,7 +28,7 @@ export default function SellerInfo({ data }) {
             <Button classes="btnSeller" onClick={() => setIsShowPhone(true)}>
                 {!isShowPhone && 'Показать телефон'}
                 <span className={s.span}>
-                    {data.phone ? (
+                    {data?.phone ? (
                         showPhone({ isShowPhone, data })
                     ) : (
                         <Skeleton width={200} height={20} />

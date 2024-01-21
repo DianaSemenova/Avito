@@ -150,9 +150,9 @@ export default function ArticleInfo({ data, comments, articleID }) {
             </div>
             <Link
                 to={
-                    ID === data?.user.id
+                    ID === data?.user?.id
                         ? '/profile-personal'
-                        : `/profile-seller/${data?.user.id}`
+                        : `/profile-seller/${data?.user?.id}`
                 }
             >
                 <div className={s.articleAuthor}>

@@ -40,7 +40,7 @@ export const adsSlice = createSlice({
         setAdsSeller: (state, action) => {
             const { sellerID } = action.payload;
 
-            if (state.adsAll.length > 0) {
+            if (state.adsAll.length > 0 && sellerID) {
                 state.adsSeller = state.adsAll.filter(
                     (adv) => adv.user_id === Number(sellerID),
                 );
@@ -48,10 +48,10 @@ export const adsSlice = createSlice({
         },
         setSellerInfo: (state, action) => {
             const { sellerID } = action.payload;
-            if (state.adsAll.length > 0) {
+            if (state.adsAll.length > 0 && sellerID) {
                 state.sellerInfo = state.adsAll.find(
                     (adv) => adv.user_id === Number(sellerID),
-                ).user;
+                )?.user;
             }
         },
         setFilterAdsAll: (state, action) => {
