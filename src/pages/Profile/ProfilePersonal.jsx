@@ -61,7 +61,7 @@ export default function ProfilePersonal() {
                         <h2 className={s.heading}>
                             Здравствуйте,{' '}
                             {!isLoadingUser ? (
-                                `${user?.name}!`
+                                `${user?.name || user?.email}!`
                             ) : (
                                 <Skeleton width={150} height={40} />
                             )}

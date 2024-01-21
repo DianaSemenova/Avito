@@ -24,7 +24,7 @@ export default function AuthForm({ navigate, isLogin }) {
     const [registrationUser] = useRegistrationUserMutation();
     const [error, setError] = useState('');
     const [errorEmail, setErrorEmail] = useState('');
-    // const [errorPassword, setErrorPassword] = useState('');
+    const [errorPassword, setErrorPassword] = useState('');
     const [isValid, setIsValid] = useState(true);
 
     const requiredFields = () => {
@@ -35,18 +35,24 @@ export default function AuthForm({ navigate, isLogin }) {
         //     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 
         if (!email || !password || !repeatPassword) {
-            setError('Обязательные поля для заполнения');
+            setError('Обязательное поле для заполнения');
             setIsValid(false);
+            return;
         }
         if (email && !patternEmail.test(email)) {
             setErrorEmail('Некорректный формат email');
             setIsValid(false);
+            return;
         }
-        // if (password.length < 8) {
-        //     setErrorPassword('Длина пароля должна быть не менее 8 символов');
-        //     setIsValid(false);
-        // }
-        // if (password.length > 8 && !patternPassword.test(password)) {
+        if (password.length < 8 && !isLogin) {
+            setErrorPassword('Длина пароля должна быть не менее 8 символов');
+            setIsValid(false);
+        }
+        // if (
+        //     password.length > 8 &&
+        //     !patternPassword.test(password) &&
+        //     !isLogin
+        // ) {
         //     setErrorPassword(
         //         'Пароль должен содержать символы, буквы и цифры разного регистра',
         //     );
@@ -158,9 +164,9 @@ export default function AuthForm({ navigate, isLogin }) {
                     {!password && error && (
                         <p className={s.errorFieled}>{error}</p>
                     )}
-                    {/* {password && errorPassword && (
+                    {password && errorPassword && !isLogin && (
                         <p className={s.errorFieled}>{errorPassword}</p>
-                    )} */}
+                    )}
                 </div>
 
                 {!isLogin && (
