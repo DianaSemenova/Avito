@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
@@ -7,11 +8,16 @@ import PageWrapper from '../../components/common/PageWrapper/PageWrapper';
 import ArticleImage from '../../components/ads/ArticleImage/ArticleImage';
 import ArticleInfo from '../../components/ads/ArticleInfo/ArticleInfo';
 import { useGetAdvQuery, useGetCommentsAdvQuery } from '../../services/ads';
+import NotFound from '../../components/notFound/NotFound';
 
 export default function Article() {
     const { id } = useParams();
     const { data, error } = useGetAdvQuery(id);
     const { data: comments } = useGetCommentsAdvQuery(id);
+
+    useEffect(() => {
+        console.log(error);
+    }, [error]);
 
     return (
         <SkeletonTheme color="#333" highlightColor="#f2f1f0">
@@ -46,9 +52,7 @@ export default function Article() {
                     </div>
                 </main>
             ) : (
-                <main className={s.main}>
-                    <h4 className={s.mainTitle}>{error}</h4>
-                </main>
+                <NotFound adv />
             )}
         </SkeletonTheme>
     );
