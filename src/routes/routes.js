@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { ProtectedRoute } from './ProtectedRoute';
 import MainPage from '../pages/Main/Main';
 import Auth from '../pages/Auth/Auth';
@@ -6,8 +7,11 @@ import Layout from '../pages/Layout/Layout';
 import ProfilePersonal from '../pages/Profile/ProfilePersonal';
 import ProfileSeller from '../pages/Profile/ProfileSeller';
 import Article from '../pages/Article/Article';
+import NotFound from '../components/notFound/NotFound';
 
 export function AppRoutes({ user }) {
+    const { isSellerID } = useSelector((state) => state.ads);
+
     return (
         <Routes>
             <Route path="/registration" element={<Auth />} />
@@ -22,8 +26,14 @@ export function AppRoutes({ user }) {
                         element={<ProfilePersonal />}
                     />
                 </Route>
-                <Route path="/profile-seller/:id" element={<ProfileSeller />} />
+                <Route
+                    path="/profile-seller/:id"
+                    element={
+                        isSellerID ? <ProfileSeller /> : <NotFound sellerPage />
+                    }
+                />
             </Route>
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 }

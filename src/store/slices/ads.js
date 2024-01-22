@@ -7,6 +7,7 @@ const initialState = {
     error: null,
     adsSeller: [],
     sellerInfo: {},
+    isSellerID: true,
     filterAdsAll: [],
 };
 
@@ -48,10 +49,22 @@ export const adsSlice = createSlice({
         },
         setSellerInfo: (state, action) => {
             const { sellerID } = action.payload;
+            state.sellerInfo = state.adsAll.find(
+                (adv) => adv.user_id === Number(sellerID),
+            )?.user;
+        },
+        setIsSellerID: (state, action) => {
+            const { sellerID } = action.payload;
             if (state.adsAll.length > 0 && sellerID) {
-                state.sellerInfo = state.adsAll.find(
+                const sellerInfo = state.adsAll.find(
                     (adv) => adv.user_id === Number(sellerID),
                 )?.user;
+
+                if (sellerInfo) {
+                    state.isSellerID = true;
+                } else {
+                    state.isSellerID = false;
+                }
             }
         },
         setFilterAdsAll: (state, action) => {
@@ -70,6 +83,7 @@ export const {
     setIsLoading,
     setError,
     setFilterAdsAll,
+    setIsSellerID,
 } = adsSlice.actions;
 
 export default adsSlice.reducer;

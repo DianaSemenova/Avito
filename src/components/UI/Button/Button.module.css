@@ -7,7 +7,8 @@
 .articleBtn,
 .btnRemove,
 .addComment,
-.back {
+.back,
+.notFound {
     background-color: #009ee4;
     border: 1px solid #009ee4;
     color: #ffffff;
@@ -23,7 +24,8 @@
 .articleBtn:hover,
 .btnRemove:hover,
 .addComment:hover,
-.back:hover {
+.back:hover,
+.notFound:hover {
     background-color: #0080c1;
 }
 
@@ -36,7 +38,8 @@
 .articleBtn:active,
 .btnRemove:active,
 .addComment:active,
-.back:active {
+.back:active,
+.notFound:active {
     background-color: #0080c1;
 }
 .disabled {
@@ -90,7 +93,8 @@
 
 .searchBtn,
 .searchMainBtn,
-.back {
+.back,
+.notFound {
     margin-left: 10px;
     padding: 13px 56px;
     border-radius: 6px;
@@ -102,6 +106,7 @@
 }
 
 .searchMainBtn,
+.notFound,
 .back {
     padding: 13px 36px;
 }
