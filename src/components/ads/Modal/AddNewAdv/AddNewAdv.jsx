@@ -193,9 +193,12 @@ export default function AddNewAdv({ setActive, mobile = false }) {
                             type="number"
                             name="name"
                             value={price}
+                            min="0"
                             id={mobile ? 'rubMob' : 'rub'}
                             placeholder="Цена (обязательно)"
-                            onChange={(e) => setPrice(e.target.value)}
+                            onChange={(e) =>
+                                e.target.value >= 0 && setPrice(e.target.value)
+                            }
                         />
                         <IconRUb />
                     </div>

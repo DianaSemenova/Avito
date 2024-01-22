@@ -229,9 +229,12 @@ export default function AdvSettings({ setActive, data }) {
                             type="number"
                             name="name"
                             id="rubSettings"
+                            min="0"
                             value={price}
                             placeholder="Цена (обязательно)"
-                            onChange={(e) => setPrice(e.target.value)}
+                            onChange={(e) =>
+                                e.target.value >= 0 && setPrice(e.target.value)
+                            }
                         />
                         <IconRUb />
                     </div>
