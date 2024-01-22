@@ -6,6 +6,7 @@ import Layout from '../pages/Layout/Layout';
 import ProfilePersonal from '../pages/Profile/ProfilePersonal';
 import ProfileSeller from '../pages/Profile/ProfileSeller';
 import Article from '../pages/Article/Article';
+import NotFound from '../components/notFound/NotFound';
 
 export function AppRoutes({ user }) {
     return (
@@ -24,6 +25,7 @@ export function AppRoutes({ user }) {
                 </Route>
                 <Route path="/profile-seller/:id" element={<ProfileSeller />} />
             </Route>
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 }
