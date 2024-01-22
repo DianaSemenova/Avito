@@ -2,8 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState, useEffect } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import s from './AddNewAdv.module.css';
 import IconClose from '../../../UI/Icon/IconClose/IconClose';
