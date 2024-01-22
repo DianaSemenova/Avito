@@ -38,21 +38,27 @@ export default function MainPage() {
                 setIsMob={setIsMob}
                 setIsClickAdd={setIsClickAdd}
             />
-            <div className={s.mainContainer}>
-                <h2 className={s.h2}>Объявления</h2>
-                {(isMob && searchText && filterAdsAll.length === 0) ||
-                (isClickAdd && searchText && filterAdsAll.length === 0) ? (
-                    <h3
-                        className={s.h3}
-                    >{`Объявления по запросу «${searchText}» не найдены.`}</h3>
-                ) : (
-                    <Product
-                        data={handleArrayAds()}
-                        isLoading={isLoading}
-                        error={error}
-                    />
-                )}
-            </div>
+            {!error ? (
+                <div className={s.mainContainer}>
+                    <h2 className={s.h2}>Объявления</h2>
+                    {(isMob && searchText && filterAdsAll.length === 0) ||
+                    (isClickAdd && searchText && filterAdsAll.length === 0) ? (
+                        <h3
+                            className={s.h3}
+                        >{`Объявления по запросу «${searchText}» не найдены.`}</h3>
+                    ) : (
+                        <Product
+                            data={handleArrayAds()}
+                            isLoading={isLoading}
+                            error={error}
+                        />
+                    )}
+                </div>
+            ) : (
+                <div className={s.mainContainer}>
+                    <h4 className={s.h2}>Не удалось загрузить объявления...</h4>
+                </div>
+            )}
         </main>
     );
 }

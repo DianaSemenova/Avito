@@ -19,14 +19,19 @@ function App() {
     const { data, isLoading, error } = useGetAdsAllQuery();
 
     useEffect(() => {
-        dispatch(setIsLoading(isLoading));
-        dispatch(setError(error));
-
         if (data) {
             dispatch(setAdsAll({ data }));
             dispatch(setSearchData());
         }
-    }, [data, isLoading, error]);
+    }, [data]);
+
+    useEffect(() => {
+        dispatch(setIsLoading(isLoading));
+    }, [isLoading]);
+
+    useEffect(() => {
+        dispatch(setError(error));
+    }, [error]);
 
     return (
         <BrowserRouter>
