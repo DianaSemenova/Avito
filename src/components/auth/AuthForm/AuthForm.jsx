@@ -25,54 +25,63 @@ export default function AuthForm({ navigate, isLogin }) {
     const [error, setError] = useState('');
     const [errorEmail, setErrorEmail] = useState('');
     const [errorPassword, setErrorPassword] = useState('');
-    const [isValid, setIsValid] = useState(true);
-
-    const requiredFields = () => {
-        setIsValid(true);
-        setError('');
-        setErrorEmail('');
-        setErrorPassword('');
-
-        const patternEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        // const patternPassword =
-        //     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-
-        if (!email || !password) {
-            setError('Обязательное поле для заполнения');
-            setIsValid(false);
-            return;
-        }
-        if (!isLogin && !repeatPassword) {
-            setError('Обязательное поле для заполнения');
-            setIsValid(false);
-            return;
-        }
-        if (email && !patternEmail.test(email)) {
-            setErrorEmail('Некорректный формат email');
-            setIsValid(false);
-            return;
-        }
-        if (password.length < 8 && !isLogin) {
-            setErrorPassword('Длина пароля должна быть не менее 8 символов');
-            setIsValid(false);
-        }
-        // if (
-        //     password.length > 8 &&
-        //     !patternPassword.test(password) &&
-        //     !isLogin
-        // ) {
-        //     setErrorPassword(
-        //         'Пароль должен содержать символы, буквы и цифры разного регистра',
-        //     );
-        //     setIsValid(false);
-        // }
-    };
+    const [errorEmailServer, setErrorEmailServer] = useState('');
+    const [errorPasswordServer, setErrorPasswordServer] = useState('');
 
     const handleLogin = async () => {
-        requiredFields();
+        try {
+            const response = await loginUser({
+                email: email.replaceAll(' ', ''),
+                password: password.replaceAll(' ', ''),
+            });
 
-        if (isValid) {
+            setErrorEmailServer('');
+            setErrorPasswordServer('');
+
+            if (response.error?.data.detail === 'Incorrect email') {
+                setErrorEmailServer('Неверный email');
+                return;
+            }
+
+            if (response.error?.data?.detail === 'Incorrect password') {
+                setErrorPasswordServer('Неверный пароль');
+                return;
+            }
+
+            dispatch(
+                setAuth({
+                    access: response.data.access_token,
+                    refresh: response.data.refresh_token,
+                }),
+            );
+            navigate('/profile-personal');
+        } catch (currentError) {
+            console.log(currentError);
+
+            toast.error(currentError.message, { className: s.error });
+        }
+    };
+
+    const handleRegister = async () => {
+        if (password !== repeatPassword) {
+            toast.error('Пароли не совпадают', { className: s.error });
+        } else {
             try {
+                const registrationResponse = await registrationUser({
+                    email: email.replaceAll(' ', ''),
+                    password: password.replaceAll(' ', ''),
+                    name,
+                    surname,
+                    city,
+                });
+
+                setErrorEmailServer('');
+
+                if (registrationResponse.error?.data?.details) {
+                    setErrorEmailServer('Пользователь уже зарегистрирован');
+                    return;
+                }
+
                 const response = await loginUser({
                     email: email.replaceAll(' ', ''),
                     password: password.replaceAll(' ', ''),
@@ -84,45 +93,41 @@ export default function AuthForm({ navigate, isLogin }) {
                         refresh: response.data.refresh_token,
                     }),
                 );
+
                 navigate('/profile-personal');
             } catch (currentError) {
                 toast.error(currentError.message, { className: s.error });
             }
         }
     };
+    const requiredFields = () => {
+        setError('');
+        setErrorEmail('');
+        setErrorPassword('');
 
-    const handleRegister = async () => {
-        requiredFields();
+        const patternEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        if (isValid) {
-            if (password !== repeatPassword) {
-                toast.error('Пароли не совпадают', { className: s.error });
-            } else {
-                try {
-                    await registrationUser({
-                        email: email.replaceAll(' ', ''),
-                        password: password.replaceAll(' ', ''),
-                        name,
-                        surname,
-                        city,
-                    });
-                    const response = await loginUser({
-                        email: email.replaceAll(' ', ''),
-                        password: password.replaceAll(' ', ''),
-                    });
+        if (!email || !password) {
+            setError('Обязательное поле для заполнения');
+            return;
+        }
+        if (!isLogin && !repeatPassword) {
+            setError('Обязательное поле для заполнения');
+            return;
+        }
+        if (!isLogin && email && !patternEmail.test(email)) {
+            setErrorEmail('Некорректный формат email');
+            return;
+        }
+        if (password.length < 8 && !isLogin) {
+            setErrorPassword('Длина пароля должна быть не менее 8 символов');
+            return;
+        }
 
-                    dispatch(
-                        setAuth({
-                            access: response.data.access_token,
-                            refresh: response.data.refresh_token,
-                        }),
-                    );
-
-                    navigate('/profile-personal');
-                } catch (currentError) {
-                    toast.error(currentError.message, { className: s.error });
-                }
-            }
+        if (isLogin) {
+            handleLogin();
+        } else {
+            handleRegister();
         }
     };
 
@@ -152,8 +157,11 @@ export default function AuthForm({ navigate, isLogin }) {
                     {!email && error && (
                         <p className={s.errorFieled}>{error}</p>
                     )}
-                    {email && errorEmail && (
+                    {!isLogin && email && errorEmail && (
                         <p className={s.errorFieled}>{errorEmail}</p>
+                    )}
+                    {email && errorEmailServer && (
+                        <p className={s.errorFieled}>{errorEmailServer}</p>
                     )}
                 </div>
 
@@ -174,6 +182,9 @@ export default function AuthForm({ navigate, isLogin }) {
                     )}
                     {password && errorPassword && !isLogin && (
                         <p className={s.errorFieled}>{errorPassword}</p>
+                    )}
+                    {password && errorPasswordServer && isLogin && (
+                        <p className={s.errorFieled}>{errorPasswordServer}</p>
                     )}
                 </div>
 
@@ -225,17 +236,23 @@ export default function AuthForm({ navigate, isLogin }) {
                 )}
             </div>
 
-            <Button
-                classes="btnEnter"
-                onClick={isLogin ? handleLogin : handleRegister}
-            >
+            <Button classes="btnEnter" onClick={() => requiredFields()}>
                 {isLogin ? 'Войти' : 'Зарегистрироваться'}
             </Button>
             <Button
                 classes="btnSignup"
-                onClick={() =>
-                    isLogin ? navigate('/registration') : navigate('/auth')
-                }
+                onClick={() => {
+                    setErrorEmail('');
+                    setErrorPassword('');
+                    setErrorEmailServer('');
+                    setErrorPasswordServer('');
+
+                    if (isLogin) {
+                        navigate('/registration');
+                    } else {
+                        navigate('/auth');
+                    }
+                }}
             >
                 {!isLogin ? 'Войти' : 'Зарегистрироваться'}
             </Button>
