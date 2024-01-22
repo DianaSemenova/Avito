@@ -9,7 +9,11 @@ import s from './Profile.module.css';
 import PageWrapper from '../../components/common/PageWrapper/PageWrapper';
 import ProfileContent from '../../components/profile/ProfileContent/ProfileContent';
 import Product from '../../components/common/CardsContent/Product';
-import { setAdsSeller, setSellerInfo } from '../../store/slices/ads';
+import {
+    setAdsSeller,
+    setSellerInfo,
+    setIsSellerID,
+} from '../../store/slices/ads';
 import IconBack from '../../components/UI/Icon/IconBack/IconBack';
 
 export default function ProfileSeller() {
@@ -22,6 +26,7 @@ export default function ProfileSeller() {
         if (id) {
             dispatch(setAdsSeller({ sellerID: id }));
             dispatch(setSellerInfo({ sellerID: id }));
+            dispatch(setIsSellerID({ sellerID: id }));
         }
     }, [id, adsAll]);
 
