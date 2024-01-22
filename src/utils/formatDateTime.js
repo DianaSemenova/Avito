@@ -6,7 +6,7 @@ const formatDateTime = (date) => {
         return `Сегодня, в ${format(date, 'HH:mm', { locale: ru })}`;
     }
     if (isYesterday(date)) {
-        return `Ачера, в ${format(date, 'HH:mm', { locale: ru })}`;
+        return `Вчера, в ${format(date, 'HH:mm', { locale: ru })}`;
     }
     if (isThisWeek(date)) {
         return `${format(date, 'eeee, в HH:mm', { locale: ru })}`;
