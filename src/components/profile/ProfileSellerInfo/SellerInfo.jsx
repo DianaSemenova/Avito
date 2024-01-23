@@ -4,6 +4,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import s from './SellerInfo.module.css';
 import Button from '../../UI/Button/Button';
 import showPhone from '../../../utils/showPhone';
+import { formatDateSellsProduct } from '../../../utils/formatDateTime';
 
 export default function SellerInfo({ data }) {
     const [isShowPhone, setIsShowPhone] = useState(false);
@@ -17,9 +18,8 @@ export default function SellerInfo({ data }) {
                 {data?.city ? data.city : <Skeleton width={200} height={20} />}
             </p>
             <p className={s.info}>
-                Продает товары с{' '}
                 {data?.sells_from ? (
-                    data?.sells_from
+                    formatDateSellsProduct(data?.sells_from)
                 ) : (
                     <Skeleton width={200} height={20} />
                 )}

@@ -25,8 +25,7 @@ export default function AuthForm({ navigate, isLogin }) {
     const [error, setError] = useState('');
     const [errorEmail, setErrorEmail] = useState('');
     const [errorPassword, setErrorPassword] = useState('');
-    const [errorEmailServer, setErrorEmailServer] = useState('');
-    const [errorPasswordServer, setErrorPasswordServer] = useState('');
+    const [errorServer, setErrorServer] = useState('');
 
     const handleLogin = async () => {
         try {
@@ -35,16 +34,13 @@ export default function AuthForm({ navigate, isLogin }) {
                 password: password.replaceAll(' ', ''),
             });
 
-            setErrorEmailServer('');
-            setErrorPasswordServer('');
+            setErrorServer('');
 
-            if (response.error?.data.detail === 'Incorrect email') {
-                setErrorEmailServer('Неверный email');
-                return;
-            }
-
-            if (response.error?.data?.detail === 'Incorrect password') {
-                setErrorPasswordServer('Неверный пароль');
+            if (
+                response.error?.data.detail === 'Incorrect email' ||
+                response.error?.data?.detail === 'Incorrect password'
+            ) {
+                setErrorServer('Пользователь не зарегистрирован');
                 return;
             }
 
@@ -75,10 +71,10 @@ export default function AuthForm({ navigate, isLogin }) {
                     city,
                 });
 
-                setErrorEmailServer('');
+                setErrorServer('');
 
                 if (registrationResponse.error?.data?.details) {
-                    setErrorEmailServer('Пользователь уже зарегистрирован');
+                    setErrorServer('Пользователь уже зарегистрирован');
                     return;
                 }
 
@@ -160,8 +156,8 @@ export default function AuthForm({ navigate, isLogin }) {
                     {!isLogin && email && errorEmail && (
                         <p className={s.errorFieled}>{errorEmail}</p>
                     )}
-                    {email && errorEmailServer && (
-                        <p className={s.errorFieled}>{errorEmailServer}</p>
+                    {!isLogin && email && errorServer && (
+                        <p className={s.errorFieled}>{errorServer}</p>
                     )}
                 </div>
 
@@ -182,9 +178,6 @@ export default function AuthForm({ navigate, isLogin }) {
                     )}
                     {password && errorPassword && !isLogin && (
                         <p className={s.errorFieled}>{errorPassword}</p>
-                    )}
-                    {password && errorPasswordServer && isLogin && (
-                        <p className={s.errorFieled}>{errorPasswordServer}</p>
                     )}
                 </div>
 
@@ -236,6 +229,10 @@ export default function AuthForm({ navigate, isLogin }) {
                 )}
             </div>
 
+            {isLogin && email && errorServer && (
+                <p className={s.errorFieled}>{errorServer}</p>
+            )}
+
             <Button classes="btnEnter" onClick={() => requiredFields()}>
                 {isLogin ? 'Войти' : 'Зарегистрироваться'}
             </Button>
@@ -244,8 +241,7 @@ export default function AuthForm({ navigate, isLogin }) {
                 onClick={() => {
                     setErrorEmail('');
                     setErrorPassword('');
-                    setErrorEmailServer('');
-                    setErrorPasswordServer('');
+                    setErrorServer('');
 
                     if (isLogin) {
                         navigate('/registration');
