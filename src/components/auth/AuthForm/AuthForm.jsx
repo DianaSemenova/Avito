@@ -20,12 +20,16 @@ export default function AuthForm({ navigate, isLogin }) {
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [city, setCity] = useState('');
-    const [loginUser] = useLoginUserMutation();
+    const [loginUser, options] = useLoginUserMutation();
     const [registrationUser] = useRegistrationUserMutation();
     const [error, setError] = useState('');
     const [errorEmail, setErrorEmail] = useState('');
     const [errorPassword, setErrorPassword] = useState('');
     const [errorServer, setErrorServer] = useState('');
+
+    // useEffect(() => {
+    //     console.log('loginError', loginError);
+    // }, [loginError]);
 
     const handleLogin = async () => {
         try {
@@ -33,6 +37,9 @@ export default function AuthForm({ navigate, isLogin }) {
                 email: email.replaceAll(' ', ''),
                 password: password.replaceAll(' ', ''),
             });
+
+            console.log('options', options);
+            // console.log('isError', isError);
 
             setErrorServer('');
 
